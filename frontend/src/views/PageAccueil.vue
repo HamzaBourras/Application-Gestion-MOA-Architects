@@ -1,11 +1,7 @@
 <template>
-  <div class="container-1">
     <NavBar />
     <PresEntrep />
-  </div>
-  <div>
     <ServiceEntrep />
-  </div>
 </template>
 
 <script>
@@ -17,10 +13,3 @@ export default {
 };
 </script>
 
-<style>
-.container-1 {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .1)), url('@/assets/preseentre.png');
-  background-size: cover;
-  background-position: center;
-}
-</style>

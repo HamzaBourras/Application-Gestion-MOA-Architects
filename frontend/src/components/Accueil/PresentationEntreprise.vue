@@ -8,7 +8,7 @@
                 <h4>Moroccan Office of Architecture & Architecte DNA</h4>
             </div>
             <div class="row">
-                <a href="">Prendre un rendez-vous</a>
+                <a href="#services">Prendre un rendez-vous</a>
                 <a href="">Voir les projets <span class="ml-2">&#x27f6</span></a>
             </div>
 
@@ -37,6 +37,10 @@
     width: 100%;
     height: 89vh;
     padding: 0 8%;
+    font-family: "poppins";
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .1)), url('@/assets/pres2.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .site-container {
@@ -93,7 +97,7 @@
         }
 
         a:hover {
-          border-radius: 20px;  
+            border-radius: 20px;
         }
 
         span {
