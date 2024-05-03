@@ -5,7 +5,7 @@
             <div class="space-y-2">
                 <p>Bienvenue à</p>
                 <h1>MOA & M. Charafi</h1>
-                <h4>Moroccan Office of Architecture & Architecte DNA</h4>
+                <h4>Moroccan Office of Architecture & Architecte DENA</h4>
             </div>
             <div class="row">
                 <a href="#services">Prendre un rendez-vous</a>
@@ -37,7 +37,6 @@
     width: 100%;
     height: 89vh;
     padding: 0 8%;
-    font-family: "poppins";
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .1)), url('@/assets/pres2.jpg');
     background-size: cover;
     background-position: center;

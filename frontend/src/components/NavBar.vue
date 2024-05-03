@@ -2,7 +2,7 @@
   <header>
     <nav class="flex h-20 justify-between items-center mx-auto ">
       <div>
-        <img class="w-24 cursor-pointer" src="@/assets/logo1.png" alt="...">
+        <img class="w-24 cursor-pointer" src="@/assets/logo-charafi.png" alt="...">
       </div>
       <div ref="navLinks"
         class="text-[17.5px] duration-500 md:static md:bg-inherit bg-white md:shadow-none shadow-md absolute md:min-h-fit min-h-[60vh] right-0 top-[113px] md:w-auto  w-[45vw] flex items-center justify-center md:pt-0 pt-10 px-5">
@@ -17,14 +17,14 @@
             <span class="inline-block rounded text-[#0000008e]  py-1 cursor-pointer">Contactez-nous</span>
           </li>
           <li>
-            <span class="inline-block rounded text-[#0000008e] py-1 cursor-pointer">à propos de nous</span>
+            <span class="inline-block rounded text-[#0000008e] py-1 cursor-pointer">A propos de nous</span>
           </li>
         </ul>
       </div>
       <div class="flex items-center gap-6">
         <div>
           <button
-            class="border bg-[#303ef7] text-white hover:bg-blue-800 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-500 focus:ring-2">Se
+            class="border bg-blue-700 text-white hover:bg-blue-800 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-500 focus:ring-2">Se
             connecter</button>
         </div>
         <ion-icon @click="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
