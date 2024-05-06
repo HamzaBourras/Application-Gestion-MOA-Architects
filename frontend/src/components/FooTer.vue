@@ -4,8 +4,8 @@
             <div class="w-full flex items-center justify-between mb-[20px]">
                 <div class="flex items-center">
                     <img class="h-16 " src="@/assets/logo-charafi.png" alt="">
-                    <p class="w-2/3 pl-1 pt-2 text-left text-[12px] font-[100] tracking-[0.5px]">
-                        Architecte d'ENA Lorem ipsum dolor sit amet.
+                    <p class="w-2/3 pl-1 pt-2 text-left text-[13px] font-[200] tracking-[0.5px]">
+                        Architecte d'ENA, Master « Sustainable, resilient and smart design and city planning » à L'UM6P Benguerir
                     </p>
                 </div>
                 <div class="relative w-1/3">
@@ -22,12 +22,15 @@
                     <p class="mb-3 text-[15px] tracking-[1px] font-[200]">Suivez-nous</p>
                     <div class="flex items-center justify-between space-x-6">
                         <p>
-                            <img src="@/assets/logo-facebook.png" class="h-10 bg-white rounded-md cursor-pointer hover:translate-y-[4px]" alt="">
+                            <img src="@/assets/logo-facebook.png"
+                                class="h-10 bg-white rounded-md cursor-pointer hover:translate-y-[4px]" alt="">
                         </p>
                         <p>
-                            <img src="@/assets/logo-instagram.png" class="h-10 rounded-md cursor-pointer hover:translate-y-[4px]" alt="">
+                            <img src="@/assets/logo-instagram.png"
+                                class="h-10 rounded-md cursor-pointer hover:translate-y-[4px]" alt="">
                         </p>
-                        <p><img src="@/assets/logo-linkedin.png" class="h-10 rounded-sm cursor-pointer hover:translate-y-[4px]" alt="">
+                        <p><img src="@/assets/logo-linkedin.png"
+                                class="h-10 rounded-sm cursor-pointer hover:translate-y-[4px]" alt="">
                         </p>
                     </div>
                 </div>

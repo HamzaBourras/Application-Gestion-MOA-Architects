@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full pt-[20px] pb-[40px] px-[8%]">
+    <div class="w-full pt-[20px] pb-[60px] px-[8%]">
         <h1 class="text-center pt-[2%] mb-[60px] relative text-4xl font-bold">Nos Services</h1>
         <div class="row grid">
             <div
@@ -45,11 +45,6 @@
 </template>
 
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 h1::after {
     content: "";
