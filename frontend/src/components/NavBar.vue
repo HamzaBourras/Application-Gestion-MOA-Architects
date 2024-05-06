@@ -2,7 +2,8 @@
   <header>
     <nav class="flex h-20 justify-between items-center mx-auto ">
       <div>
-        <img class="w-24 cursor-pointer" src="@/assets/logo-charafi.png" alt="...">
+        <button @click="this.$router.go(-1)"><img class="w-24 cursor-pointer" src="@/assets/logo-charafi.png"
+            alt="..."></button>
       </div>
       <div ref="navLinks"
         class="text-[17.5px] duration-500 md:static md:bg-inherit bg-white md:shadow-none shadow-md md:min-h-fit min-h-[60vh] right-0 top-[113px] md:w-auto  w-[45vw] flex items-center justify-center md:pt-0 pt-10 px-5">
@@ -12,7 +13,7 @@
                 class="inline-block rounded text-[#0000008e] py-1 cursor-pointer">Accueil</span></router-link>
           </li>
           <li>
-            <router-link class="font-normal" to="/experiences"><span
+            <router-link class="font-normal" to="/types-des-experiences"><span
                 class="inline-block rounded text-[#0000008e] py-1 cursor-pointer">Experiences</span></router-link>
           </li>
           <li>
@@ -20,7 +21,7 @@
                 class="inline-block rounded text-[#0000008e]  py-1 cursor-pointer">Contactez-nous</span></router-link>
           </li>
           <li>
-            <router-link class="font-normal" to="/about"><span
+            <router-link class="font-normal" to="/apropos"><span
                 class="inline-block rounded text-[#0000008e] py-1 cursor-pointer">A propos de
                 nous</span></router-link>
           </li>
@@ -32,7 +33,7 @@
             class="border bg-blue-700 text-white hover:bg-blue-800 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-500 focus:ring-2">Se
             connecter</button>
         </div>
-        <ion-icon @click="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
+        <!-- <ion-icon @click="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon> -->
       </div>
     </nav>
   </header>
