@@ -1,11 +1,12 @@
 <template>
-    <div class="bg-[#182444] text-white h-[50vh]">
+    <div class="bg-blue-950 text-white h-[51vh]">
         <div class="flex flex-col justify-between items-start py-[30px] px-[30px]">
             <div class="w-full flex items-center justify-between mb-[20px]">
                 <div class="flex items-center">
                     <img class="h-16 " src="@/assets/logo-charafi.png" alt="">
                     <p class="w-2/3 pl-1 pt-2 text-left text-[13px] font-[200] tracking-[0.5px]">
-                        Architecte d'ENA, Master « Sustainable, resilient and smart design and city planning » à L'UM6P Benguerir
+                        Architecte d'ENA, Master « Sustainable, resilient and smart design and city planning » à L'UM6P
+                        Benguerir
                     </p>
                 </div>
                 <div class="relative w-1/3">
@@ -55,10 +56,10 @@
                 <div>
                     <h2 class="text-left font-[600] mb-4 text-[17px]">Contact</h2>
                     <ul class="flex flex-col items-start text-sm space-y-2 text-[#ffffffb3]">
-                        <li class="font-semibold">Architecte Mohamed Larbi Charafi</li>
-                        <li>charafiarchitecte@gmail.com</li>
-                        <li>Tel- 05-24-88-32-04</li>
-                        <li>27, LOTISSEMENT DU CENTRE OUARZAZATE</li>
+                        <li class="font-semibold">Architecte Charafi Hamza </li>
+                        <li>hamzacharafi@gmail.com</li>
+                        <li>Tel- 05-24-43-77-61</li>
+                        <li class="text-justify" >27, Appt. 16 Imm. Nakhla, n° 91/89, 2ème étage,<br> Av. Zerktouni, Guéliz, Marrakech </li>
                     </ul>
 
                 </div>

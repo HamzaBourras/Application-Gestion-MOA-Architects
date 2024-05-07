@@ -8,7 +8,7 @@
 <style scoped>
 h1::after {
     content: "";
-    background: #303ef7;
+    background: rgb(147, 197, 253);
     width: 100px;
     height: 5px;
     position: absolute;

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col justify-center bg-blue-400 text-white">
-        <div class="flex items-center justify-between py-4 pl-4 border-b-2  border-black">
-            <h1 class="text-[35px] font-bold w-1/4 text-black">{{ typeExperienceChoisi.titre }}</h1>
+    <div class="flex flex-col justify-center bg-[#062a74] text-white">
+        <div class="flex items-center justify-between py-4 pl-4 border-b-2  border-blue-300">
+            <h1 class="text-[35px] font-bold w-1/4 text-blue-300">{{ typeExperienceChoisi.titre }}</h1>
             <div class="w-1/3">
                 <form class="flex items-center max-w-sm mx-auto">
                     <label for="simple-search" class="sr-only">Search</label>
@@ -19,7 +19,7 @@
                             placeholder="rechercher un projet ..." required />
                     </div>
                     <button type="submit"
-                        class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-400 rounded-lg border border-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-700 ">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +31,8 @@
             </div>
         </div>
         <div class="flex justify-between items-center flex-wrap mt-[30px]">
-            <div class="flex flex-col items-center justify-center w-[45%] h-[450px] " v-for="projet in typeExperienceChoisi.projets" :key="projet.id">
+            <div class="flex flex-col items-center justify-center w-[45%] h-[450px] "
+                v-for="projet in typeExperienceChoisi.projets" :key="projet.id">
                 <img class="h-[70%] w-[75%] rounded-md" :src="projet.image" alt="">
                 <h2 class="text-xl font-semibold mt-4 ">{{projet.title}}</h2>
             </div>
