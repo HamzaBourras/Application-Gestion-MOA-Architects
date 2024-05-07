@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import PageAccueil from "@/views/PageAccueil.vue";
 import PageTypesDesExperiences from "@/views/PageTypesDesExperiences.vue";
 import PageProjetsDuType from "@/views/PageProjetsDuType.vue";
-import PageContactezNous from '@/views/PageContactezNous.vue'
+import PageContactezNous from '@/views/PageContactezNous.vue';
+import PageAproposNous from "@/views/PageAproposNous.vue"
 const routes = [
   {
     name: "Accueil",
@@ -27,7 +28,7 @@ const routes = [
   {
     name: "à propos de nous ",
     path: "/apropos",
-    component: PageProjetsDuType,
+    component: PageAproposNous,
   },
 ];
 

@@ -224,3 +224,37 @@ h1 {
 
 
 </style>
+
+
+
+
+
+
+<div class="h-[90vh] bg-[#062a74] flex items-center justify-center">
+        <div class="h-[85%] flex items-center justify-between gap-0 w-full p-[40px] ">
+            <div class=" h-full w-[45%]">
+                <img class="h-full" src="@/assets/pres1.png" alt="">
+            </div>
+            <div class="bg-red-500 h-full w-[50%] flex flex-col items-start justify-between">
+                <div class="h-1/2 flex flex-col items-start  bg-yellow-200 w-full">
+                    <div class="flex items-center py-[10px]">
+                        <p class="w-[100px] h-[2px] bg-black inline mr-[10px]"></p>
+                        <h3 class="font-semibold text-[22px]">Charafi Hamza</h3>
+                    </div>
+                    <h1 class="text-[50px] font-bold tracking-[1px] text-left py-[30px] leading-[70px]">Moroccan Office
+                        of
+                        <br> Architecture
+                    </h1>
+                </div>
+                <div class="h-1/2 flex flex-col items-start justify-around bg-sky-200 w-full">
+                    <p class="text-left leading-6 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+                        earum, quibusdam non vero
+                        excepturi
+                        quia deleniti, numquam perspiciatis at expedita aspernatur, voluptate libero magni corporis
+                        itaque
+                        molestias autem error! Minima.</p>
+                    <button class="bg-gray-800 px-[30px] py-3 text-gray-100 w-1/2">Décorer votre maison</button>
+                </div>
+            </div>
+        </div>
+    </div>

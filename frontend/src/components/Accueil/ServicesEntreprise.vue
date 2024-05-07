@@ -1,11 +1,12 @@
 <template>
     <div class="w-full pt-[20px] pb-[60px] px-[8%]">
-        <h1 class="text-center pt-[2%] mb-[60px] relative text-4xl font-bold">Nos Services</h1>
+        <h1 class="text-center pt-[2%] mb-[60px] relative text-[40px] font-[700]">Nos Services</h1>
         <div class="row grid">
             <div
                 class="service group hover:bg-blue-300 hover:text-white hover:translate-y-[-8px] text-center py-6 px-4 rounded-lg text-sm cursor-pointer bg-transparent">
                 <h2 class="font-bold mb-[18px] text-[20px]">Service 1</h2>
-                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet consectetur adipisicing
+                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet
+                    consectetur adipisicing
                     elit. Ex officia nesciunt,
                     inventore non aliquam
                     impedit. Nam, amet! Neque vero modi iure, ut sed repudiandae assumenda veniam aliquid, voluptatum
@@ -14,7 +15,8 @@
             <div
                 class="service group hover:bg-blue-300 hover:text-white hover:translate-y-[-8px] text-center py-6 px-4 rounded-lg text-sm cursor-pointer bg-transparent">
                 <h2 class="font-bold mb-[18px] text-[20px]">Service 2</h2>
-                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet consectetur adipisicing
+                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet
+                    consectetur adipisicing
                     elit. Ex officia nesciunt,
                     inventore non aliquam
                     impedit. Nam, amet! Neque vero modi iure, ut sed repudiandae assumenda veniam aliquid, voluptatum
@@ -23,7 +25,8 @@
             <div
                 class="service group hover:bg-blue-300 hover:text-white hover:translate-y-[-8px] text-center py-6 px-4 rounded-lg text-sm cursor-pointer bg-transparent">
                 <h2 class="font-bold mb-[18px] text-[20px]">Service 3</h2>
-                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet consectetur adipisicing
+                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet
+                    consectetur adipisicing
                     elit. Ex officia nesciunt,
                     inventore non aliquam
                     impedit. Nam, amet! Neque vero modi iure, ut sed repudiandae assumenda veniam aliquid, voluptatum
@@ -32,7 +35,8 @@
             <div
                 class="service group hover:bg-blue-300 hover:text-white hover:translate-y-[-8px] text-center py-6 px-4 rounded-lg text-sm cursor-pointer bg-transparent">
                 <h2 class="font-bold mb-[18px] text-[20px]">Service 4</h2>
-                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet consectetur adipisicing
+                <p class="group-hover:text-[#ffffffc0] text-justify tracking-[1px]">Lorem ipsum dolor, sit amet
+                    consectetur adipisicing
                     elit. Ex officia nesciunt,
                     inventore non aliquam
                     impedit. Nam, amet! Neque vero modi iure, ut sed repudiandae assumenda veniam aliquid, voluptatum
@@ -52,7 +56,7 @@ h1::after {
     width: 100px;
     height: 5px;
     position: absolute;
-    bottom: -5px;
+    bottom: -1px;
     left: 50%;
     transform: translateX(-50%);
 }

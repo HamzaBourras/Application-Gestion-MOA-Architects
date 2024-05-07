@@ -1,6 +1,6 @@
 <template>
     <div class="bg-[#062a74] text-white py-[20px]">
-        <h1 class="text-center pt-[2%] mb-[60px] relative text-5xl font-bold">Experiences</h1>
+        <h1 class="text-center pt-[2%] mb-[40px] relative text-[50px] font-[700] tracking-[1px] ">Experiences</h1>
         <div class="flex flex-col items-center justify-center">
             <div class=" w-[90%] h-[50vh] my-[20px] border-2 border-blue-300 rounded-lg"
                 v-for="(exper,i) in experiences" :key="i">
@@ -11,7 +11,7 @@
                         </div>
                         <div class="w-1/2 h-[50vh] flex items-center">
                             <div class="space-y-10 flex flex-col justify-around">
-                                <h2 class="text-3xl tracking-[1px] font-semibold">{{ exper.title }}</h2>
+                                <h2 class="text-[32px] tracking-[1px] font-[400]">{{ exper.title }}</h2>
                                 <p class="text-justify w-2/3 m-auto tracking-[0.5px]">{{ exper.description }}</p>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ h1::after {
     width: 350px;
     height: 5px;
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 50%;
     transform: translateX(-50%);
 }

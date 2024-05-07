@@ -1,6 +1,6 @@
 <template>
     <div class="w-full pt-[20px] pb-[40px] px-[8%] border-t-4 border-black">
-        <h1 class="text-center pt-[2%] mb-[60px] relative text-4xl font-bold">Commentaires</h1>
+        <h1 class="text-center pt-[2%] mb-[60px] relative text-[40px] font-[700]">Commentaires</h1>
     </div>
 </template>
 
@@ -12,7 +12,7 @@ h1::after {
     width: 100px;
     height: 5px;
     position: absolute;
-    bottom: -5px;
+    bottom: -1px;
     left: 50%;
     transform: translateX(-50%);
 }
