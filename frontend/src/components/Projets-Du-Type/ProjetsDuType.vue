@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center bg-[#062a74] text-white">
-        <div class="flex items-center justify-between py-4 pl-4 border-b-2  border-blue-300">
-            <h1 class="text-[35px] font-bold w-1/4 text-blue-300">{{ typeExperienceChoisi.titre }}</h1>
+        <div class="flex items-center justify-between py-4 pl-4 border-b-2  border-blue-400">
+            <h1 class="text-[35px] font-bold w-1/4 text-blue-400">{{ typeExperienceChoisi.titre }}</h1>
             <div class="w-1/3">
                 <form class="flex items-center max-w-sm mx-auto">
                     <label for="simple-search" class="sr-only">Search</label>
@@ -19,7 +19,7 @@
                             placeholder="rechercher un projet ..." required />
                     </div>
                     <button type="submit"
-                        class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-400 rounded-lg border border-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-700 ">
+                        class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-700 ">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

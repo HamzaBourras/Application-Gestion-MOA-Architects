@@ -227,10 +227,8 @@ h1 {
 
 
 
-
-
-
-<div class="h-[90vh] bg-[#062a74] flex items-center justify-center">
+<template>
+    <div class="h-[90vh] bg-[#062a74] flex items-center justify-center">
         <div class="h-[85%] flex items-center justify-between gap-0 w-full p-[40px] ">
             <div class=" h-full w-[45%]">
                 <img class="h-full" src="@/assets/pres1.png" alt="">
@@ -258,3 +256,4 @@ h1 {
             </div>
         </div>
     </div>
+</template>

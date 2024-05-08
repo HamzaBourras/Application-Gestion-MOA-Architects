@@ -1,56 +1,128 @@
 <template>
-    <div class="bg-[#062a74] py-[40px] relative">
-        <div
-            class="flex justify-between items-center flex-wrap w-[65%] mx-auto absolute z-50 left-1/2 -translate-x-1/2 -translate-y-[20px]">
-            <div class="h-[150px] w-[220px] flex flex-col items-center bg-[#fefefe] px-[5px]">
-                <p class="pt-[5px] h-1/2 pb-[7px] flex items-center justify-center"><i
-                        class="fa-solid fa-location-dot text-blue-300 text-[40px]"></i></p>
-                <h2 class="font-[900] text-black pb-[5px] text-[14px]">NOTRE BUREAU PRINCIPAL</h2>
-                <p class="text-[12px]">27, LOTISSEMENT DU CENTRE OUARZAZATE</p>
+    <div class="bg-[#062a74] h-[90vh] flex items-center ">
+        <div class="contactUs relative w-[90%] m-auto pb-[20px] px-[100px] ">
+            <div class="title flex justify-center items-center text-[2em] ">
+                <h2 class="text-white font-[700] tracking-[0.5px] pb-[20px] text-left w-full">Rester en contact</h2>
             </div>
-            <div class="h-[150px] w-[220px] flex flex-col items-center bg-[#fefefe] px-[5px]">
-                <p class="pt-[5px] h-1/2 pb-[7px] flex items-center justify-center"><i
-                        class="fa-solid fa-mobile text-blue-300 text-[40px]"></i></p> 
-                <h2 class="font-[900] text-black pb-[5px]">NUMÉRO DE TÉLÉPHONE</h2>
-                <p>06-72-36-67-35</p>
-            </div>
-            <div class="h-[150px] w-[220px] flex flex-col items-center bg-[#fefefe] px-[5px]">
-                <p class="pt-[5px] h-1/2 pb-[7px] flex items-center justify-center"><i
-                        class="fa-solid fa-envelope text-blue-300 text-[40px]"></i></p>
-                <h2 class="font-[900] text-black pb-[5px]">EMAIL</h2>
-                <p>hamzacharafi@gmail.com</p>
-            </div>
-            <div class="h-[150px] w-[220px] flex flex-col items-center bg-[#fefefe] px-[5px]">
-                <p class="pt-[5px] h-1/2 pb-[7px] flex items-center justify-center"><i
-                        class="fa-solid fa-phone text-blue-300 text-[40px]"></i></p>
-                <h2 class="font-[900] text-black pb-[5px]">NUMÉRO FIX</h2>
-                <p>05-24-43-77-61</p>
-            </div>
+            <div class="box relative grid  ">
+                <!-- Form Box -->
+                <div class=" form p-[30px] bg-[#fff] shadow-[0 5px 35px ] ">
+                    <h3 class="text-blue-400 font-[500] text-[1.3em] mb-[10px] text-left ">Envoyer un message</h3>
+                    <form action="">
+                        <div class="formBox relative w-full  ">
+                            <div class="row50 flex gap-[20px]">
+                                <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
+                                    <span
+                                        class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Prénom</span>
+                                    <input
+                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
+                                        type="text" placeholder="votre prénom ...">
+                                </div>
+                                <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
+                                    <span class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Nom</span>
+                                    <input
+                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
+                                        type="text" placeholder="votre nom ...">
+                                </div>
+                            </div>
 
-        </div>
-        <div class="bg-blue-300 w-[45%] mx-auto pt-[80px] pb-[30px] relative mt-[80px]">
-            <h1 class="text-[#062b73] text-[40px] font-bold">Contactez nous</h1>
-            <div class="w-[50%] mx-auto ">
-                <form action="" class="w-full">
-                    <div>
-                        <input class="bg-white px-3 py-2 focus:outline-none w-full my-[10px]" type="text"
-                            placeholder="Entrez votre nom,prenom">
+                            <div class="row50 flex gap-[20px]">
+                                <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
+                                    <span
+                                        class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Telephone</span>
+                                    <input
+                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
+                                        type="text" placeholder="06 12 34 56 78 ...">
+                                </div>
+                                <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
+                                    <span
+                                        class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Email</span>
+                                    <input
+                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
+                                        type="email" placeholder="example@gmail.com ...">
+                                </div>
+                            </div>
+
+                            <div class="row100">
+                                <div class="inputBox flex flex-col mb-[10px] w-full ">
+                                    <span
+                                        class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Message</span>
+                                    <textarea
+                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333] resize-none min-h-[120px] mb-[10px]"
+                                        name="" placeholder="votre message ici ..." id=""></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row100">
+                                <div class="inputBox flex flex-col mb-[10px] w-full ">
+                                    <input
+                                        class="bg-blue-400 hover:rounded-lg duration-200 text-white border-none text-[1em] max-w-[120px] font-[500] cursor-pointer py-[14px] px-[15px]"
+                                        type="submit" value="envoyer">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Infos Box -->
+                <div class=" info p-[30px] bg-blue-400 ">
+                    <h3 class="text-white font-[500] text-[1.3em] mb-[10px] text-left ">Coordonnées</h3>
+                    <div class="infoBox flex flex-col items-start space-y-[10px]">
+                        <div class="flex mb-[10px] items-center justify-between">
+                            <span
+                                class="min-w-[40px] h-[40px] text-white bg-[#333] flex justify-center items-center text-[1.2em] rounded-[50%] mr-[15px]  "><i
+                                    class="fa-solid fa-phone"></i></span>
+                            <a href="tel:+212524437761">+212 524-437761</a>
+                        </div>
+                        <div class="flex mb-[10px] items-center justify-between">
+                            <span
+                                class="min-w-[40px] h-[40px] text-white bg-[#333] flex justify-center items-center text-[1.2em] rounded-[50%] mr-[15px]  "><i
+                                    class="fa-solid fa-envelope"></i></span>
+                            <a href="mailto:hamzacharafi@gmail.com">hamzacharafi@gmail.com</a>
+                        </div>
+                        <div class="flex mb-[10px] items-center justify-between">
+                            <span
+                                class="min-w-[40px] h-[40px] text-white bg-[#333] flex justify-center items-center text-[1.2em] rounded-[50%] mr-[15px]  "><i
+                                    class="fa-solid fa-location-dot"></i></span>
+                            <p class="text-left">27, Appt. 16 Imm. Nakhla, n° 91/89, 2ème étage,Av. Zerktouni, Guéliz,
+                                Marrakech</p>
+                        </div>
+
                     </div>
-                    <div>
-                        <input class="bg-white px-3 py-2 focus:outline-none w-full my-[10px]" type="email"
-                            placeholder="Entrez votre email">
-                    </div>
-                    <div>
-                        <textarea class="bg-white px-2 focus:outline-none py-1 w-full my-[10px]" name=""
-                            placeholder="Votre message" id="" rows="6"></textarea>
-                    </div>
-                    <div>
-                        <input type="submit"
-                            class="border-[2px] border-white text-[#062b73] font-bold cursor-pointer hover:rounded-lg py-2 px-4 rounded-sm"
-                            value="Envoyer">
-                    </div>
-                </form>
+                </div>
+
+                <!-- Map Box -->
+                <div class=" map bg-[#fff] shadow-[0 5px 35px ] ">
+                    <iframe class="w-full h-full"  src="https://www.google.com/maps?q=(Moroccan Office of Architecture)&output=embed"
+                        frameborder="0"></iframe>
+                </div>
             </div>
         </div>
     </div>
 </template>
+<!--  -->
+"https://www.google.com/maps?q=encodeURIComponent("marrakech")&output=embed"
+<style scoped>
+.box {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 5fr 4fr;
+    grid-template-areas: "form info" "form map";
+    grid-gap: 10px;
+}
+
+.form {
+    grid-area: form;
+}
+
+.info {
+    grid-area: info;
+}
+
+.map {
+    grid-area: map;
+}
+
+.inputBox ::placeholder {
+    color: #999;
+}
+</style>

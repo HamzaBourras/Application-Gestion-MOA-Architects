@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-[#062a74]">
-        <div class="row w-[80%] max-w-[1170px] grid gap-[50px] overflow-x-hidden m-auto py-[5rem] px-0 text-white">
+    <div class="bg-[#062a74] h-[89vh] flex items-center ">
+        <div class="row w-[82%] grid gap-[50px] overflow-x-hidden m-auto py-[5rem] px-0 text-white">
             <div class="overflow-hidden group">
                 <img class="w-full h-full object-cover duration-300 group-hover:scale-[1.25]" src="@/assets/pres1.png"
                     alt="">
@@ -16,7 +16,7 @@
                         laboriosam
                         soluta architecto cum vero, sapiente omnis quos dolores ad id, quam non placeat labore minus
                         molestiae veniam.</p>
-                    <a class="inline-block uppercase bg-blue-300 text-white py-[15px] px-[40px] tracking-[1px] select-none"
+                    <a class="inline-block uppercase bg-blue-400 text-white py-[15px] px-[40px] tracking-[1px] select-none"
                         href="">Décorer votre maison</a>
                 </div>
             </div>

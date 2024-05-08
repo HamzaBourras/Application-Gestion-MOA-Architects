@@ -30,7 +30,7 @@
       <div class="flex items-center gap-6">
         <div>
           <button
-            class="border bg-blue-400 text-white hover:bg-blue-500 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-700 focus:ring-2 focus:outline-none">Se
+            class="border bg-blue-500 text-white hover:bg-blue-600 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-700 focus:ring-2 focus:outline-none">Se
             connecter</button>
         </div>
         <!-- <ion-icon @click="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon> -->
@@ -58,7 +58,7 @@ li span {
 
 li span::after {
   content: '';
-  background: rgb(147, 197, 253);
+  background: rgb(96 ,165 ,250);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -79,7 +79,7 @@ li span:hover:after {
   font-weight: 600;
   span::after {
     content: '';
-    background: rgb(147, 197, 253);
+    background: rgb(96, 165, 250);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -88,7 +88,7 @@ li span:hover:after {
   }
 
   span {
-    color: black
+      color: #333
   }
 
 }

@@ -56,7 +56,7 @@
                 <div>
                     <h2 class="text-left font-[600] mb-4 text-[17px]">Contact</h2>
                     <ul class="flex flex-col items-start text-sm space-y-2 text-[#ffffffb3]">
-                        <li class="font-semibold">Architecte Charafi Hamza </li>
+                        <li class="font-bold text-[15px] tracking-[0.2px]">Architecte Charafi Hamza </li>
                         <li>hamzacharafi@gmail.com</li>
                         <li>Tel- 05-24-43-77-61</li>
                         <li class="text-justify" >27, Appt. 16 Imm. Nakhla, n° 91/89, 2ème étage,<br> Av. Zerktouni, Guéliz, Marrakech </li>

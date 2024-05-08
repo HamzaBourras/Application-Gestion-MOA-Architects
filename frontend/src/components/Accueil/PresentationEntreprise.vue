@@ -9,7 +9,8 @@
             </div>
             <div class="row">
                 <a href="#services">Prendre un rendez-vous</a>
-                <a href="">Voir les projets <span class="ml-2">&#x27f6</span></a>
+                <router-link to="/types-des-experiences"><span class="border-none" href="">Voir les experiences <span
+                            class="ml-2 text-[20px]">&#x27f6</span></span></router-link>
             </div>
 
 
@@ -83,25 +84,27 @@
         flex-wrap: wrap;
         margin-top: 40px;
 
-        a {
+        a, router-link {
             display: flex;
             align-items: center;
-            padding: 5px 20px;
+            justify-content: center;
+            padding: 8px 0;
             text-decoration: none;
             color: #fff;
             border: 3px solid #fff;
             margin-right: 40px;
             font-size: 18px;
-            transition: 0.3s;
+            transition: 0.4s;
+            width: 280px;
+            
         }
 
-        a:hover {
-            border-radius: 20px;
+        a:hover,router-link:hover {
+            border-radius: 15px;
+
         }
 
-        span {
-            font-size: 20px;
-        }
+        
     }
 
 
