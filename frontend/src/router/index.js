@@ -3,7 +3,8 @@ import PageAccueil from "@/views/PageAccueil.vue";
 import PageTypesDesExperiences from "@/views/PageTypesDesExperiences.vue";
 import PageProjetsDuType from "@/views/PageProjetsDuType.vue";
 import PageContactezNous from '@/views/PageContactezNous.vue';
-import PageAproposNous from "@/views/PageAproposNous.vue"
+import PageAproposNous from "@/views/PageAproposNous.vue";
+import PageAuthentification from "@/views/PageAuthentification";
 const routes = [
   {
     name: "Accueil",
@@ -30,6 +31,11 @@ const routes = [
     path: "/apropos",
     component: PageAproposNous,
   },
+  {
+    name: "authentification",
+    path: "/authentifier",
+    component: PageAuthentification
+  }
 ];
 
 const router = createRouter({

@@ -27,11 +27,11 @@
           </li>
         </ul>
       </div>
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-6 ">
         <div>
-          <button
-            class="border bg-blue-500 text-white hover:bg-blue-600 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-700 focus:ring-2 focus:outline-none">Se
-            connecter</button>
+          <router-link to="/authentifier" ><button
+              class="border bg-blue-500 text-white hover:bg-blue-600 px-5 py-2 rounded-xl text-[16px] focus:ring-blue-700 focus:ring-2 focus:outline-none">Se
+              connecter</button></router-link>
         </div>
         <!-- <ion-icon @click="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon> -->
       </div>
