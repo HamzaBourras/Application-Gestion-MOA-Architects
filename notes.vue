@@ -257,3 +257,34 @@ h1 {
         </div>
     </div>
 </template>
+
+
+
+
+
+
+<style>
+.actif::before {
+    content:'';
+    position:absolute;
+    left:-20px;
+    bottom:0px;
+    width:20px;
+    height:20px;
+    border-bottom-right-radius:20px;
+    box-shadow: 4px 4px 0 4px #f3f4f6;
+    
+}
+
+.actif::after {
+    content:'';
+    position:absolute;
+    right:-15px;
+    bottom:0px;
+    width:15px;
+    height:20px;
+    border-bottom-left-radius:20px;
+    box-shadow: -4px 4px 0 4px #f3f4f6;
+}
+
+</style>

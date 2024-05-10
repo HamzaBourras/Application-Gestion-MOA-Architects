@@ -1,9 +1,7 @@
 <template>
-    
-        
-
+    <div class="h-[95%] inscrire w-[50%] ml-[30px] mr-[20px]"  >
         <!-- form -->
-        <div class=" flex flex-col items-center w-[50%] h-[95%] ml-[10px]">
+        <div class=" flex flex-col items-center w-full h-full ">
             <div class="w-full">
                 <h1 class="text-2xl text-[#002D74] font-bold text-left">S' inscrire</h1>
                 <p class="text-sm mt-3 text-[#002D74] text-left">Veuillez créer un compte</p>
@@ -46,7 +44,7 @@
                 </div>
                 <div class="mt-6">
                     <input
-                        class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3"
+                        class="w-full block bg-blue-400 hover:bg-blue-500 focus:bg-blue-500 text-white font-semibold rounded-lg px-4 py-3"
                         type="submit" value="S' inscrire">
                 </div>
             </form>
@@ -58,5 +56,31 @@
                         connecter</button>
                 </div> -->
         </div>
-    
+    </div>
 </template>
+
+
+
+<style scoped >
+.inscrire{
+    animation: pulse 0.4s cubic-bezier(0.4, 0, 0.6, 1) 1;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  25%{
+    opacity: .25;
+  }
+  50% {
+    opacity: .5;
+  }
+  75%{
+    opacity: .75;
+  }
+  100%{
+    opacity:1;
+  }
+}
+</style>
