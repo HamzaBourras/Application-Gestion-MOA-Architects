@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->string("telephone");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('motpasse');
-            // $table->foreignIdFor(Role::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Role::class)->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

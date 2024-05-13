@@ -1,31 +1,31 @@
 <template>
     <!-- form -->
-    <div class="h-full connect w-[50%] mr-[30px] ml-[20px] " >
+    <div class="h-full connect w-[50%] mr-[30px] ml-[20px] py-[10px] " >
         <div class="h-full w-full flex flex-col items-start pt-[5px] ">
             <div>
                 <h1 class="text-2xl text-[#002D74] font-bold text-left ">Se connecter</h1>
                 <p class="text-sm mt-4 text-[#002D74]">Si vous avez un compte, veuillez vous connecter</p>
             </div>
-            <form class="w-full mt-6" action="">
+            <form class="w-full mt-6 " action="">
                 <div class="flex flex-col items-start w-full ">
                     <div class="flex flex-col items-start w-full">
-                        <label class="font-[450] block mb-2 text-gray-700" for="email">Adresse e-mail</label>
+                        <label class="font-[450] block text-gray-700" for="email">Adresse e-mail</label>
                         <input
                             class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                             type="email" id="email">
                     </div>
-                    <div class="flex flex-col items-start w-full mt-3">
-                        <label class="font-[450] block mb-2 text-gray-700" for="motpasse">Mot de passe</label>
+                    <div class="flex flex-col items-start w-full mt-[30px]">
+                        <label class="font-[450] block  text-gray-700" for="motpasse">Mot de passe</label>
                         <input
                             class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                             type="password" id="motpasse">
                     </div>
                 </div>
                 <div
-                    class="flex justify-end mt-4 font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700 text-sm">
+                    class="flex justify-end mt-[40px] font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700 text-sm">
                     <a href="#">Mot de passe oublié ?</a>
                 </div>
-                <div class="mt-6">
+                <div class="mt-5">
                     <input
                         class="w-full block bg-blue-400 hover:bg-blue-500 focus:bg-blue-500 text-white font-semibold rounded-lg px-4 py-3"
                         type="submit" value="Se connecter">

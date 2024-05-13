@@ -11,16 +11,11 @@ class AuthentificationController extends Controller
     /****** Inscription ******/
     function inscrire(AuthentificationRequest $request)
     {
-        User::create([
-            "nom" => $request->nom,
-            "prenom" => $request->prenom,
-            "email" => $request->email,
-            "telephone" => $request->telephone,
-            "motpasse" => $request->motpasse,
-            "role_id" => 2
-        ]);
+        
+        $user = User::create($request->validate());
 
         return response()->json([
+            "user" => $user,
             "message" => "inscription terminée avec success"
         ]);
     }
