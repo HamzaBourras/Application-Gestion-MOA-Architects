@@ -30,4 +30,21 @@ class AuthentificationRequest extends FormRequest
             "motpasseverif" => "required|same:motpasse"
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            "prenom.required" => "Le prénom est obligatoire.",
+            "nom.required" => "Le nom est obligatoire.",
+            "email.required" => "L'adresse e-mail est obligatoire.",
+            "email.email" => "Veuillez entrer une adresse e-mail valide.",
+            "email.unique" => "Cette adresse e-mail est déjà utilisée.",
+            "telephone.required" => "Le numéro de téléphone est obligatoire.",
+            "motpasse.required" => "Le mot de passe est obligatoire.",
+            "motpasse.min" => "Le mot de passe doit contenir au moins :min caractères.",
+            "motpasse.max" => "Le mot de passe ne doit pas dépasser :max caractères.",
+            "motpasseverif.required" => "La vérification du mot de passe est obligatoire.",
+            "motpasseverif.same" => "Les mots de passe ne correspondent pas."
+        ];
+    }
 }

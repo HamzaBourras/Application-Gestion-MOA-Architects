@@ -14,27 +14,34 @@
             <form class="w-full mt-4 mb-4" @submit.prevent="inscrire">
                 <div class="flex flex-col items-start w-full ">
 
-                    <div class="flex items-center space-x-3 mt-[15px] w-full">
+                    <div class="flex space-x-3 mt-[15px] w-full">
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block  text-gray-700" for="prenom">Votre prénom</label>
                             <input v-model="client.prenom"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="prenom">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.prenom"><span
+                                    v-for="(error, i) in errors?.prenom" :key="i">{{ error }} </span></p>
+
                         </div>
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block text-gray-700" for="nom">Votre nom</label>
                             <input v-model="client.nom"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="nom">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.nom"><span
+                                    v-for="(error, i) in errors?.nom" :key="i">{{ error }} </span></p>
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-3 mt-[35px] w-full">
+                    <div class="flex space-x-3 mt-[35px] w-full">
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block text-gray-700" for="email">Adresse e-mail</label>
                             <input v-model="client.email"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="email" id="email">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.email"><span
+                                    v-for="(error, i) in errors?.email" :key="i">{{ error }} </span></p>
                         </div>
 
                         <div class="flex flex-col items-start w-full">
@@ -42,21 +49,27 @@
                             <input v-model="client.telephone"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="telephone">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.telephone"><span
+                                    v-for="(error, i) in errors?.telephone" :key="i">{{ error }} </span></p>
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-3 mt-[35px] w-full">
+                    <div class="flex space-x-3 mt-[35px] w-full">
                         <div class="flex flex-col items-start w-1/2">
                             <label class="font-[450] block text-gray-700" for="motpasse">Mot de passe</label>
                             <input v-model="client.motpasse"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="password" id="motpasse">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasse"><span
+                                    v-for="(error, i) in errors?.motpasse" :key="i">{{ error }} </span></p>
                         </div>
                         <div class="flex flex-col items-start w-1/2">
                             <label class="font-[450] block text-gray-700" for="motpasseverif">Vérification</label>
                             <input v-model="client.motpasseverif"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="password" id="motpasseverif">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasseverif"><span
+                                    v-for="(error, i) in errors?.motpasseverif" :key="i">{{ error }} </span></p>
                         </div>
                     </div>
                 </div>
@@ -76,6 +89,7 @@
 <script>
 import { INSCRIRE_API } from "@/api/api.js";
 import MessAgeComponent from "@/components/MessAge.vue"
+import axios from "axios"
 export default {
     components: {
         MessAgeComponent
@@ -87,11 +101,12 @@ export default {
                 nom: "",
                 prenom: "",
                 email: "",
-                telephone: null,
+                telephone: "",
                 motpasse: "",
                 motpasseverif: "",
             },
-            message: ""
+            message: "",
+            errors: null
         }
     },
     methods: {
@@ -102,25 +117,18 @@ export default {
         },
 
         async inscrire() {
-            const requestData = {
-                headers: { "Content-Type": "application/json" },
-                method: "POST",
-                body: JSON.stringify(this.client)
-            }
 
-            await fetch(INSCRIRE_API, requestData)
-                .then(res => res.json())
-                .then(message => this.message = message.message)
-                .catch(e => console.log(e.response.data.errors))
-
-            if (this.message != '') {
-                this.disableMessage() // pour cacher le message
-            }
-
-
-        }
+            await axios.post(INSCRIRE_API, this.client)
+                .then(response => {
+                    this.message = response.data.message;
+                    this.client = {};
+                    this.errors = "";
+                    this.disableMessage() // pour cacher le message
+                })
+                        .catch(errors => this.errors = errors.response.data.errors)
+                }
     },
-}
+    }
 </script>
 
 
