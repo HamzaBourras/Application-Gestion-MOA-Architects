@@ -45,7 +45,7 @@ import SinscRire from '@/components/Authentification/SinscRire.vue'
 export default {
     data() {
         return {
-            authentifier: "sinscrire"
+            authentifier: "seconnecter"
         }
     },
     components: {

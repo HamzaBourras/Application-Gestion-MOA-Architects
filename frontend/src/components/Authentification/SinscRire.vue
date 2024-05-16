@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[100%] flex items-center py-[10px] inscrire w-[100%] ml-[30px] mr-[20px]">
+    <div class="pulse h-[100%] flex items-center py-[10px] inscrire w-[100%] ml-[30px] mr-[20px]">
         <!-- form -->
         <div class=" flex flex-col items-center w-full h-full ">
             <div class="flex items-center justify-between w-full ">
@@ -79,7 +79,7 @@
                         type="submit" value="S' inscrire">
                 </div>
 
-                <!-- <MessAgeComponent :message="message" /> -->
+                
             </form>
         </div>
     </div>
@@ -117,12 +117,13 @@ export default {
         },
 
         async inscrire() {
+            this.message = "";
+            this.errors = null;
 
             await axios.post(INSCRIRE_API, this.client)
                 .then(response => {
                     this.message = response.data.message;
                     this.client = {};
-                    this.errors = "";
                     this.disableMessage() // pour cacher le message
                 })
                         .catch(errors => this.errors = errors.response.data.errors)

@@ -1,24 +1,30 @@
 <template>
     <!-- form -->
-    <div class="h-full connect w-[50%] mr-[30px] ml-[20px] py-[10px] " >
+    <div class=" pulse h-full connect w-[50%] mr-[30px] ml-[20px] py-[10px] ">
         <div class="h-full w-full flex flex-col items-start pt-[5px] ">
             <div>
                 <h1 class="text-2xl text-[#002D74] font-bold text-left ">Se connecter</h1>
-                <p class="text-sm mt-4 text-[#002D74]">Si vous avez un compte, veuillez vous connecter</p>
+                <p v-if="message == ''" class="text-sm mt-4 text-[#002D74]">Si vous avez un compte, veuillez vous
+                    connecter</p>
+                <MessAgeComponent v-else :message="message" />
             </div>
-            <form class="w-full mt-6 " action="">
+            <form class="w-full mt-4 " action="" @submit.prevent="connecter">
                 <div class="flex flex-col items-start w-full ">
                     <div class="flex flex-col items-start w-full">
                         <label class="font-[450] block text-gray-700" for="email">Adresse e-mail</label>
-                        <input
+                        <input v-model="client.email"
                             class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                             type="email" id="email">
+                        <p class="text-sm text-red-500 mt-1" v-if="errors?.email"><span
+                                v-for="(error, i) in errors?.email" :key="i">{{ error }} </span></p>
                     </div>
                     <div class="flex flex-col items-start w-full mt-[30px]">
                         <label class="font-[450] block  text-gray-700" for="motpasse">Mot de passe</label>
-                        <input
+                        <input v-model="client.motpasse"
                             class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                             type="password" id="motpasse">
+                        <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasse"><span
+                                v-for="(error, i) in errors?.motpasse" :key="i">{{ error }} </span></p>
                     </div>
                 </div>
                 <div
@@ -60,37 +66,95 @@
                 </button>
             </div>
 
-            <!-- <div class="text-sm flex justify-between items-center mt-5">
-                        <p>Si vous n'avez pas un compte..</p>
-                        <button
-                            class="py-2 px-5 ml-3 bg-white border rounded-xl hover:scale-110 duration-300 border-blue-400  ">S'inscrire</button>
-                    </div> -->
+
         </div>
     </div>
 
-    
+
 </template>
 
-<style scoped >
-.connect{
+
+<script>
+import axios from "axios";
+import MessAgeComponent from "@/components/MessAge.vue"
+import { CONNECTER_API } from "@/api/api.js"
+export default {
+    components: {
+        MessAgeComponent
+    },
+
+    data() {
+        return {
+            client: {
+                email: "",
+                motpasse: ""
+            },
+            message: "",
+            errors: null
+        }
+    },
+
+    methods: {
+        disableMessage() {
+            setTimeout(() => {
+                this.message = ''
+            }, 3000);
+        },
+
+
+        async connecter() {
+            this.message = "";
+            this.errors = null;
+
+            await axios.post(CONNECTER_API, this.client)
+                .then(response => {
+                    if (response.data.data) {
+                        const userAuth = response.data.data
+                        localStorage.setItem(userAuth.id, JSON.stringify(userAuth))
+                        if (userAuth.role == "admin") {
+                            this.$router.push('/espace/admin');
+                        }
+                        else if (userAuth.role == "client"){
+                            this.$router.push('/espace/client');
+                        }
+                    }
+                    if (response.data.message) this.message = response.data.message;
+                    this.disableMessage() // pour cacher le message
+                })
+                .catch(errors => this.errors = errors?.response?.data.errors)
+
+            
+        }
+    }
+
+}
+</script>
+
+
+<style scoped>
+.connect {
     animation: pulse 0.4s cubic-bezier(0.4, 0, 0.6, 1) 1;
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 0;
-  }
-  25%{
-    opacity: .25;
-  }
-  50% {
-    opacity: .5;
-  }
-  75%{
-    opacity: .75;
-  }
-  100%{
-    opacity:1;
-  }
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    75% {
+        opacity: .75;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 </style>

@@ -21,16 +21,27 @@ class AuthentificationRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "prenom" => "required",
-            "nom" => "required",
-            "email" => "required|email|unique:users",
-            "telephone" => "required",
-            "motpasse" => "required|min:8|max:10",
-            "motpasseverif" => "required|same:motpasse"
-        ];
+        $url = $this->url();
+
+        if (strpos($url, 'api/auth/inscrire') !== false) {
+            return [
+                "prenom" => "required",
+                "nom" => "required",
+                "email" => "required|email|unique:users",
+                "telephone" => "required",
+                "motpasse" => "required|min:8|max:10",
+                "motpasseverif" => "required|same:motpasse"
+            ];
+        } elseif (strpos($url, 'api/auth/connecter') !== false) {
+            return [
+                "email" => "required|email",
+                "motpasse" => "required|min:8|max:10",
+            ];
+        }
+        
     }
 
+    
     public function messages(): array
     {
         return [

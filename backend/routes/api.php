@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix("auth/")->controller(AuthentificationController::class)->name("auth.")->group(function () {
     Route::post("inscrire", "inscrire")->name("inscrire");
+    Route::post("connecter", "connecter")->name("connecter");
 });

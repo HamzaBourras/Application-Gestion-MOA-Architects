@@ -1,5 +1,6 @@
 <template>
-    <div class="divMessage bg-white border-2 border-green-600 rounded-lg py-[20px] flex items-center justify-center">
+    <div :class="`${message.includes('inscription') ? 'border-2 border-green-600' : 'border-2 border-red-600'}`"
+        class="divMessage bg-white rounded-lg py-[15px] px-[5px] mt-[15px] flex items-center justify-center">
         <p class="tracking-[1px]">{{message}}</p>
     </div>
 </template>

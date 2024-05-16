@@ -4,7 +4,11 @@ import PageTypesDesExperiences from "@/views/PageTypesDesExperiences.vue";
 import PageProjetsDuType from "@/views/PageProjetsDuType.vue";
 import PageContactezNous from '@/views/PageContactezNous.vue';
 import PageAproposNous from "@/views/PageAproposNous.vue";
-import PageAuthentification from "@/views/PageAuthentification";
+import PageAuthentification from "@/views/PageAuthentification.vue";
+
+import EspaceAdmin from "@/views/Admin/EspaceAdmin.vue";
+import EspaceClient from "@/views/Client/EspaceClient.vue"
+
 const routes = [
   {
     name: "Accueil",
@@ -34,8 +38,20 @@ const routes = [
   {
     name: "authentification",
     path: "/authentifier",
-    component: PageAuthentification
-  }
+    component: PageAuthentification,
+  },
+
+  {
+    name: "espace admin",
+    path: "/espace/admin",
+    component: EspaceAdmin,
+  },
+
+  {
+    name: "espace client",
+    path: "/espace/client",
+    component: EspaceClient,
+  },
 ];
 
 const router = createRouter({

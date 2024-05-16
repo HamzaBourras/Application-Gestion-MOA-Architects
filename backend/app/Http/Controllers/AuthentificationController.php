@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AuthentificationRequest;
 
 class AuthentificationController extends Controller
@@ -23,6 +24,39 @@ class AuthentificationController extends Controller
         return response()->json([
             "message" => "inscription terminée avec success"
         ]);
+    }
+
+
+    /****** Inscription ******/
+    function connecter(AuthentificationRequest $request) {
+
+        // à changer 
+        $user = User::with("role")->where("email",$request->email)->first();
+
+        if($user->motpasse == $request->motpasse) {
+            $userAuth = [
+                "id" => $user->id,
+                "nom" => $user->nom,
+                "prenom" => $user->prenom,
+                "email" => $user->email,
+                "telephone" => $user->telephone,
+                "role" => $user->role->nom
+            ];
+            
+            return response()->json([
+                "data" => $userAuth
+            ]);
+        }
+        else{
+            return response()->json([
+                "message" => "email ou mot de passe incorrect"
+            ]);
+        }
+        
+        
+
+        
+        
     }
 
 
