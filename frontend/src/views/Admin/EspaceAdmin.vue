@@ -1,15 +1,15 @@
 <template>
     <div>
-        <NavBar />
+        <EspaceAdminComp />
     </div>
 </template>
 
 
 <script>
-import NavBar from "@/components/Admin/NavBar.vue";
+import EspaceAdminComp from "@/components/Admin/EspaceAdminComp";
 export default {
     components: {
-        NavBar
+        EspaceAdminComp
     }
 }
 

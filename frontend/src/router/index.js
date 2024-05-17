@@ -9,6 +9,8 @@ import PageAuthentification from "@/views/PageAuthentification.vue";
 import EspaceAdmin from "@/views/Admin/EspaceAdmin.vue";
 import EspaceClient from "@/views/Client/EspaceClient.vue"
 
+import TestComp from "@/components/Admin/HeaDer"
+
 const routes = [
   {
     name: "Accueil",
@@ -51,6 +53,12 @@ const routes = [
     name: "espace client",
     path: "/espace/client",
     component: EspaceClient,
+  },
+
+  {
+    name: "test",
+    path: "/test",
+    component: TestComp,
   },
 ];
 

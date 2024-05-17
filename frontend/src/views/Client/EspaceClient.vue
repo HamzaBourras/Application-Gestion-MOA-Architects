@@ -1,15 +1,16 @@
 <template>
     <div>
-        <NavBar />
+        <EspaceClientComp />
     </div>
 </template>
 
 
 <script>
-import NavBar from "@/components/Client/NavBar.vue";
+import EspaceClientComp from "@/components/Client/EspaceClientComp";
+
 export default {
     components: {
-        NavBar
+        EspaceClientComp
     }
 }
 

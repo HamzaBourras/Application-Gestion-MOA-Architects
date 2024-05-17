@@ -110,7 +110,7 @@ export default {
                 .then(response => {
                     if (response.data.data) {
                         const userAuth = response.data.data
-                        localStorage.setItem(userAuth.id, JSON.stringify(userAuth))
+                        localStorage.setItem("userAuth "+ userAuth.id, JSON.stringify(userAuth))
                         if (userAuth.role == "admin") {
                             this.$router.push('/espace/admin');
                         }
