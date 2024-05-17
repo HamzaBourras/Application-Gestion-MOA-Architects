@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div class="w-1/6 h-[100vh]">
-            <NavBar :lienActifNav="lienActif" @changeLienEmit="changeLienActif"  />
+            <NavBar :lienActifNav="lienActif" @changerLienActif="mettreAjourLienActif" />
         </div>
         <div class="w-5/6 ">
             <div>
@@ -31,7 +31,7 @@ import ProJets from "@/components/Admin/ProJets"
 export default {
     data() {
         return {
-            lienActif: ""
+            lienActif: "Dashboard"
         }
     },
     components: {
@@ -44,14 +44,9 @@ export default {
         ProJets,
     },
     methods: {
-        changeLienActif() {
-            this.lienActif = localStorage.getItem("lienActif")
+        mettreAjourLienActif(lien) {
+            this.lienActif = lien
         }
     },
-    beforeMount(){  // choisi le lien actif est Dashboard
-        localStorage.setItem("lienActif", "Dashboard");
-        this.changeLienActif()
-    },
-    
 }
 </script>
