@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div class="w-1/6 h-[100vh]">
-            <NavBar :lienActifNav="lienActif" @changerLienActif="mettreAjourLienActif" />
+            <NavBar :lienActifNav="lienActif" @changerLienActif="mettreAjourLienActif" :liens="liens" />
         </div>
         <div class="w-5/6 ">
             <div>
@@ -31,7 +31,14 @@ import ProJets from "@/components/Admin/ProJets"
 export default {
     data() {
         return {
-            lienActif: "Dashboard"
+            lienActif: "Dashboard",
+            liens: [
+                { lien: 'Dashboard', span: 'fa-solid fa-house' },
+                { lien: 'Demandes', span: 'fa-solid fa-code-pull-request' },
+                { lien: 'Clients', span: 'fa-solid fa-user-secret' },
+                { lien: 'Contrats', span: 'fa-solid fa-file-signature' },
+                { lien: 'Projets', span:'fa-solid fa-diagram-project'}    
+            ]
         }
     },
     components: {
