@@ -8,27 +8,32 @@
             </div>
             <div class="">
                 <ul class="text-left w-[85%] mx-auto">
-                    <li @click="$emit('changerLienActif','Dashboard')" :class="`${lienActifNav == 'Dashboard' ? 'actif' : ''}`"
+                    <li @click="changeLien('Dashboard')" 
+                    :class="`${lienActifNav == 'Dashboard' ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2 font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span class="mr-3"><i class="fa-solid fa-house"></i></span>
                         <span>Dashboard</span>
                     </li>
-                    <li @click="$emit('changerLienActif','Demandes')" :class="`${lienActifNav == 'Demandes' ? 'actif' : ''}`"
+                    <li @click="changeLien('Demandes')" 
+                    :class="`${lienActifNav == 'Demandes' ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2  font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span class="mr-3"><i class="fa-solid fa-code-pull-request"></i></span>
                         <span>Demandes</span>
                     </li>
-                    <li @click="$emit('changerLienActif','Clients')" :class="`${lienActifNav == 'Clients' ? 'actif' : ''}`"
+                    <li @click="changeLien('Clients') " 
+                    :class="`${lienActifNav == 'Clients' ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2  font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span class="mr-3"><i class="fa-solid fa-user-secret"></i></span>
                         <span>Clients</span>
                     </li>
-                    <li @click="$emit('changerLienActif','Contrats')" :class="`${lienActifNav == 'Contrats' ? 'actif' : ''}`"
+                    <li @click="changeLien('Contrats')" 
+                    :class="`${lienActifNav == 'Contrats' ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2  font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span class="mr-3"><i class="fa-solid fa-file-contract"></i></span>
                         <span>Contrats</span>
                     </li>
-                    <li @click="$emit('changerLienActif','Projets')" :class="`${lienActifNav == 'Projets' ? 'actif' : ''}`"
+                    <li @click="changeLien('Projets')"
+                        :class="`${lienActifNav == 'Projets' ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2  font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span class="mr-3"><i class="fa-solid fa-diagram-project"></i></span>
                         <span>Projets</span>
@@ -49,10 +54,20 @@
 
 <script>
 export default {
-    emits:["changerLienActif"],
+    $emits:["changeLienEmit"],
     props: {
         lienActifNav: {
             type:String
+        }
+    },
+    methods: {
+        changeLien(lienActif) {
+            this.$emit("changeLienEmit");
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('lienActif', lienActif);
+            } else {
+                console.error('LocalStorage n\'est pas disponible.');
+            }
         }
     }
 }
