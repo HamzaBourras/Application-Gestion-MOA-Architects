@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div class="w-1/6 h-[100vh]">
-            <NavBar :lienActifNav="lienActif" @changerLienActif="mettreAjourLienActif" :liens="liens" />
+            <NavBar :lienActifNav="lienActif" @changeLienEmit="changeLienActif" :liens="liens" />
         </div>
         <div class="w-5/6 ">
             <div>
@@ -51,11 +51,22 @@ export default {
         MesProjets,
         MesRendezVous
     },
-
     methods: {
-        mettreAjourLienActif(lien) {
+        changeLienActif(lien) {
             this.lienActif = lien
         }
     },
+    mounted() {  // choisi le lien actif est Dashboard
+        const lienActifStocker = localStorage.getItem("lienActif");
+        if (lienActifStocker) {
+            this.lienActif = lienActifStocker;
+        } else {
+            localStorage.setItem("lienActif", "Dashboard");
+            this.lienActif = "Dashboard";
+        }
+    },
+    beforeUnmount() {
+        localStorage.removeItem("lienActif")
+    }
 }
 </script>

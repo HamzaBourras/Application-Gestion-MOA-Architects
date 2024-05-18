@@ -6,7 +6,7 @@
             </div>
             <div class="">
                 <ul class="text-left w-[85%] mx-auto">
-                    <li v-for="(lien,i) in liens" :key="i" @click="$emit('changerLienActif', lien.lien)"
+                    <li v-for="(lien,i) in liens" :key="i" @click="changeLien(lien.lien)"
                         :class="`${lienActifNav == lien.lien ? 'actif' : ''}`"
                         class="text-gray-600 py-3 pl-5 my-2 font-[500] hover:bg-slate-100 duration-200 cursor-default">
                         <span><i class="mr-3" :class="lien.span"></i></span>
@@ -28,13 +28,23 @@
 
 <script>
 export default {
-    emits: ["changerLienActif"],
+    $emits: ["changeLienEmit"],
     props: {
         lienActifNav: {
             type: String
         },
         liens:{
             type:Array
+        }
+    },
+    methods: {
+        changeLien(lienActif) {
+            this.$emit("changeLienEmit",lienActif);
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('lienActif', lienActif);
+            } else {
+                console.error('LocalStorage n\'est pas disponible.');
+            }
         }
     }
 }

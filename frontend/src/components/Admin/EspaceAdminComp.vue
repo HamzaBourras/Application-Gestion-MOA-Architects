@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div class="w-1/6 h-[100vh]">
-            <NavBar :lienActifNav="lienActif" @changerLienActif="mettreAjourLienActif" :liens="liens" />
+            <NavBar :lienActifNav="lienActif" @changeLienEmit="changeLienActif" :liens="liens" />
         </div>
         <div class="w-5/6 ">
             <div>
@@ -33,7 +33,7 @@ import RendezVous from "@/components/Admin/RendezVous"
 export default {
     data() {
         return {
-            lienActif: "Dashboard",
+            lienActif: "",
             liens: [
                 { lien: 'Dashboard', span: 'fa-solid fa-house' },
                 { lien: 'Demandes', span: 'fa-solid fa-code-pull-request' },
@@ -55,9 +55,21 @@ export default {
         RendezVous,
     },
     methods: {
-        mettreAjourLienActif(lien) {
+        changeLienActif(lien) {
             this.lienActif = lien
         }
     },
+    mounted() {
+        const lienActifStocker = localStorage.getItem("lienActif");
+        if (lienActifStocker) {
+            this.lienActif = lienActifStocker;
+        } else {
+            localStorage.setItem("lienActif", "Dashboard");
+            this.lienActif = "Dashboard";
+        }
+    },
+    beforeUnmount() {
+        localStorage.removeItem("lienActif")
+    }
 }
 </script>
