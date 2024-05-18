@@ -34,28 +34,20 @@
 
 
 <script >
-import axios from "axios";
-import {TOUS_DEMANDES_CLIENT} from "@/api/api.js"
+import { TOUS_DEMANDES_CLIENT } from "@/api/api.js"
+import RecevoirData from "@/mixins/RecevoirData"
 
 export default {
+    mixins: [RecevoirData],
     data(){
         return {
             mesDemandes : []
         }
     },
-    methods: {
-        async tousLesDemandes() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-
-            await axios.get(TOUS_DEMANDES_CLIENT+user_id)
-                .then(response => {
-                    this.mesDemandes = response.data.data
-                })
-                .catch(errors => console.log(errors))
-        }
-    },
     async mounted() {
-        await this.tousLesDemandes()
+        const user_id = JSON.parse(localStorage.getItem("userAuth")).id
+        await this.recevoir(TOUS_DEMANDES_CLIENT,user_id)
+        this.mesDemandes = this.data
     }
 }
 </script>

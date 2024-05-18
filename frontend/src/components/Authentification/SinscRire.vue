@@ -114,26 +114,6 @@ export default {
             await this.envoyer(this.client, "post", INSCRIRE_API)
         }
     }
-    // methods: {
-    //     disableMessage() {
-    //         setTimeout(() => {
-    //             this.message = ''
-    //         }, 3000);
-    //     },
-
-    //     async inscrire() {
-    //         this.message = "";
-    //         this.errors = null;
-
-    //         await axios.post(INSCRIRE_API, this.client)
-    //             .then(response => {
-    //                 this.message = response.data.message;
-    //                 this.client = {};
-    //                 this.disableMessage() // pour cacher le message
-    //             })
-    //                     .catch(errors => this.errors = errors.response.data.errors)
-    //             }
-    // },
     }
 </script>
 
