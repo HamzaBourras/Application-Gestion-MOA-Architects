@@ -88,12 +88,14 @@
 
 <script>
 import { INSCRIRE_API } from "@/api/api.js";
+import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
-import axios from "axios"
+
 export default {
     components: {
         MessAgeComponent
     },
+    mixins: [EnvoyerForm],
 
     data() {
         return {
@@ -105,30 +107,33 @@ export default {
                 motpasse: "",
                 motpasseverif: "",
             },
-            message: "",
-            errors: null
         }
     },
     methods: {
-        disableMessage() {
-            setTimeout(() => {
-                this.message = ''
-            }, 3000);
-        },
-
         async inscrire() {
-            this.message = "";
-            this.errors = null;
+            await this.envoyer(this.client, "post", INSCRIRE_API)
+        }
+    }
+    // methods: {
+    //     disableMessage() {
+    //         setTimeout(() => {
+    //             this.message = ''
+    //         }, 3000);
+    //     },
 
-            await axios.post(INSCRIRE_API, this.client)
-                .then(response => {
-                    this.message = response.data.message;
-                    this.client = {};
-                    this.disableMessage() // pour cacher le message
-                })
-                        .catch(errors => this.errors = errors.response.data.errors)
-                }
-    },
+    //     async inscrire() {
+    //         this.message = "";
+    //         this.errors = null;
+
+    //         await axios.post(INSCRIRE_API, this.client)
+    //             .then(response => {
+    //                 this.message = response.data.message;
+    //                 this.client = {};
+    //                 this.disableMessage() // pour cacher le message
+    //             })
+    //                     .catch(errors => this.errors = errors.response.data.errors)
+    //             }
+    // },
     }
 </script>
 
