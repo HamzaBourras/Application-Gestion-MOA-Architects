@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthentificationController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix("auth/")->controller(AuthentificationController::class)->name("auth.")->group(function () {
     Route::post("inscrire", "inscrire")->name("inscrire");
     Route::post("connecter", "connecter")->name("connecter");
+});
+
+
+Route::prefix("client")->controller(ClientController::class)->name("client.")->group(function (){
+    Route::get("index/{user_id}","indexMesDemandes")->name("indexMesDemandes");
 });

@@ -2,9 +2,7 @@
     <div class=" w-full h-full flex flex-col justify-between bg-[#fbfaff]">
         <div class=" h-[85%]">
             <div class="flex justify-start pl-5 py-[20px]">
-                <button @click="this.$router.go(-1)"><img class="w-[110px] h-[60px] cursor-pointer"
-                        src="@/assets/logo-charafi.png" alt="..."></button>
-
+                <img class="w-[110px] h-[60px]" src="@/assets/logo-charafi.png" alt="...">
             </div>
             <div class="">
                 <ul class="text-left w-[85%] mx-auto">
