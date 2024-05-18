@@ -1,7 +1,7 @@
 <template>
-    <div :class="`${message.includes('Inscription') ? 'border-2 border-green-600' : 'border-2 border-red-600'}`"
-        class="divMessage bg-white rounded-lg py-[15px] px-[5px] mt-[15px] flex items-center justify-center">
-        <p class="tracking-[1px]">{{message}}</p>
+    <div :class="`${message != null ? 'border-2 border-green-600' : 'border-2 border-red-600'}`"
+        class="divMessage bg-white rounded-lg py-[15px] px-[5px] mt-[15px] flex items-center justify-center w-full">
+        <p class="tracking-[1px]">{{ message != null ? message : errorAction }}</p>
     </div>
 </template>
 
@@ -10,6 +10,9 @@ export default {
     props: {
         message: {
             type: String
+        },
+        errorAction: {
+            type:String
         }
     }
 }

@@ -28,4 +28,5 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 
 Route::prefix("client")->controller(ClientController::class)->name("client.")->group(function (){
     Route::get("index/{user_id}","indexMesDemandes")->name("indexMesDemandes");
+    Route::post("store/{user_id}", "storeDemande")->name("storeDemande");
 });

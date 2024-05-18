@@ -7,8 +7,8 @@
                     <h1 class="text-2xl text-[#002D74] font-bold text-left">S' inscrire</h1>
                     <p class="text-sm mt-2 text-[#002D74] text-left">Veuillez créer un compte</p>
                 </div>
-                <div class="w-1/2 " v-if="message != ''">
-                    <MessAgeComponent :message="message" />
+                <div class="w-1/2 " v-if="message != null || this.errorAction!= null">
+                    <MessAgeComponent :message="message" :errorAction="errorAction" />
                 </div>
             </div>
             <form class="w-full mt-4 mb-4" @submit.prevent="inscrire">
@@ -79,7 +79,7 @@
                         type="submit" value="S' inscrire">
                 </div>
 
-                
+
             </form>
         </div>
     </div>

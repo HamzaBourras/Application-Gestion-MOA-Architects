@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("description");
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->boolean("accepter")->constrained()->nullable();
+            $table->boolean("accepte")->constrained()->nullable();
             $table->boolean("terain_ajoute");
             $table->timestamps();
         });
