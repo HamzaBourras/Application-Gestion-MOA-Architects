@@ -14,9 +14,9 @@
         <div v-if="mesDemandes.length == 0" class=" py-4 pl-8 text-left">
             <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center justify-around ">
             <div v-for="demande in mesDemandes" :key="demande.id"
-                class="bg-slate-50 m-3 py-[20px] px-[30px] space-y-[20px]">
+                class="bg-slate-50 m-3 py-[20px] px-[30px] space-y-[20px] w-[27%]">
                 <p class="font-bold text-xl"> {{ demande.nom_projet.toUpperCase() }} </p>
                 <div>
                     <span class="font-semibold">statut : </span>

@@ -75,6 +75,7 @@ export default {
         async ajouterDemande() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
             await this.envoyer(this.demande, "post", INSERER_DEMANDE, user_id)
+            this.demande = {};
         }
     }
 }
