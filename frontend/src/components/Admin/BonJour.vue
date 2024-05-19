@@ -17,7 +17,8 @@ export default {
         }
     },
     mounted() {
-       this.prenom = JSON.parse(localStorage.getItem("userAuth")).prenom;
+        const pre = JSON.parse(localStorage.getItem("userAuth"))?.prenom;
+        this.prenom = pre == null ? "" : pre
     },
 }
 </script>

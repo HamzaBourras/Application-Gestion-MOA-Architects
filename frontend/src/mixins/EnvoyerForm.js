@@ -24,15 +24,15 @@ const envoyerForm = {
       this.message = null;
       this.errors = null;
       this.errorAction = null;
-
       try {
         let response;
-        if (method === "delete") {
+        if (maData == null) {
           response = await axios[method](apiUrl);
 
-        } else if (method === "post" || method === "put") {
+        } else if (maData != null) {
           response = await axios[method](apiUrl, maData);
         }
+
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
         this.disableMessage(); // pour cacher le message

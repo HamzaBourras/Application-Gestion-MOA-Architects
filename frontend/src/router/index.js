@@ -9,7 +9,10 @@ import PageAuthentification from "@/views/PageAuthentification.vue";
 import EspaceAdmin from "@/views/Admin/EspaceAdmin.vue";
 import EspaceClient from "@/views/Client/EspaceClient.vue"
 
+// import PageRacine from "@/views/PageRacine"
+
 import TestComp from "@/components/Admin/HeaDer"
+
 
 const routes = [
   {

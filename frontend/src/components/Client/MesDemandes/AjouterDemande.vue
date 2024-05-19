@@ -54,8 +54,14 @@ import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
 
 export default {
-    props: ["demandeSelectione","action"],
-
+    props: {
+        demandeSelectione: {
+            type:Object
+        },
+        action: {
+            type:String
+        }
+    },
     emits: ["changerVisibilite", "mettreAjourDemandes", "effacerDonnees"],
     mixins: [EnvoyerForm],
     components: {

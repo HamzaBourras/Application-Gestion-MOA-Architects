@@ -61,4 +61,12 @@ class AuthentificationController extends Controller
             ]);
         }
     }
+
+
+    /***** Deconnexion *****/
+    public function deconnecter(int $user_id) {
+        return response()->json([
+           "message" => "Vous avez deconnecté" 
+        ]);
+    }
 }

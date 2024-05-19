@@ -51,6 +51,13 @@ export default {
     components: {
         SeConnecter,
         SinscRire
+    },
+    beforeMount() {
+        // vérifier si l'utilisateur n'est pas authentifier
+        const user = JSON.parse(localStorage.getItem("userAuth"));
+        if (user != null) {
+            this.$router.go(-1)
+        }
     }
 }
 </script>
