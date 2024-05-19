@@ -44,18 +44,43 @@ const routes = [
     name: "authentification",
     path: "/authentifier",
     component: PageAuthentification,
+    beforeEnter: (to,from, next) => {
+      const user = JSON.parse(localStorage.getItem("userAuth"));
+      if (user != null) {
+        return next(from.fullPath)
+      }
+      next();
+    },
   },
 
   {
     name: "espace admin",
     path: "/espace/admin",
     component: EspaceAdmin,
+    beforeEnter: (to, from, next) => {
+      const user = JSON.parse(localStorage.getItem("userAuth"));
+      if (user == null) {
+        return next({
+          name: "authentification",
+        });
+      }
+      next();
+    },
   },
 
   {
     name: "espace client",
     path: "/espace/client",
     component: EspaceClient,
+    beforeEnter: (to, from, next) => {
+      const user = JSON.parse(localStorage.getItem("userAuth"));
+      if (user == null) {
+        return next({
+          name: "authentification",
+        });
+      }
+      next();
+    },
   },
 
   {

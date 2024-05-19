@@ -68,13 +68,6 @@ export default {
     beforeUnmount() {
         localStorage.removeItem("lienActif")
     },
-    beforeMount() {
-        // vérifier si l'utilisateur est authentifier
-        const user = JSON.parse(localStorage.getItem("userAuth"));
-        if (user == null) {
-            this.$router.push('/authentifier');
-        }
-    }
 
 }
 </script>
