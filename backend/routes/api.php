@@ -30,6 +30,7 @@ Route::prefix("client")->controller(ClientController::class)->group(function (){
     Route::prefix("mesDemandes")->group(function(){
         Route::get("index/{user_id}","indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");
-        Route::put("edit/{user_id}/{demande_id}","editDemande"); 
+        Route::put("edit/{user_id}/{demande_id}","editDemande");
+        Route::delete("destroy/{user_id}/{demande_id}","destroyDemande"); 
     });
 });

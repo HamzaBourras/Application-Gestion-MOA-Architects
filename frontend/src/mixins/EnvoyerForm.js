@@ -5,32 +5,41 @@ const envoyerForm = {
     return {
       message: null,
       errors: null,
-      errorAction : null,
+      errorAction: null,
     };
   },
   methods: {
     disableMessage() {
       setTimeout(() => {
-        this.message != null ? (this.message = null) : (this.errorAction = null);
+        this.message != null
+          ? (this.message = null)
+          : (this.errorAction = null);
       }, 3000);
     },
 
-    async envoyer(maData, method, api, idsReuete = null) {
-      //vérifier si le user_id n'est pas null
-        const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
-        
-      this.message = null;
-        this.errors = null;
-        this.errorAction = null;
+    async envoyer(maData = null, method, api, idsReuete = null) {
+      //vérifier si le idsRequete n'est pas null
+      const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
 
-      await axios[method](apiUrl, maData)
-        .then((response) => {
-            this.message = response.data.message;
-            this.errorAction = response.data.errorAction;
-          maData = {};
-          this.disableMessage(); // pour cacher le message
-        })
-        .catch((errors) => (this.errors = errors.response.data.errors));
+      this.message = null;
+      this.errors = null;
+      this.errorAction = null;
+
+      try {
+        let response;
+        if (method === "delete") {
+          response = await axios[method](apiUrl);
+
+        } else if (method === "post" || method === "put") {
+          response = await axios[method](apiUrl, maData);
+        }
+        this.message = response.data.message;
+        this.errorAction = response.data.errorAction;
+        this.disableMessage(); // pour cacher le message
+      } catch (error) {
+        // Gérer les erreurs
+        this.errors = error.response?.data?.errors;
+      }
     },
   },
 };

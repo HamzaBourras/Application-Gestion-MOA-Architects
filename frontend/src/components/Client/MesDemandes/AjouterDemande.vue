@@ -4,7 +4,7 @@
             <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
             </div>
-            <form class="w-[85%] mt-[10px] mx-auto" @submit.prevent="ajouterDemande">
+            <form class="w-[85%] mt-[10px] mx-auto" @submit.prevent="ajouterModifierDemande">
                 <div class="mt-4">
                     <label for="nom-projet" class="block mb-2 text-md font-medium text-gray-900 ">Nom du
                         projet</label>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="mt-6">
                     <label for="countries" class="block mb-2 text-md font-medium text-gray-900">Choisissez le
-                        type</label>
+                        t ype</label>
                     <select id="countries" v-model="demande.type"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 ">
                         <option value="concour">Concour</option>
@@ -35,9 +35,10 @@
                             v-for="(error, i) in errors?.description" :key="i">{{ error }} </span></p>
                 </div>
                 <div class="mt-5 flex justify-end">
-                    <input type="submit" :value="demandeSelectione && demandeSelectione.length > 0 ? 'Modifier' : 'Ajouter' "
-                        class="cursor-pointer text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
-                    <button type="button" @click="emitsButtonAnnuler ()"
+                    <input type="submit" :value="action == 'modifier' ? 'Modifier' : 'Ajouter' "
+                        class=" cursor-pointer text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
+                        focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
+                    <button type=" button" @click="emitsButtonAnnuler ()"
                         class="text-gray-800 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Annuler</button>
                 </div>
             </form>
@@ -53,7 +54,7 @@ import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
 
 export default {
-    props: ["demandeSelectione"],
+    props: ["demandeSelectione","action"],
 
     emits: ["changerVisibilite", "mettreAjourDemandes", "effacerDonnees"],
     mixins: [EnvoyerForm],
@@ -71,28 +72,31 @@ export default {
     },
     methods: {
         emitsButtonAnnuler() {
-            this.$emit('changerVisibilite');  // pour cacher le div contient le form
+            this.$emit('changerVisibilite');  // pour cacher le component contient le form (ce component)
             this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
             this.$emit('effacerDonnees') // pour effacer le contenu de demandeSelectioné
             this.demande = {}
         },
 
-        async ajouterDemande() {
+        async ajouterModifierDemande() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id;
             const demandeId = this.demandeSelectione[0]?.id;
-
-            const method = this.demandeSelectione != {} ? "put" : "post";
-            const api = this.demandeSelectione != {} ? MODIFIER_DEMANDE : INSERER_DEMANDE;
-            const idsRequete = this.demandeSelectione != {} ? `${user_id}/${demandeId}` : user_id;
+            const method = this.action == "modifier" ? "put" : "post";
+            const api = this.action == "modifier"  ? MODIFIER_DEMANDE : INSERER_DEMANDE;
+            const idsRequete = this.action == "modifier" ? `${user_id}/${demandeId}` : user_id;
 
             await this.envoyer(this.demande,method ,api, idsRequete)
             if (this.demandeSelectione == {}) this.demande = {};
+            
+            setTimeout(() => {
+                this.emitsButtonAnnuler()
+            }, 3002);
         }
     },
     mounted() {
-        this.demande.nom_projet = this.demandeSelectione != {} ? this.demandeSelectione[0]?.nom_projet : ""
-        this.demande.type = this.demandeSelectione != {} ? this.demandeSelectione[0]?.type : ""
-        this.demande.description = this.demandeSelectione != {} ? this.demandeSelectione[0]?.description : ""
+        this.demande.nom_projet = this.action == "modifier" ? this.demandeSelectione[0]?.nom_projet : ""
+        this.demande.type = this.action == "modifier" ? this.demandeSelectione[0]?.type : ""
+        this.demande.description = this.action == "modifier" ? this.demandeSelectione[0]?.description : ""
     }
 }
 </script>

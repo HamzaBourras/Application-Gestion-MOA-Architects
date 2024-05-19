@@ -23,7 +23,7 @@ class ClientController extends Controller
                 "nom_projet" => $dema->nom_projet,
                 "type" => $dema->type,
                 "description" => $dema->description,
-                "accepter" => $dema->accepter,
+                "accepte" => $dema->accepte,
                 "terain_ajoute" => $dema->terain_ajoute,   
             ];
             
@@ -72,7 +72,24 @@ class ClientController extends Controller
             ]);
         } catch (Exception $e) {
             return response()->json([
-                "errorAction" => "Échec de la modifiationc de la demande +$e"
+                "errorAction" => "Échec de la modification de la demande +$e"
+            ]);
+        }
+    }
+
+    /***** supprimer une demande *****/
+    public function destroyDemande(int $user_id, int $demande_id)
+    {
+        
+        try {
+            Demandes::where(["id" => $demande_id, "user_id" => $user_id])->delete();
+
+            return response()->json([
+                "message" => "Demande supprimé avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de la suppression de la demande +$e"
             ]);
         }
     }
