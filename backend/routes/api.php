@@ -21,12 +21,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix("auth/")->controller(AuthentificationController::class)->name("auth.")->group(function () {
-    Route::post("inscrire", "inscrire")->name("inscrire");
-    Route::post("connecter", "connecter")->name("connecter");
+    Route::post("inscrire", "inscrire");
+    Route::post("connecter", "connecter");
 });
 
 
-Route::prefix("client")->controller(ClientController::class)->name("client.")->group(function (){
-    Route::get("index/{user_id}","indexMesDemandes")->name("indexMesDemandes");
-    Route::post("store/{user_id}", "storeDemande")->name("storeDemande");
+Route::prefix("client")->controller(ClientController::class)->group(function (){
+    Route::prefix("mesDemandes")->group(function(){
+        Route::get("index/{user_id}","indexMesDemandes");
+        Route::post("store/{user_id}", "storeDemande");
+        Route::put("edit/{user_id}/{demande_id}","editDemande"); 
+    });
 });

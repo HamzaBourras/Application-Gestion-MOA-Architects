@@ -7,9 +7,8 @@
             </button>
         </div>
 
-        <div :class="!affichedivAjouter ? 'hidden' : 'block'">
-            <AjouterDemande @changerVisibilite="affichedivAjouter = false" @mettreAjourDemandes="recevoirDemandes" />
-        </div>
+            <AjouterDemande v-if="affichedivAjouter" @changerVisibilite="affichedivAjouter = false"
+                @mettreAjourDemandes="recevoirDemandes" @effacerDonnees="demandeSelectione = {}" :demandeSelectione="demandeSelectione" />
 
         <div v-if="mesDemandes.length == 0" class=" py-4 pl-8 text-left">
             <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
@@ -29,7 +28,7 @@
                 <div class=" space-x-3">
                     <button
                         class="border-2 border-red-500 text-black w-[120px] py-1 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-red-600 hover:text-white duration-300 ">supprimer</button>
-                    <button
+                    <button @click="selectionnerDemande(demande.id)"
                         class="border-2 border-green-600 bg-green-600 text-white w-[120px] py-1 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-inherit hover:text-black  duration-300 ">modifier</button>
                 </div>
             </div>
@@ -51,7 +50,8 @@ export default {
     data(){
         return {
             mesDemandes: [],
-            affichedivAjouter: false
+            affichedivAjouter: false, // pour controler l'affichage du div contient le formulaire
+            demandeSelectione: {}, // demande à modifier
         }
     },
     methods: {
@@ -59,6 +59,15 @@ export default {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
             await this.recevoir(TOUS_DEMANDES_CLIENT, user_id)
             this.mesDemandes = this.data
+            // enregistrer les demandes dans localStorage
+            localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
+        },
+
+        selectionnerDemande(demandeId) {
+            const tousDemandes = JSON.parse(localStorage.getItem("mesDemandes"))
+            const demandeSelectione = tousDemandes.filter(it => it.id == demandeId)
+            this.demandeSelectione = demandeSelectione
+            this.affichedivAjouter = true
         }
     },
     async mounted() {

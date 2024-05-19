@@ -31,7 +31,7 @@ import MesRendezVous from "@/components/Client/MesRendezVous"
 export default {
     data() {
         return {
-            lienActif: "Mes demandes",
+            lienActif: "Dashboard",
             liens: [
                 { lien: 'Dashboard', span: 'fa-solid fa-house' },
                 { lien: 'Mes demandes', span: 'fa-solid fa-code-pull-request' },

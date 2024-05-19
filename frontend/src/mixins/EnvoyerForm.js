@@ -15,9 +15,9 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData, method, api, user_id = null) {
+    async envoyer(maData, method, api, idsReuete = null) {
       //vérifier si le user_id n'est pas null
-        const apiUrl = user_id !== null ? `${api}${user_id}` : api;
+        const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
         
       this.message = null;
         this.errors = null;

@@ -23,13 +23,12 @@ class DemandeRequest extends FormRequest
     {
         $url = $this->url();
 
-        if (strpos($url, 'api/client/store') !== false) {
             return [
                 "nom_projet" => "required",
                 "type" => "required",
                 "description" => "required|min:100",
             ];
-    }
+    
     }
 
     /**

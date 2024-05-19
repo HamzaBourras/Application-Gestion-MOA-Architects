@@ -24,7 +24,7 @@ class ClientController extends Controller
                 "type" => $dema->type,
                 "description" => $dema->description,
                 "accepter" => $dema->accepter,
-                "terain_ajoute" => $dema->tearain_ajoute,   
+                "terain_ajoute" => $dema->terain_ajoute,   
             ];
             
             array_push($demandesClient,$formatDema);
@@ -36,7 +36,7 @@ class ClientController extends Controller
     }
 
     /***** ajouter une demande *****/
-    public function storeDemande(Request $request, int $user_id) {
+    public function storeDemande(DemandeRequest $request, int $user_id) {
         try{
             Demandes::create([
                 "nom_projet" => $request->nom_projet,
@@ -56,7 +56,28 @@ class ClientController extends Controller
                 "errorAction" => "Échec de l\'ajout de la demande +$e" 
             ]);
         }
-
-        
     }
+
+    /***** modifier une demande *****/
+    public function editDemande(DemandeRequest $request, int $user_id, int $demande_id) {
+        try {
+            Demandes::where(["id"=>$demande_id, "user_id" => $user_id])->update([
+                "nom_projet" => $request->nom_projet,
+                "type" => $request->type,
+                "description" => $request->description,
+            ]);
+
+            return response()->json([
+                "message" => "Demande modifié avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de la modifiationc de la demande +$e"
+            ]);
+        }
+    }
+
+
+
+    
 }
