@@ -7,7 +7,7 @@ const envoyerForm = {
       errors: null,
       errorAction: null,
       returnData: null, // data à retourné
-      token:null // 
+      token: null, //
     };
   },
   methods: {
@@ -19,7 +19,7 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData = null, method, api, idsReuete = null) {
+    async envoyer(maData = null, method, api, idsReuete = null, token = null) {
       //vérifier si le idsRequete n'est pas null
       const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
 
@@ -30,19 +30,24 @@ const envoyerForm = {
 
       try {
         let response;
-        if (maData == null) {
-          response = await axios[method](apiUrl);
+        const config = {
+          headers: {},
+        };
 
+        if (token) {
+          config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
+        }
+        if (maData == null) {
+          response = await axios[method](apiUrl, config);
         } else if (maData != null) {
-          response = await axios[method](apiUrl, maData);
+          response = await axios[method](apiUrl, maData, config);
         }
 
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
-        this.returnData = response.data?.data
-        this.token = response.data?.token
+        this.returnData = response.data?.data;
+        this.token = response.data?.token;
         this.disableMessage(); // pour cacher le message
-        
       } catch (error) {
         // Gérer les erreurs
         this.errors = error.response?.data?.errors;

@@ -111,8 +111,7 @@ export default {
     },
     methods: {
         async inscrire() {
-            await this.envoyer(this.client, "post", INSCRIRE_API, null)
-            this.client = {}
+            await this.envoyer(this.client, "post", INSCRIRE_API, null,null)
         }
     }
     }

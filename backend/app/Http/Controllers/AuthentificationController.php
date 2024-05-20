@@ -41,9 +41,10 @@ class AuthentificationController extends Controller
     {
         try {
             // à changer 
-            $user = User::with("role")->where("email", $request->email)->first();
-
-            if ($user->password == $request->password) {
+            // $user = User::with("role")->where("email", $request->email)->first();
+            $token = auth()->attempt($request->only('email', 'password'));
+            if ($token) {
+                $user = auth()->user();
                 $userAuth = [
                     "id" => $user->id,
                     "nom" => $user->nom,
@@ -52,8 +53,6 @@ class AuthentificationController extends Controller
                     "telephone" => $user->telephone,
                     "role" => $user->role->nom
                 ];
-
-                $token = $user->createToken($user->email)->plainTextToken;  // enregistré l'utilisateur dans token
 
                 return response()->json([
                     "token" => $token,

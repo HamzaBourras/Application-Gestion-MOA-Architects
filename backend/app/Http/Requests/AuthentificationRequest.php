@@ -30,7 +30,7 @@ class AuthentificationRequest extends FormRequest
                 "email" => "required|email|unique:users",
                 "telephone" => "required",
                 "password" => "required|min:8|max:10",
-                "motpasseverif" => "required|same:motpasse"
+                "motpasseverif" => "required|same:password"
             ];
         } elseif (strpos($url, 'api/auth/connecter') !== false) {
             return [
