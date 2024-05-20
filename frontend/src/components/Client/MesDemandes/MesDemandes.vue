@@ -14,7 +14,7 @@
         <SupprimerDemande v-if="afficheCompSupprimer" @changerVisibilite="afficheCompSupprimer = false"
             @mettreAjourDemandes="recevoirDemandes" :demandeSupprimerId="demandeSupprimerId" />
 
-        <div v-if="mesDemandes.length == 0" class=" py-4 pl-8 text-left">
+        <div v-if="mesDemandes?.length == 0" class=" py-4 pl-8 text-left">
             <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
         </div>
 
@@ -68,7 +68,8 @@ export default {
     methods: {
         async recevoirDemandes() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id)
+            const token = localStorage.getItem("token")
+            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id, token)
             this.mesDemandes = this.returnData
             // enregistrer les demandes dans localStorage
             localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))

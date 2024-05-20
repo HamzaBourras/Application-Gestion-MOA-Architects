@@ -19,7 +19,7 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData = null, method, api, idsReuete = null, token = null) {
+    async envoyer(maData = null, method, api, idsReuete = null) {
       //vérifier si le idsRequete n'est pas null
       const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
 
@@ -34,9 +34,11 @@ const envoyerForm = {
           headers: {},
         };
 
+        const token = localStorage.getItem("token");
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
         }
+        
         if (maData == null) {
           response = await axios[method](apiUrl, config);
         } else if (maData != null) {

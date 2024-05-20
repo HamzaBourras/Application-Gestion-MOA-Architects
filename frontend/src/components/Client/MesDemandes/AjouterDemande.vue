@@ -90,7 +90,7 @@ export default {
             const method = this.action == "modifier" ? "put" : "post";
             const api = this.action == "modifier"  ? MODIFIER_DEMANDE : INSERER_DEMANDE;
             const idsRequete = this.action == "modifier" ? `${user_id}/${demandeId}` : user_id;
-
+            
             await this.envoyer(this.demande,method ,api, idsRequete)
             if (this.demandeSelectione == {}) this.demande = {};
             

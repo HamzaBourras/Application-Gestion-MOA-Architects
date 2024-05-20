@@ -27,7 +27,7 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 });
 
 
-Route::prefix("client")->controller(ClientController::class)->group(function (){
+Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function (){
     Route::prefix("mesDemandes")->group(function(){
         Route::get("index/{user_id}","indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");

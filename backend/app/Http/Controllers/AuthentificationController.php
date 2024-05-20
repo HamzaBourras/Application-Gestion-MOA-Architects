@@ -40,11 +40,10 @@ class AuthentificationController extends Controller
     function connecter(AuthentificationRequest $request)
     {
         try {
-            // à changer 
-            // $user = User::with("role")->where("email", $request->email)->first();
-            $token = auth()->attempt($request->only('email', 'password'));
-            if ($token) {
-                $user = auth()->user();
+            if (Auth::attempt($request->only('email', 'password'))) {
+                $user = $request->user();
+                $token = $user->createToken($request->email)->plainTextToken;
+                
                 $userAuth = [
                     "id" => $user->id,
                     "nom" => $user->nom,
