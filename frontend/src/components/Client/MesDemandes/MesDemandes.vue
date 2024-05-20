@@ -44,12 +44,12 @@
 
 <script >
 import { TOUS_DEMANDES_CLIENT } from "@/api/api.js"
-import RecevoirData from "@/mixins/RecevoirData"
+import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterDemande from "@/components/Client/MesDemandes/AjouterDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
 
 export default {
-    mixins: [RecevoirData],
+    mixins: [EnvoyerForm],
     components: {
         AjouterDemande,
         SupprimerDemande,
@@ -68,8 +68,8 @@ export default {
     methods: {
         async recevoirDemandes() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.recevoir(TOUS_DEMANDES_CLIENT, user_id)
-            this.mesDemandes = this.data
+            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id)
+            this.mesDemandes = this.returnData
             // enregistrer les demandes dans localStorage
             localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
         },

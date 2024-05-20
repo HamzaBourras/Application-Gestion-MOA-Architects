@@ -29,13 +29,13 @@ class AuthentificationRequest extends FormRequest
                 "nom" => "required",
                 "email" => "required|email|unique:users",
                 "telephone" => "required",
-                "motpasse" => "required|min:8|max:10",
+                "password" => "required|min:8|max:10",
                 "motpasseverif" => "required|same:motpasse"
             ];
         } elseif (strpos($url, 'api/auth/connecter') !== false) {
             return [
                 "email" => "required|email",
-                "motpasse" => "required|min:8|max:10",
+                "password" => "required|min:8|max:10",
             ];
         }
         
@@ -51,9 +51,9 @@ class AuthentificationRequest extends FormRequest
             "email.email" => "Veuillez entrer une adresse e-mail valide.",
             "email.unique" => "Cette adresse e-mail est déjà utilisée.",
             "telephone.required" => "Le numéro de téléphone est obligatoire.",
-            "motpasse.required" => "Le mot de passe est obligatoire.",
-            "motpasse.min" => "Le mot de passe doit contenir au moins :min caractères.",
-            "motpasse.max" => "Le mot de passe ne doit pas dépasser :max caractères.",
+            "password.required" => "Le mot de passe est obligatoire.",
+            "password.min" => "Le mot de passe doit contenir au moins :min caractères.",
+            "password.max" => "Le mot de passe ne doit pas dépasser :max caractères.",
             "motpasseverif.required" => "La vérification du mot de passe est obligatoire.",
             "motpasseverif.same" => "Les mots de passe ne correspondent pas."
         ];

@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
 use App\Http\Requests\AuthentificationRequest;
 
 class AuthentificationController extends Controller
@@ -14,12 +15,12 @@ class AuthentificationController extends Controller
     function inscrire(AuthentificationRequest $request)
     {
         try {
-            User::create([
+            $user = User::create([
                 "nom" => $request->nom,
                 "prenom" => $request->prenom,
                 "email" => $request->email,
                 "telephone" => $request->telephone,
-                "motpasse" => $request->motpasse,
+                "password" => $request->password,
                 "role_id" => 2
             ]);
 
@@ -29,35 +30,46 @@ class AuthentificationController extends Controller
             
         } catch (Exception $e) {
             return response()->json([
-                "errorAction" => "Échec de l\'inscription"
+                "errorAction" => "Échec de l\'inscription + $e"
             ]);
         }
     }
 
 
-    /****** Inscription ******/
+    /****** Connexion ******/
     function connecter(AuthentificationRequest $request)
     {
+        try {
+            // à changer 
+            $user = User::with("role")->where("email", $request->email)->first();
 
-        // à changer 
-        $user = User::with("role")->where("email", $request->email)->first();
+            if ($user->password == $request->password) {
+                $userAuth = [
+                    "id" => $user->id,
+                    "nom" => $user->nom,
+                    "prenom" => $user->prenom,
+                    "email" => $user->email,
+                    "telephone" => $user->telephone,
+                    "role" => $user->role->nom
+                ];
 
-        if ($user->motpasse == $request->motpasse) {
-            $userAuth = [
-                "id" => $user->id,
-                "nom" => $user->nom,
-                "prenom" => $user->prenom,
-                "email" => $user->email,
-                "telephone" => $user->telephone,
-                "role" => $user->role->nom
-            ];
+                $token = $user->createToken($user->email)->plainTextToken;  // enregistré l'utilisateur dans token
 
+                return response()->json([
+                    "token" => $token,
+                    "data" => $userAuth
+                ]);
+            } 
+            
+            else {
+                return response()->json([
+                    "errorAction" => "email ou mot de passe incorrect"
+                ]);
+            }
+            
+        } catch (Exception $e) {
             return response()->json([
-                "data" => $userAuth
-            ]);
-        } else {
-            return response()->json([
-                "message" => "email ou mot de passe incorrect"
+                "errorAction" => "Échec de la connexion + $e"
             ]);
         }
     }
@@ -65,6 +77,9 @@ class AuthentificationController extends Controller
 
     /***** Deconnexion *****/
     public function deconnecter(int $user_id) {
+
+        PersonalAccessToken::where("tokenable_id", $user_id)->delete();
+        
         return response()->json([
            "message" => "Vous avez deconnecté" 
         ]);

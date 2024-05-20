@@ -7,7 +7,7 @@
                     <h1 class="text-2xl text-[#002D74] font-bold text-left">S' inscrire</h1>
                     <p class="text-sm mt-2 text-[#002D74] text-left">Veuillez créer un compte</p>
                 </div>
-                <div class="w-1/2 " v-if="message != null || this.errorAction!= null">
+                <div class="w-1/2" v-if="message != null || errorAction!= null">
                     <MessAgeComponent :message="message" :errorAction="errorAction" />
                 </div>
             </div>
@@ -56,12 +56,12 @@
 
                     <div class="flex space-x-3 mt-[35px] w-full">
                         <div class="flex flex-col items-start w-1/2">
-                            <label class="font-[450] block text-gray-700" for="motpasse">Mot de passe</label>
-                            <input v-model="client.motpasse"
+                            <label class="font-[450] block text-gray-700" for="password">Mot de passe</label>
+                            <input v-model="client.password"
                                 class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
-                                type="password" id="motpasse">
-                            <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasse"><span
-                                    v-for="(error, i) in errors?.motpasse" :key="i">{{ error }} </span></p>
+                                type="password" id="password">
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.password"><span
+                                    v-for="(error, i) in errors?.password" :key="i">{{ error }} </span></p>
                         </div>
                         <div class="flex flex-col items-start w-1/2">
                             <label class="font-[450] block text-gray-700" for="motpasseverif">Vérification</label>
@@ -104,7 +104,7 @@ export default {
                 prenom: "",
                 email: "",
                 telephone: "",
-                motpasse: "",
+                password: "",
                 motpasseverif: "",
             },
         }

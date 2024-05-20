@@ -6,6 +6,8 @@ const envoyerForm = {
       message: null,
       errors: null,
       errorAction: null,
+      returnData: null, // data à retourné
+      token:null // 
     };
   },
   methods: {
@@ -24,6 +26,8 @@ const envoyerForm = {
       this.message = null;
       this.errors = null;
       this.errorAction = null;
+      this.returnData = null;
+
       try {
         let response;
         if (maData == null) {
@@ -35,7 +39,10 @@ const envoyerForm = {
 
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
+        this.returnData = response.data?.data
+        this.token = response.data?.token
         this.disableMessage(); // pour cacher le message
+        
       } catch (error) {
         // Gérer les erreurs
         this.errors = error.response?.data?.errors;

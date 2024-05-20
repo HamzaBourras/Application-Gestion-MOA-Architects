@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string("telephone");
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('motpasse');
+            $table->string('password');
             $table->foreignIdFor(Role::class)->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();

@@ -58,8 +58,8 @@ const routes = [
     path: "/espace/admin",
     component: EspaceAdmin,
     beforeEnter: (to, from, next) => {
-      const user = JSON.parse(localStorage.getItem("userAuth"));
-      if (user == null) {
+      const token = localStorage.getItem("token");
+      if (token == null) {
         return next({
           name: "authentification",
         });
@@ -73,8 +73,8 @@ const routes = [
     path: "/espace/client",
     component: EspaceClient,
     beforeEnter: (to, from, next) => {
-      const user = JSON.parse(localStorage.getItem("userAuth"));
-      if (user == null) {
+      const token = localStorage.getItem("token");
+      if (token == null) {
         return next({
           name: "authentification",
         });

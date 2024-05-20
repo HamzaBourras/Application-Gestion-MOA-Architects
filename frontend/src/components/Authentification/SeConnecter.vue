@@ -2,11 +2,15 @@
     <!-- form -->
     <div class=" pulse h-full connect w-[50%] mr-[30px] ml-[20px] py-[10px] ">
         <div class="h-full w-full flex flex-col items-start pt-[5px] ">
-            <div>
+            <div class="w-full">
                 <h1 class="text-2xl text-[#002D74] font-bold text-left ">Se connecter</h1>
-                <p v-if="message == ''" class="text-sm mt-4 text-[#002D74]">Si vous avez un compte, veuillez vous
+                <p v-if="message == null && errorAction == null" class="text-sm text-left mt-4 text-[#002D74]">Si vous
+                    avez un
+                    compte, veuillez vous
                     connecter</p>
-                <MessAgeComponent v-else :message="message" />
+                <div class="w-full" v-else>
+                    <MessAgeComponent :message="message" :errorAction="errorAction" />
+                </div>
             </div>
             <form class="w-full mt-4 " action="" @submit.prevent="connecter">
                 <div class="flex flex-col items-start w-full ">
@@ -19,12 +23,12 @@
                                 v-for="(error, i) in errors?.email" :key="i">{{ error }} </span></p>
                     </div>
                     <div class="flex flex-col items-start w-full mt-[30px]">
-                        <label class="font-[450] block  text-gray-700" for="motpasse">Mot de passe</label>
-                        <input v-model="client.motpasse"
+                        <label class="font-[450] block  text-gray-700" for="password">Mot de passe</label>
+                        <input v-model="client.password"
                             class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
-                            type="password" id="motpasse">
-                        <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasse"><span
-                                v-for="(error, i) in errors?.motpasse" :key="i">{{ error }} </span></p>
+                            type="password" id="password">
+                        <p class="text-sm text-red-500 mt-1" v-if="errors?.password"><span
+                                v-for="(error, i) in errors?.password" :key="i">{{ error }} </span></p>
                     </div>
                 </div>
                 <div
@@ -75,10 +79,11 @@
 
 
 <script>
-import axios from "axios";
+import EnvoyerForm from '@/mixins/EnvoyerForm'
 import MessAgeComponent from "@/components/MessAge.vue"
 import { CONNECTER_API } from "@/api/api.js"
 export default {
+    mixins: [EnvoyerForm],
     components: {
         MessAgeComponent
     },
@@ -87,43 +92,31 @@ export default {
         return {
             client: {
                 email: "",
-                motpasse: ""
+                password: ""
             },
-            message: "",
-            errors: null
         }
     },
 
     methods: {
-        disableMessage() {
-            setTimeout(() => {
-                this.message = ''
-            }, 3000);
-        },
-
-
         async connecter() {
-            this.message = "";
-            this.errors = null;
+            await this.envoyer(this.client, "post", CONNECTER_API, null)
+            const userAuth = this.returnData
+            const token = this.token
+            if (userAuth) {
+                localStorage.setItem("userAuth", JSON.stringify(userAuth));
+                localStorage.setItem("token", token);
 
-            await axios.post(CONNECTER_API, this.client)
-                .then(response => {
-                    if (response.data.data) {
-                        const userAuth = response.data.data
-                        localStorage.setItem("userAuth", JSON.stringify(userAuth))
-                        if (userAuth.role == "admin") {
-                            this.$router.push('/espace/admin');
-                        }
-                        else if (userAuth.role == "client"){
-                            this.$router.push('/espace/client');
-                        }
-                    }
-                    if (response.data.message) this.message = response.data.message;
-                    this.disableMessage() // pour cacher le message
-                })
-                .catch(errors => this.errors = errors?.response?.data.errors)
+                if (userAuth.role == "admin") {
+                    this.$router.push('/espace/admin');
+                }
+                else if (userAuth.role == "client") {
+                    this.$router.push('/espace/client');
+                }
+            }
 
-            
+
+
+
         }
     }
 
