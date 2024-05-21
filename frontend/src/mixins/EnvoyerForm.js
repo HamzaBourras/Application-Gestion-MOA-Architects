@@ -40,11 +40,15 @@ const envoyerForm = {
         }
         
         if (maData == null) {
-          response = await axios[method](apiUrl, config);
+          if (method == "get") {
+            response = await axios[method](apiUrl, config);
+          } else {
+            response = await axios[method](apiUrl,null, config);  // pour la deconnexion 
+          }
         } else if (maData != null) {
           response = await axios[method](apiUrl, maData, config);
         }
-
+        
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
         this.returnData = response.data?.data;
