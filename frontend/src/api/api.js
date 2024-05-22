@@ -3,6 +3,11 @@ export const CONNECTER_API = "http://localhost:8000/api/auth/connecter";
 export const DECONNECTER_API = "http://localhost:8000/api/auth/deconnecter/";
 
 
+/*************** Admin ****************/
+/**** Demandes ****/
+export const TOUS_DEMANDES = "http://localhost:8000/api/admin/demandes/index/";
+
+
 /*************** Client ***************/
 /**** Demandes ****/
 export const TOUS_DEMANDES_CLIENT = "http://localhost:8000/api/client/mesDemandes/index/";

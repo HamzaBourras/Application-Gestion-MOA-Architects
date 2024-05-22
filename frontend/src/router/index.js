@@ -45,9 +45,15 @@ const routes = [
     path: "/authentifier",
     component: PageAuthentification,
     beforeEnter: (to,from, next) => {
-      const user = JSON.parse(localStorage.getItem("userAuth"));
-      if (user != null) {
-        return next(from.fullPath)
+      const userAuth = JSON.parse(localStorage.getItem("userAuth"));
+      const token = localStorage.getItem("token")
+      if (userAuth != null && token != null ) {
+        if (userAuth.role == "admin") {
+                    next('/espace/admin');
+                }
+                else if (userAuth.role == "client") {
+                    next('/espace/client');
+                }
       }
       next();
     },

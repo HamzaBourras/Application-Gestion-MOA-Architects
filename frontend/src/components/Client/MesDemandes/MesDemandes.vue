@@ -1,7 +1,8 @@
 <template>
     <div class="relative h-[86.7vh]">
         <div class="py-[15px] pr-[20px] flex justify-end h-[12vh] ">
-            <button @click="afficheCompAjouter = true; action = 'ajouter'" :class="afficheCompAjouter ? 'hidden' : 'block'"
+            <button @click="afficheCompAjouter = true; action = 'ajouter'"
+                :class="afficheCompAjouter ? 'hidden' : 'block'"
                 class="bg-blue-600 h-max text-white w-[150px] py-2.5 px-3 rounded-[10px] font-[600] tracking-[0.5px] hover:bg-blue-500 duration-300">Ajouter
                 <i class="fa-solid fa-plus ml-2"></i>
             </button>
@@ -14,11 +15,11 @@
         <SupprimerDemande v-if="afficheCompSupprimer" @changerVisibilite="afficheCompSupprimer = false"
             @mettreAjourDemandes="recevoirDemandes" :demandeSupprimerId="demandeSupprimerId" />
 
-        <div v-if="mesDemandes?.length == 0" class=" py-4 pl-8 text-left">
+        <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
             <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
         </div>
 
-        <div class="flex items-center justify-around ">
+        <div class="flex flex-wrap items-center justify-around ">
             <div v-for="demande in mesDemandes" :key="demande.id"
                 class="bg-slate-50 m-3 py-[20px] px-[30px] space-y-[20px] w-[27%]">
                 <p class="font-bold text-xl"> {{ demande.nom_projet.toUpperCase() }} </p>
@@ -57,6 +58,7 @@ export default {
     data(){
         return {
             mesDemandes: [],
+            length: null, // la taille dyu tableau mesDemandes
             afficheCompAjouter: false, // pour controler l'affichage du component contient le formulaire d'ajout
             afficheCompSupprimer: false, // pour controler l'affichage du component contient le button de suprimer
             action : null, // pour controler si on veut ajouter ou modifier une demande
@@ -68,9 +70,9 @@ export default {
     methods: {
         async recevoirDemandes() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            const token = localStorage.getItem("token")
-            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id, token)
+            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id)
             this.mesDemandes = this.returnData
+            this.length = this.mesDemandes.length
             // enregistrer les demandes dans localStorage
             localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
         },

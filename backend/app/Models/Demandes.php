@@ -17,4 +17,9 @@ class Demandes extends Model
         "terain_ajoute",
         "user_id"  
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

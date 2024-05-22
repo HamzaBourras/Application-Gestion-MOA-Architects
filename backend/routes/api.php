@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthentificationController;
@@ -27,6 +28,16 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 });
 
 
+
+/***************** Admin *******************/
+Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function (){
+    Route::prefix("demandes")->group(function (){
+       Route::get("index","indexDemandes"); 
+    });
+});
+
+
+/***************** Client ******************/
 Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function (){
     Route::prefix("mesDemandes")->group(function(){
         Route::get("index/{user_id}","indexMesDemandes");

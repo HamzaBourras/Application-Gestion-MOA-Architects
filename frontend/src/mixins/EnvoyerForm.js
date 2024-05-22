@@ -35,9 +35,12 @@ const envoyerForm = {
         };
 
         const token = localStorage.getItem("token");
+        
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
         }
+        
+        
         
         if (maData == null) {
           if (method == "get") {
@@ -49,10 +52,13 @@ const envoyerForm = {
           response = await axios[method](apiUrl, maData, config);
         }
         
+        
+        
+        if(!token) this.token = response.data?.token;
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
         this.returnData = response.data?.data;
-        this.token = response.data?.token;
+        
         this.disableMessage(); // pour cacher le message
       } catch (error) {
         // Gérer les erreurs
