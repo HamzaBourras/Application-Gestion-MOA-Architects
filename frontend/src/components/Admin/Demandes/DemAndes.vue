@@ -32,8 +32,9 @@
                         class="focus:outline-none border-2 border-blue-500 bg-white text-blue-600  hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                         Detail </button>
                     <button type="button" v-if="demande.accepte == 1"
-                        class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Créer
-                        Contrat</button>
+                        class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Voir terrain</button>
+                    <button type="button" v-if="demande.accepte == 0"
+                        class="focus:outline-none text-white border-2 border-red-500 bg-red-500 hover:bg-red-600 focus:ring-2 focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Supprimer</button>
 
                 </div>
             </div>

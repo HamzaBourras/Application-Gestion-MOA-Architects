@@ -65,10 +65,13 @@ const routes = [
     component: EspaceAdmin,
     beforeEnter: (to, from, next) => {
       const token = localStorage.getItem("token");
+      const userAuth = JSON.parse(localStorage.getItem("userAuth"));
       if (token == null) {
         return next({
           name: "authentification",
         });
+      } else if (userAuth.role == "client") {
+        next("/espace/client");
       }
       next();
     },
@@ -80,11 +83,14 @@ const routes = [
     component: EspaceClient,
     beforeEnter: (to, from, next) => {
       const token = localStorage.getItem("token");
+      const userAuth = JSON.parse(localStorage.getItem("userAuth"));
       if (token == null) {
         return next({
           name: "authentification",
         });
-      }
+      }else if (userAuth.role == "admin") {
+                    next('/espace/admin');
+                }
       next();
     },
   },
