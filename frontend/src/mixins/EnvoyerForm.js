@@ -40,8 +40,6 @@ const envoyerForm = {
           config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
         }
         
-        
-        
         if (maData == null) {
           if (method == "get") {
             response = await axios[method](apiUrl, config);
@@ -50,8 +48,8 @@ const envoyerForm = {
           }
         } else if (maData != null) {
           response = await axios[method](apiUrl, maData, config);
+          
         }
-        
         
         
         if(!token) this.token = response.data?.token;

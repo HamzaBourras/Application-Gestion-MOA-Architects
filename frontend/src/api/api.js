@@ -6,11 +6,12 @@ export const DECONNECTER_API = "http://localhost:8000/api/auth/deconnecter/";
 /*************** Admin ****************/
 /**** Demandes ****/
 export const TOUS_DEMANDES = "http://localhost:8000/api/admin/demandes/index/";
+export const EDIT_STATUT_DEMANDES = "http://localhost:8000/api/admin/demandes/edit/";  // pour changer le statut de la demande accepté(1) ou refusé(0)
 
 
 /*************** Client ***************/
 /**** Demandes ****/
-export const TOUS_DEMANDES_CLIENT = "http://localhost:8000/api/client/mesDemandes/index/";
+export const TOUS_MES_DEMANDES = "http://localhost:8000/api/client/mesDemandes/index/";
 export const INSERER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/store/";
 export const MODIFIER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/edit/";
 export const SUPPRIMER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/destroy/";

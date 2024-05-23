@@ -44,7 +44,7 @@
 
 
 <script >
-import { TOUS_DEMANDES_CLIENT } from "@/api/api.js"
+import { TOUS_MES_DEMANDES } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterDemande from "@/components/Client/MesDemandes/AjouterDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
@@ -70,7 +70,7 @@ export default {
     methods: {
         async recevoirDemandes() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null,"get",TOUS_DEMANDES_CLIENT, user_id)
+            await this.envoyer(null,"get",TOUS_MES_DEMANDES, user_id)
             this.mesDemandes = this.returnData
             this.length = this.mesDemandes.length
             // enregistrer les demandes dans localStorage
@@ -80,8 +80,8 @@ export default {
         // lorsque je clique sur le button "modifier"
         selectionnerDemande(demandeId) {
             this.action = 'modifier'
-            const tousDemandes = JSON.parse(localStorage.getItem("mesDemandes"))
-            const demandeSelectione = tousDemandes.filter(it => it.id == demandeId)
+            const tousMesDemandes = JSON.parse(localStorage.getItem("mesDemandes"))
+            const demandeSelectione = tousMesDemandes.filter(it => it.id == demandeId)
             this.demandeSelectione = demandeSelectione
             this.afficheCompAjouter = true
         }

@@ -23,11 +23,17 @@ class DemandeRequest extends FormRequest
     {
         $url = $this->url();
 
+        if(strpos($url, 'api/admin/demandes/edit') !== false) {
+            return [
+                "statut" => "required"  
+            ];
+        }
             return [
                 "nom_projet" => "required",
                 "type" => "required",
                 "description" => "required|min:100",
             ];
+
     
     }
 
