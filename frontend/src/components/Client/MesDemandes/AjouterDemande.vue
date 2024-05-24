@@ -79,7 +79,6 @@ export default {
     methods: {
         emitsButtonAnnuler() {
             this.$emit('changerVisibilite');  // pour cacher le component contient le form (ce component)
-            this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
             this.$emit('effacerDonnees') // pour effacer le contenu de demandeSelectioné
             this.demande = {}
         },
@@ -94,9 +93,12 @@ export default {
             await this.envoyer(this.demande,method ,api, idsRequete)
             if (this.demandeSelectione == {}) this.demande = {};
             
-            setTimeout(() => {
-                this.emitsButtonAnnuler()
-            }, 3002);
+            if (this.message != null) {
+                setTimeout(() => {
+                    this.emitsButtonAnnuler()
+                    this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
+                }, 3002);
+            }
         }
     },
     mounted() {

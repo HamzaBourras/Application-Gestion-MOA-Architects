@@ -21,7 +21,7 @@ const envoyerForm = {
 
     async envoyer(maData = null, method, api, idsReuete = null) {
       //vérifier si le idsRequete n'est pas null
-      const apiUrl = idsReuete !== null ? `${api}${idsReuete}` : api;
+      const apiUrl = idsReuete != null ? `${api}${idsReuete}` : api;
 
       this.message = null;
       this.errors = null;
@@ -33,6 +33,8 @@ const envoyerForm = {
         const config = {
           headers: {},
         };
+
+        config.headers["Content-Type"] = "multipart/form-data";
 
         const token = localStorage.getItem("token");
         
@@ -57,6 +59,8 @@ const envoyerForm = {
         this.errorAction = response.data.errorAction;
         this.returnData = response.data?.data;
         
+        
+
         this.disableMessage(); // pour cacher le message
       } catch (error) {
         // Gérer les erreurs

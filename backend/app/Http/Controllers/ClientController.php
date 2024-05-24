@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DemandeRequest;
+use App\Http\Requests\TerrainRequest;
 use App\Models\Demandes;
+use App\Models\ImagesTerrain;
+use App\Models\Terrain;
 use Exception;
 use Illuminate\Http\Request;
     
@@ -90,6 +93,42 @@ class ClientController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "errorAction" => "Échec de la suppression de la demande +$e"
+            ]);
+        }
+    }
+
+
+    /***** ajouter le terrain à une demande *****/
+    public function storeTerrain(TerrainRequest $request, int $demande_id){
+        try {
+
+            $terrainCree = Terrain::create([
+                "adresse" => $request->adresse,
+                "largeur"=> $request->largeur,
+                "longeur"=> $request->longeur,
+                "demandes_id" => $demande_id 
+            ]);
+
+            $imagesRecu = $request->file("images");
+            // ajout des images du terrain
+            foreach ($imagesRecu as $imageR) {
+                $chemin = $imageR->store('images_terrain', 'public');
+                
+                ImagesTerrain::create([
+                    "terrain_id" => $terrainCree->id,
+                    "chemin" => $chemin
+                ]);
+            }
+
+            //changer le champ terain_ajoute dans la table demandes
+            Demandes::where(["id" => $demande_id])->update(["terain_ajoute" => 1]); 
+
+            return response()->json([
+                "message" => "Terrain ajoutée avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de l\'ajout du terrain +$e"
             ]);
         }
     }

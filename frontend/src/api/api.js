@@ -15,3 +15,4 @@ export const TOUS_MES_DEMANDES = "http://localhost:8000/api/client/mesDemandes/i
 export const INSERER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/store/";
 export const MODIFIER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/edit/";
 export const SUPPRIMER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/destroy/";
+export const INSERER_TERRAIN = "http://localhost:8000/api/client/mesDemandes/storeTerrain/";

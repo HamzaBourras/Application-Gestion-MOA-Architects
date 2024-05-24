@@ -44,6 +44,7 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
         Route::get("index/{user_id}","indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");
         Route::put("edit/{user_id}/{demande_id}","editDemande");
-        Route::delete("destroy/{user_id}/{demande_id}","destroyDemande"); 
+        Route::delete("destroy/{user_id}/{demande_id}","destroyDemande");
+        Route::post("storeTerrain/{demande_id}", "storeTerrain");
     });
 });

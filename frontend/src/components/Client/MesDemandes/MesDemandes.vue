@@ -14,6 +14,9 @@
         <!-- Component pour supprimer une demande -->
         <SupprimerDemande v-if="afficheCompSupprimer" @changerVisibilite="afficheCompSupprimer = false"
             @mettreAjourDemandes="recevoirDemandes" :demandeSupprimerId="demandeSupprimerId" />
+        <!-- Component pour ajouter un tearrain -->
+        <AjouterTerrain v-if="afficheCompTerrain == true" @changerVisibilite="afficheCompTerrain = false"
+            @mettreAjourDemandes="recevoirDemandes" :demandeId="demandeId" />
 
         <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
             <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
@@ -21,8 +24,8 @@
 
         <div class="flex flex-wrap items-center justify-around ">
             <div v-for="demande in mesDemandes" :key="demande.id"
-                class="bg-slate-50 m-3 py-[20px] px-[30px] space-y-[20px] w-[27%]">
-                <p class="font-bold text-xl"> {{ demande.nom_projet.toUpperCase() }} </p>
+                class="bg-slate-50 m-3 py-[30px] px-[30px] space-y-[20px] w-[27%] text-left">
+                <p class="font-bold text-xl text-center"> {{ demande.nom_projet.toUpperCase() }} </p>
                 <div>
                     <span class="font-semibold">statut : </span>
                     <p class="inline text-blue-500 font-[500]" v-if="demande.accepte == null">En cours ...</p>
@@ -31,11 +34,21 @@
                     <p class="inline text-red-500 font-[500]" v-else>Refusé <i class="fa-solid fa-xmark"></i></p>
 
                 </div>
-                <div class=" space-x-3">
+                <div v-if="demande.accepte == null" class=" space-x-3">
                     <button @click="demandeSupprimerId = demande.id; afficheCompSupprimer = true"
                         class="border-2 border-red-500 text-black w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-red-600 hover:text-white duration-300 ">supprimer</button>
                     <button @click="selectionnerDemande(demande.id)"
                         class="border-2 border-green-600 bg-green-600 text-white w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-inherit hover:text-black  duration-300 ">modifier</button>
+                </div>
+                <div v-else-if="demande.accepte == 1">
+                    <button v-if="demande.terain_ajoute == 0" type="button"
+                        @click="buttonAjouterTerrainClick(true, demande.id)"
+                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Ajouter
+                        Terrain</button>
+                    <div v-else>
+                        <button type="button"
+                            class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Voir le contrat</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,23 +61,27 @@ import { TOUS_MES_DEMANDES } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterDemande from "@/components/Client/MesDemandes/AjouterDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
+import AjouterTerrain from "@/components/Client/MesDemandes/AjouterTerrain"
 
 export default {
     mixins: [EnvoyerForm],
     components: {
         AjouterDemande,
         SupprimerDemande,
+        AjouterTerrain
     },
     data(){
         return {
             mesDemandes: [],
             length: null, // la taille dyu tableau mesDemandes
-            afficheCompAjouter: false, // pour controler l'affichage du component contient le formulaire d'ajout
+            afficheCompAjouter: false, // pour controler l'affichage du component contient le formulaire d'ajout ou modification du demande
             afficheCompSupprimer: false, // pour controler l'affichage du component contient le button de suprimer
+            afficheCompTerrain: false, // pour controler l'affichage du component contient le formulaire d'ajout du terrain
             action : null, // pour controler si on veut ajouter ou modifier une demande
 
             demandeSelectione: {}, // demande à modifier
-            demandeSupprimerId : null // l'id du demande à supprimer
+            demandeSupprimerId: null, // l'id du demande à supprimer
+            demandeId: null,  // l'id du demande pour ajouter le terrain
         }
     },
     methods: {
@@ -84,9 +101,13 @@ export default {
             const demandeSelectione = tousMesDemandes.filter(it => it.id == demandeId)
             this.demandeSelectione = demandeSelectione
             this.afficheCompAjouter = true
-        }
+        },
 
-        // lorsque je clique sur le button "supprimer"
+        // lorsque je clique sur le button Ajouter Terrain
+        buttonAjouterTerrainClick(afficheCompTerrain, demandeId) {
+            this.afficheCompTerrain = afficheCompTerrain;
+            this.demandeId = demandeId
+        }
         
     },
     async mounted() {
