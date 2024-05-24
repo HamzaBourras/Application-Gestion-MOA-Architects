@@ -87,9 +87,9 @@ export default {
     methods: {
         async recevoirDemandes() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null,"get",TOUS_MES_DEMANDES, user_id)
+            await this.envoyer(null,"get",TOUS_MES_DEMANDES, user_id, false)
             this.mesDemandes = this.returnData
-            this.length = this.mesDemandes.length
+            this.length = this.mesDemandes?.length
             // enregistrer les demandes dans localStorage
             localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
         },

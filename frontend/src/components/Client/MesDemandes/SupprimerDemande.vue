@@ -39,7 +39,7 @@ export default {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id;
             const demandeId = this.demandeSupprimerId;
             const idsRequete = `${user_id}/${demandeId}`
-            await this.envoyer(null, "delete", SUPPRIMER_DEMANDE, idsRequete)
+            await this.envoyer(null, "delete", SUPPRIMER_DEMANDE, idsRequete, false)
 
             setTimeout(() => {
                 this.emitsButtonAnnuler()

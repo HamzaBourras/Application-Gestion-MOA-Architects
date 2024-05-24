@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         async recevoirDemandes() {
-            await this.envoyer(null, "get", TOUS_DEMANDES, null)
+            await this.envoyer(null, "get", TOUS_DEMANDES, null, false)
             this.demandesDesClients = this.returnData
             // enregistrer tous les demnades 
             localStorage.setItem("tousDemandes", JSON.stringify(this.demandesDesClients))

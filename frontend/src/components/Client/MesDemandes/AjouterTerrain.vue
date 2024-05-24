@@ -115,7 +115,7 @@ export default {
                 formData.append('images[]', image)
             });
 
-            await this.envoyer(formData, "post", INSERER_TERRAIN, this.demandeId)
+            await this.envoyer(formData, "post", INSERER_TERRAIN, this.demandeId, true)
             this.imagesError = []
             // enregistrer les images qui ont des erreurs
             if (this.errors?.['images.0'] || this.errors?.['images.1'] || this.errors?.['images.2']) {

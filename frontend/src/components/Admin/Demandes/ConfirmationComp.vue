@@ -45,7 +45,7 @@ export default {
         },
 
         async changeStatutDemande() {
-            await this.envoyer({ statut: this.statut }, "put", EDIT_STATUT_DEMANDES, this.demandeId)
+            await this.envoyer({ statut: this.statut }, "put", EDIT_STATUT_DEMANDES, this.demandeId, false)
             
             setTimeout(() => {
                 this.emitsButtonNon()  // pour cacher ce component

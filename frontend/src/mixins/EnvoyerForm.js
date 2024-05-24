@@ -19,7 +19,7 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData = null, method, api, idsReuete = null) {
+    async envoyer(maData = null, method, api, idsReuete = null, hasFile = false) {
       //vérifier si le idsRequete n'est pas null
       const apiUrl = idsReuete != null ? `${api}${idsReuete}` : api;
 
@@ -34,13 +34,14 @@ const envoyerForm = {
           headers: {},
         };
 
-        config.headers["Content-Type"] = "multipart/form-data";
-
+        
         const token = localStorage.getItem("token");
         
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
         }
+        
+        if (hasFile == true) config.headers["Content-Type"] = "multipart/form-data";
         
         if (maData == null) {
           if (method == "get") {
@@ -52,6 +53,7 @@ const envoyerForm = {
           response = await axios[method](apiUrl, maData, config);
           
         }
+        
         
         
         if(!token) this.token = response.data?.token;

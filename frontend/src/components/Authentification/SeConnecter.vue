@@ -99,7 +99,7 @@ export default {
 
     methods: {
         async connecter() {
-            await this.envoyer(this.client, "post", CONNECTER_API, null)
+            await this.envoyer(this.client, "post", CONNECTER_API, null,false)
             const userAuth = this.returnData
             const token = this.token
             if (userAuth) {
