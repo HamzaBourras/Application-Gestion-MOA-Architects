@@ -4,7 +4,7 @@
         <!-- Component pour la confirmation de accepter ou refuser la demande -->
         <ConfirmationComp v-if="afficheConfirmationComp == true"
             @changerVisibilite="afficheConfirmationComp = false; emitsButtonFermer()" :contratId="contrat.id"
-            :statut="statut" :api="api" />
+            :vu="vu"  />
 
 
 
@@ -21,10 +21,9 @@
             </div>
             <div :class="`${contrat.segne != 0 ? 'justify-end' : 'justify-between'}`"
                 class="mt-[30px] flex items-center px-[10px]">
-                <div v-if="contrat.vu == 1 && contrat.segne == 0" class="space-x-[15px] ">
-                    <button type="button" title="segner" @click="buttonClick(true, 1)"
-                        class="focus:outline-none text-white bg-green-500 hover:bg-green-700 focus:ring-2 focus:ring-green-400 font-medium rounded-lg px-3.5 py-1 text-lg"><i
-                            class="fa-solid fa-check"></i></button>
+                <div v-if="contrat.segne == 0" class="space-x-[15px] ">
+                    <button type="button" title="marquer contrat vu" @click="buttonClick(true, 1)"
+                        class="focus:outline-none text-white bg-green-500 hover:bg-green-700 focus:ring-2 focus:ring-green-400 font-medium rounded-lg px-3.5 py-1 text-lg">Vu</button>
                 </div>
                 <div>
                     <button type=" button" @click="emitsButtonFermer()"
@@ -40,8 +39,7 @@
 
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
-import { EDIT_STATUT_CONTRAT } from "@/api/api"
-import ConfirmationComp from "@/components/Admin/Demandes/ConfirmationComp"
+import ConfirmationComp from "@/components/Client/MesDemandes/ConfirmationComp"
 
 export default {
     props: {
@@ -57,8 +55,7 @@ export default {
     data() {
         return {
             afficheConfirmationComp: false,  // pour controler l'affichage du component de confirmation
-            statut: null, // accepter ou refuser
-            api: EDIT_STATUT_CONTRAT
+            vu: null, // accepter ou refuser
         }
     },
     methods: {
@@ -66,9 +63,9 @@ export default {
             this.$emit("changerVisibilite")  // pour cacher le component contient les details de la demande
             this.$emit('mettreAjourTousDemandes'); // pour recharger tous les demandes lorsque une demande est modifié
         },
-        buttonClick(afficheConfirmation, statut) {
+        buttonClick(afficheConfirmation, vu) {
             this.afficheConfirmationComp = afficheConfirmation;  // pour afficher le component de confirmation après le click sur accepter ou refuser 
-            this.statut = statut
+            this.vu = vu
         }
     },
 

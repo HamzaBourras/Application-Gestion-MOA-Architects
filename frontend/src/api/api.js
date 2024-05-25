@@ -19,3 +19,4 @@ export const INSERER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/sto
 export const MODIFIER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/edit/";
 export const SUPPRIMER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/destroy/";
 export const INSERER_TERRAIN = "http://localhost:8000/api/client/mesDemandes/storeTerrain/";
+export const EDIT_VU_CONTRAT = "http://localhost:8000/api/client/mesDemandes/editContrat/";  // pour marquer le contrat vu

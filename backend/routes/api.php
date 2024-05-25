@@ -49,5 +49,6 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
         Route::put("edit/{user_id}/{demande_id}","editDemande");
         Route::delete("destroy/{user_id}/{demande_id}","destroyDemande");
         Route::post("storeTerrain/{demande_id}", "storeTerrain");
+        Route::put("editContrat/{contrat_id}","editContrat");
     });
 });

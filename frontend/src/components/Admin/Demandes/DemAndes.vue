@@ -19,39 +19,47 @@
 
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="(demande, i) in demandesDesClients" :key="demande.id"
-                class="bg-slate-50 text-justify m-3 py-[20px] px-[30px] space-y-[20px] w-[30%]">
-                <p class="font-bold text-xl text-center"> {{ `demande N° ${i + 1}`.toUpperCase() }} </p>
-                <div>
-                    <span class="font-semibold">Titre de la demande : </span>
-                    <p class="inline font-[500]">{{ demande.nom_projet }}</p>
-                </div>
-                <div>
-                    <span class="font-semibold">User : </span>
-                    <p class="inline font-[500]">{{ `${demande.userNom} ${demande.userPrenom}` }}</p>
-                </div>
-                <!-- Affichage de statut de la demande -->
-                <div>
-                    <span class="font-semibold">statut de la demande : </span>
-                    <p class="inline text-blue-500 font-[500]" v-if="demande.accepte == null">En cours ...</p>
-                    <p class="inline text-green-500 font-[500]" v-else-if="demande.accepte == 1">Accepté <i
-                            class="fa-solid fa-check"></i> </p>
-                    <p class="inline text-red-500 font-[500]" v-else>Refusé <i class="fa-solid fa-xmark"></i></p>
-                </div>
-                <!-- Affichage de statut du terain -->
-                <div v-if="demande.accepte == 1">
-                    <span class="font-semibold">statut du tearin : </span>
-                    <p class="inline text-blue-500 font-[500]" v-if="demande.terrain?.accepte == null">En cours ...</p>
-                    <p class="inline text-green-500 font-[500]" v-else-if="demande.terrain?.accepte == 1">Accepté <i
-                            class="fa-solid fa-check"></i> </p>
-                    <p class="inline text-red-500 font-[500]" v-else>Refusé <i class="fa-solid fa-xmark"></i></p>
-                </div>
-                <!-- Affichage de statut du contrat -->
-                <div v-if="demande.terrain?.accepte == 1">
-                    <span class="font-semibold">statut du contrat : </span>
-                    <p class="inline text-gray-500 font-[500]" v-if="demande.contrat_ajoute == 0">Non ajouté</p>
-                    <p class="inline text-blue-500 font-[500]" v-if="demande.contrat?.segne == 0">Non segné</p>
-                    <p class="inline text-green-500 font-[500]" v-else-if="demande.contrat?.segne == 1">Segné <i
-                            class="fa-solid fa-check"></i> </p>
+                class=" flex flex-col justify-between bg-slate-50 h-[360px]  m-3 py-[20px] px-[30px] w-[30%]">
+                <!-- div des informations -->
+                <div class="text-justify w-full space-y-[18px]">
+                    <p class="font-bold text-xl text-center"> {{ `demande N° ${i + 1}`.toUpperCase() }} </p>
+                    <div>
+                        <span class="font-semibold">Titre de la demande : </span>
+                        <p class="inline font-[500]">{{ demande.nom_projet }}</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold">User : </span>
+                        <p class="inline font-[500]">{{ `${demande.userNom} ${demande.userPrenom}` }}</p>
+                    </div>
+                    <!-- Affichage de statut de la demande -->
+                    <div>
+                        <span class="font-semibold">statut de la demande : </span>
+                        <p class="inline text-blue-500 font-[500]" v-if="demande.accepte == null">En cours ...</p>
+                        <p class="inline text-green-500 font-[500]" v-else-if="demande.accepte == 1">Accepté <i
+                                class="fa-solid fa-check"></i> </p>
+                        <p class="inline text-red-500 font-[500]" v-else>Refusé <i class="fa-solid fa-xmark"></i></p>
+                    </div>
+                    <!-- Affichage de statut du terain -->
+                    <div v-if="demande.accepte == 1">
+                        <span class="font-semibold">statut du tearin : </span>
+                        <p class="inline text-blue-500 font-[500]" v-if="demande.terrain?.accepte == null">En cours ...
+                        </p>
+                        <p class="inline text-green-500 font-[500]" v-else-if="demande.terrain?.accepte == 1">Accepté <i
+                                class="fa-solid fa-check"></i> </p>
+                        <p class="inline text-red-500 font-[500]" v-else>Refusé <i class="fa-solid fa-xmark"></i></p>
+                    </div>
+                    <!-- Affichage de statut du contrat -->
+                    <div v-if="demande.terrain?.accepte == 1">
+                        <span class="font-semibold">statut du contrat : </span>
+                        <p class="inline text-gray-500 font-[500]" v-if="demande.contrat_ajoute == 0">Non ajouté</p>
+                        <div class="inline" v-if="demande.contrat_ajoute == 1">
+                            <p class="inline text-gray-500 font-[500]" v-if="demande.contrat.vu == 0">Non vu</p>
+                            <p class="inline text-blue-500 font-[500]"
+                                v-if="demande.contrat.vu == 1 && demande.contrat?.segne == 0">Non segné</p>
+                            <p class="inline text-green-500 font-[500]" v-if="demande.contrat?.segne == 1">Segné <i
+                                    class="fa-solid fa-check"></i> </p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- div des buttons -->
@@ -62,7 +70,7 @@
                         Detail </button>
                     <!-- button pour afficher les details du terain -->
                     <button type="button"
-                        v-if="demande.accepte == 1 && demande.terain_ajoute == 1 && demande.terrain?.accepte == null "
+                        v-if="demande.accepte == 1 && demande.terain_ajoute == 1 && demande.terrain?.accepte == null"
                         @click="selectionnerTerrain(demande.id)"
                         class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Voir
                         terrain</button>
@@ -126,7 +134,7 @@ export default {
             // enregistrer tous les demnades 
             localStorage.setItem("tousDemandes", JSON.stringify(this.demandesDesClients))
             this.length = this.demandesDesClients?.length
-            
+
         },
         // lorsque je clique sur button detail
         selectionnerDemande(demandeId, numeroDemande) {
@@ -134,7 +142,7 @@ export default {
             const demandeSelectione = tousDemandes.filter(it => it.id == demandeId)
 
             this.demandeSelectione = demandeSelectione["0"];
-            this.numeroDemande = numeroDemande  
+            this.numeroDemande = numeroDemande
             this.afficheCompDetailDemande = true
         },
         // lorsque je clique sur button voir terrain

@@ -23,9 +23,15 @@ class ContratRequest extends FormRequest
     {
         $url = $this->url();
 
-        if (strpos($url, 'api/admin/demandes/edit') !== false) {
+        if (strpos($url, 'api/admin/demandes/editContrat') !== false) {
             return [
                 "statut" => "required"
+            ];
+        }
+
+        if (strpos($url, 'api/client/mesDemandes/editContrat') !== false) {
+            return [
+                "vu" => "required"
             ];
         }
         

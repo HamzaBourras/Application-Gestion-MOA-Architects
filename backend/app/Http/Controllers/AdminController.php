@@ -18,7 +18,7 @@ class AdminController extends Controller
     /***** recvoir tous les demandes *****/
     public function indexDemandes()
     {
-        $demandes = Demandes::with("user","terrain.images_terrain")->get();
+        $demandes = Demandes::with("user","terrain.images_terrain","contrat")->get();
 
         $tousDemandes = [];
         foreach ($demandes as $demande) {
@@ -94,7 +94,8 @@ class AdminController extends Controller
             Contrat::create([
                 "date" => $request->date,
                 "demandes_id" => $demande_id,
-                "segne" => 0
+                "segne" => 0,
+                "vu" => 0
             ]);
 
             Demandes::where(["id" => $demande_id])->update([

@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\Terrain;
+use App\Models\Demandes;
+use Illuminate\Http\Request;
+use App\Models\ImagesTerrain;
+use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
 use App\Http\Requests\TerrainRequest;
-use App\Models\Demandes;
-use App\Models\ImagesTerrain;
-use App\Models\Terrain;
-use Exception;
-use Illuminate\Http\Request;
-    
+use App\Models\Contrat;
+
 class ClientController extends Controller
 {
     /********************* Demandes **************************/
     
     /***** retourner tous les demandes du client *******/
     public function indexMesDemandes( int $user_id) {
-        $demaClient = Demandes::where("user_id",$user_id)->get();
+        $demaClient = Demandes::with("user", "terrain.images_terrain","contrat")->where("user_id",$user_id)->get();
 
         $demandesClient = [];
 
@@ -28,7 +30,9 @@ class ClientController extends Controller
                 "description" => $dema->description,
                 "accepte" => $dema->accepte,
                 "terain_ajoute" => $dema->terain_ajoute, 
-                "contrat_segne" => $dema->contrat_segne
+                "contrat_ajoute" => $dema->contrat_ajoute,
+                "terrain" => $dema->terrain,
+                "contrat" => $dema->contrat
             ];
             
             array_push($demandesClient,$formatDema);
@@ -131,6 +135,25 @@ class ClientController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "errorAction" => "Échec de l\'ajout du terrain +$e"
+            ]);
+        }
+    }
+
+    /***** ajouter le terrain à une demande *****/
+    public function editContrat(ContratRequest $request, int $contrat_id)
+    {
+        try {
+
+            Contrat::where(["id"=> $contrat_id])->update([
+               "vu" => $request->vu     
+            ]);
+
+            return response()->json([
+                "message" => "Le contrat est marqué vu avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de marquer le contrat vu +$e"
             ]);
         }
     }

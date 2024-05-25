@@ -12,6 +12,7 @@ class Contrat extends Model
     protected $fillable = [
         "demandes_id",
         "date",
-        "segne"
+        "segne",
+        "vu"
     ];
 }
