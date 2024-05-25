@@ -1,11 +1,14 @@
+        <!-- J'ai utilisé ce component pour confirmer la modification du statut de lademande,du terrain et du contrat  -->
+
 <template>
-    <div class="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[90%] h-max ">
+    <div class="absolute z-4 left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[90%] h-max ">
         <div class="w-full h-full bg-slate-200 text-left rounded-xl py-[30px] px-[20px]">
             <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
             </div>
             <div class="pl-[20px] mt-[10px]">
-                <p class="font-[500]">Voulez-vous vraiment {{ `${statut == 1 ? "accepter" : "refuser"}` }} cette demande
+                <p class="font-[500]">Voulez-vous vraiment {{ `${statut == 1 ? "accepter" : "refuser"}` }} {{
+                    `${demandeId != null ? "cette demande" : "ce terrain"}` }}
                     ?</p>
             </div>
             <div class="flex justify-end mt-[40px]">
@@ -22,7 +25,6 @@
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
-import { EDIT_STATUT_DEMANDES } from "@/api/api"
 
 export default {
     mixins: [EnvoyerForm],
@@ -34,8 +36,14 @@ export default {
         demandeId: {
             type: Number
         },
+        terrainId: {
+            type: Number
+        },
         statut: {  // pour savoir est ce que le demande est accepté (1) ou refusé (0)
             type: Number
+        },
+        api: {
+            type: String
         }
 
     },
@@ -45,8 +53,9 @@ export default {
         },
 
         async changeStatutDemande() {
-            await this.envoyer({ statut: this.statut }, "put", EDIT_STATUT_DEMANDES, this.demandeId, false)
-            
+            const id = this.demandeId != null ? this.demandeId : this.terrainId
+            await this.envoyer({ statut: this.statut }, "put", this.api, id, false)
+
             setTimeout(() => {
                 this.emitsButtonNon()  // pour cacher ce component
             }, 3002);

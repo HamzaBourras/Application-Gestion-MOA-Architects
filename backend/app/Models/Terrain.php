@@ -13,6 +13,12 @@ class Terrain extends Model
         "adresse",
         "largeur",
         "longeur",
-        "demandes_id"
+        "demandes_id",
+        "acepte"
     ];
+
+
+    public function images_terrain() {
+        return $this->hasMany(ImagesTerrain::class);
+    }
 }

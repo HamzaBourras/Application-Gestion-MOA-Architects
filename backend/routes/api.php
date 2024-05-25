@@ -33,7 +33,8 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function (){
     Route::prefix("demandes")->group(function (){
        Route::get("index","indexDemandes"); 
-       Route::put("edit/{demande_id}","changeDemandeStatut");
+       Route::put("editDemande/{demande_id}","changeDemandeStatut");
+       Route::put("editTerrain/{terrain_id}", "changeTerrainStatut");
     });
 });
 

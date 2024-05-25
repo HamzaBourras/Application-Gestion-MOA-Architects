@@ -15,11 +15,16 @@ class Demandes extends Model
         "description",
         "accepte",
         "terain_ajoute",
+        "contrat_segne",
         "user_id"  
     ];
 
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function terrain(){
+        return $this->hasOne(Terrain::class);
     }
 }

@@ -27,7 +27,8 @@ class ClientController extends Controller
                 "type" => $dema->type,
                 "description" => $dema->description,
                 "accepte" => $dema->accepte,
-                "terain_ajoute" => $dema->terain_ajoute,   
+                "terain_ajoute" => $dema->terain_ajoute, 
+                "contrat_segne" => $dema->contrat_segne
             ];
             
             array_push($demandesClient,$formatDema);
@@ -47,7 +48,8 @@ class ClientController extends Controller
                 "description" => $request->description,
                 "accepte" => null,
                 "user_id" => $user_id,
-                "terain_ajoute" => 0
+                "terain_ajoute" => 0,
+                "contrat_segne" => 0
             ]);
 
             return response()->json([
