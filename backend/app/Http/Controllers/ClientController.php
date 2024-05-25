@@ -49,7 +49,7 @@ class ClientController extends Controller
                 "accepte" => null,
                 "user_id" => $user_id,
                 "terain_ajoute" => 0,
-                "contrat_segne" => 0
+                "contrat_ajoute" => 0
             ]);
 
             return response()->json([

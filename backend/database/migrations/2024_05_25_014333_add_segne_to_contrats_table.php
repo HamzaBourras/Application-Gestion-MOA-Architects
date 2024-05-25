@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('demandes', function (Blueprint $table) {
-            $table->boolean("contrat_segne");
+        Schema::table('contrats', function (Blueprint $table) {
+            $table->boolean("segne");
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('demandes', function (Blueprint $table) {
+        Schema::table('contrats', function (Blueprint $table) {
             //
         });
     }

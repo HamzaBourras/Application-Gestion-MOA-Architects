@@ -27,4 +27,9 @@ class Demandes extends Model
     public function terrain(){
         return $this->hasOne(Terrain::class);
     }
+
+    public function contrat()
+    {
+        return $this->hasOne(Contrat::class);
+    }
 }

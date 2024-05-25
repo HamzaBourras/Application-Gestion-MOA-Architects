@@ -7,9 +7,11 @@
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
             </div>
             <div class="pl-[20px] mt-[10px]">
-                <p class="font-[500]">Voulez-vous vraiment {{ `${statut == 1 ? "accepter" : "refuser"}` }} {{
-                    `${demandeId != null ? "cette demande" : "ce terrain"}` }}
-                    ?</p>
+                <p v-if="demandeId != null" class="font-[500]"> Voulez-vous vraiment {{ `${statut == 1 ? "accepter" :
+                    "refuser"}` }} cette demande ? </p>
+                <p v-if="terrainId != null" class="font-[500]"> Voulez-vous vraiment {{ `${statut == 1 ? "accepter" :
+                    "refuser"}` }} ce terrain ? </p>
+                <p v-if="contratId != null" class="font-[500]"> Voulez-vous vraiment segner ce contrat ? </p>
             </div>
             <div class="flex justify-end mt-[40px]">
                 <button type="button" @click="changeStatutDemande()"
@@ -39,6 +41,9 @@ export default {
         terrainId: {
             type: Number
         },
+        contratId: {
+            type: Number
+        },
         statut: {  // pour savoir est ce que le demande est accepté (1) ou refusé (0)
             type: Number
         },
@@ -53,7 +58,7 @@ export default {
         },
 
         async changeStatutDemande() {
-            const id = this.demandeId != null ? this.demandeId : this.terrainId
+            const id = this.demandeId != null ? this.demandeId : (this.terrainId != null ? this.terrainId : this.contratId)
             await this.envoyer({ statut: this.statut }, "put", this.api, id, false)
 
             setTimeout(() => {

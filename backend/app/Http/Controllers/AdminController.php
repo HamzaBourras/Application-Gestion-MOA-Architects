@@ -33,11 +33,12 @@ class AdminController extends Controller
                 "description" => $demande->description,
                 "accepte" => $demande->accepte,
                 "terain_ajoute" => $demande->terain_ajoute,
-                "contrat_segne" => $demande->contrat_segne,
+                "contrat_ajoute" => $demande->contrat_ajoute,
                 "userNom" => $demande->user->nom,
                 "userPrenom" => $demande->user->prenom,
                 "date" => $formattedDate,
-                "terrain" => $demande->terrain
+                "terrain" => $demande->terrain,
+                "contrat" => $demande->contrat
                 
             ];
 
@@ -92,7 +93,12 @@ class AdminController extends Controller
         try {
             Contrat::create([
                 "date" => $request->date,
-                "demandes_id" => $demande_id
+                "demandes_id" => $demande_id,
+                "segne" => 0
+            ]);
+
+            Demandes::where(["id" => $demande_id])->update([
+                "contrat_ajoute" => 1
             ]);
 
             return response()->json([
@@ -101,6 +107,25 @@ class AdminController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "errorAction" => "Échec de l'ajoout du contrat' +$e"
+            ]);
+        }
+    }
+
+
+    /***** changer le statut du contrat c-à-d marquer qui est segné *****/
+    public function changeContratStatut(ContratRequest $request, int $contrat_id)
+    {
+        try {
+            Contrat::where("id", $contrat_id)->update([
+                "segne" => $request->statut
+            ]);
+
+            return response()->json([
+                "message" => "le contrat est segné avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de la signature du contrat +$e"
             ]);
         }
     }

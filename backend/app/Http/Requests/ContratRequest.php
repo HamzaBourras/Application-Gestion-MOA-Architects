@@ -21,6 +21,14 @@ class ContratRequest extends FormRequest
      */
     public function rules(): array
     {
+        $url = $this->url();
+
+        if (strpos($url, 'api/admin/demandes/edit') !== false) {
+            return [
+                "statut" => "required"
+            ];
+        }
+        
         return [
             "date" => "required|after:today"
         ];

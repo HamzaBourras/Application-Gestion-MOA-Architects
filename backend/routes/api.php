@@ -36,6 +36,7 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
        Route::put("editDemande/{demande_id}","changeDemandeStatut");
        Route::put("editTerrain/{terrain_id}", "changeTerrainStatut");
        Route::post("storeContrat/{demande_id}","storeContrat");
+       Route::put("editContrat/{contrat_id}","changeContratStatut");
     });
 });
 

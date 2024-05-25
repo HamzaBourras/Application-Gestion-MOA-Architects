@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->boolean("accepte")->constrained()->nullable();
             $table->boolean("terain_ajoute");
+            $table->boolean("contrat_ajoute");
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@ export default {
             type: Number
         }
     },
-    emits: ["changerVisibilite", "mettreAjourDemandes"],
+    emits: ["changerVisibilite", "mettreAjourTousDemandes"],
     mixins: [EnvoyerForm],
     components: {
         MessAgeComponent
@@ -56,12 +56,11 @@ export default {
 
         async ajouterContrat() {
             await this.envoyer(this.contrat, "post", INSERER_CONTRAT, this.demandeId, false)
-            console.log(this.errorAction);
 
             if (this.message != null) {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
-                    this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
+                    this.$emit('mettreAjourTousDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
                 }, 3002);
             }
         }
