@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Exception;
+use App\Models\Contrat;
+use App\Models\Terrain;
 use App\Models\Demandes;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
-use App\Models\Terrain;
 
 class AdminController extends Controller
 {
@@ -79,6 +81,26 @@ class AdminController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "errorAction" => "Échec de la modification du statut du terrain +$e"
+            ]);
+        }
+    }
+
+
+     /***** ajouter une contrat *****/
+    public function storeContrat(ContratRequest $request, int $demande_id)
+    {
+        try {
+            Contrat::create([
+                "date" => $request->date,
+                "demandes_id" => $demande_id
+            ]);
+
+            return response()->json([
+                "message" => "Contrat ajouté avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de l'ajoout du contrat' +$e"
             ]);
         }
     }

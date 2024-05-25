@@ -10,6 +10,9 @@
         <!-- Component pour les details du terrain -->
         <DetailTerrain v-if="afficheCompDetailTerrain == true" @changerVisibilite="afficheCompDetailTerrain = false"
             @mettreAjourTousDemandes="recevoirDemandes" :terrain="terrainSelectione" />
+        <!-- Component pour l'ajout du contrat -->
+        <AjouterContrat v-if="afficheCompAjouterContrat == true" @changerVisibilite="afficheCompAjouterContrat = false"
+            @mettreAjourTousDemandes="recevoirDemandes" :demandeId="demandeId" />
 
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="(demande, i) in demandesDesClients" :key="demande.id"
@@ -63,6 +66,7 @@
                         class="focus:outline-none text-white border-2 border-red-500 bg-red-500 hover:bg-red-600 focus:ring-2 focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Supprimer</button>
                     <!-- button pour créer le rendez-vous de signature du contrat -->
                     <button type="button" v-if="demande.terrain?.accepte == 1 && demande.contrat_segne == 0"
+                        @click="buttonRendezVousClick(demande.id)"
                         class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                         Rendez-vous</button>
                 </div>
@@ -77,6 +81,7 @@ import EnvoyerForm from "@/mixins/EnvoyerForm"
 import { TOUS_DEMANDES } from "@/api/api"
 import DetailDemande from "@/components/Admin/Demandes/DetailDemande"
 import DetailTerrain from "@/components/Admin/Demandes/DetailTerrain"
+import AjouterContrat from "@/components/Admin/Demandes/AjouterContrat"
 
 export default {
     mixins: [EnvoyerForm],
@@ -86,15 +91,18 @@ export default {
             length: null, // la taille du tableau demandesDesClients
             afficheCompDetailDemande: false, // pour controler l'affichage du div des details de la demande
             afficheCompDetailTerrain: false, // pour controler l'affichage du div des details du terrain
+            afficheCompAjouterContrat: false, // pour controler l'affichage du div des contient la formulaire pour ajouter lecontrat
 
             demandeSelectione: {}, // demande séléctionné pour afficher ces details
             terrainSelectione: {}, // terrain selectione pour afficher ces details
-            numeroDemande: null // numéro de la demande séléctionné
+            numeroDemande: null, // numéro de la demande séléctionné
+            demandeId: null
         }
     },
     components: {
         DetailDemande,
-        DetailTerrain
+        DetailTerrain,
+        AjouterContrat
     },
     methods: {
         async recevoirDemandes() {
@@ -120,6 +128,11 @@ export default {
 
             this.terrainSelectione = demandeSelectione["0"].terrain;
             this.afficheCompDetailTerrain = true
+        },
+        //lorsque je clique sur button rendez-vous pour la création d'un rendez-vous pour le contrat
+        buttonRendezVousClick(demandeId) {
+            this.demandeId = demandeId
+            this.afficheCompAjouterContrat = true
         }
     },
     async mounted() {

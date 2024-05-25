@@ -8,6 +8,7 @@ export const DECONNECTER_API = "http://localhost:8000/api/auth/deconnecter/";
 export const TOUS_DEMANDES = "http://localhost:8000/api/admin/demandes/index/";
 export const EDIT_STATUT_DEMANDES = "http://localhost:8000/api/admin/demandes/editDemande/";  // pour changer le statut de la demande accepté(1) ou refusé(0)
 export const EDIT_STATUT_TERRAIN = "http://localhost:8000/api/admin/demandes/editTerrain/";  // pour changer le statut du terrain accepté(1) ou refusé(0)
+export const INSERER_CONTRAT = "http://localhost:8000/api/admin/demandes/storeContrat/";  // pour ajouter un rendez-vous pour la signature du contrat
 
 
 /*************** Client ***************/
