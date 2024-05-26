@@ -1,5 +1,8 @@
 <template>
     <div class="relative h-[86.7vh]">
+        <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
+            <p class="text-lg">Ils n'y a pas des contrats à afficher</p>
+        </div>
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="contrat in contratsDesClients" :key="contrat.id"
                 class=" flex flex-col justify-between bg-slate-50 h-[260px]  m-3 py-[20px] px-[30px] w-[30%]">
@@ -39,12 +42,14 @@ export default {
     data() {
         return {
             contratsDesClients: [],
+            length: null
         }
     },
     methods: {
         async recevoirContrats() {
             await this.envoyer(null, "get", TOUS_CONTRATS, null, false)
             this.contratsDesClients = this.returnData
+            this.length = this.contratsDesClients?.length
         }
     },
     async mounted() {

@@ -18,6 +18,10 @@ export const TOUS_CONTRATS = "http://localhost:8000/api/admin/contrats/index/";
 export const INSERER_CONTRAT = "http://localhost:8000/api/admin/contrats/store/";  // pour ajouter un rendez-vous pour la signature du contrat
 export const EDIT_STATUT_CONTRAT = "http://localhost:8000/api/admin/contrats/edit/";  // pour changer le statut du contrat: segné
 
+/**** Clients ****/
+export const TOUS_CLIENTS = "http://localhost:8000/api/admin/clients/index/";
+
+
 
 /*************** Client ***************/
 /**** Demandes ****/

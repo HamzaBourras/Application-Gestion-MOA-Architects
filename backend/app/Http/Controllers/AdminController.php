@@ -12,6 +12,7 @@ use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
 use App\Http\Requests\ProjetRequest;
 use App\Models\Projet;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -185,6 +186,17 @@ class AdminController extends Controller
         return response()->json([
             "data" => $tousContrats
         ]);
+    }
+
+
+    /***** recvoir tous les clients *****/
+    public function indexClients(){
+        $clients = User::where("role_id",2)->get();
+
+        return response()->json([
+            "data" => $clients
+        ]);
+        
     }
     
 

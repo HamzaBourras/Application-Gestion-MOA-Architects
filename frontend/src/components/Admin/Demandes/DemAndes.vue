@@ -148,9 +148,9 @@ export default {
         async recevoirDemandes() {
             await this.envoyer(null, "get", TOUS_DEMANDES, null, false)
             this.demandesDesClients = this.returnData
+            this.length = this.demandesDesClients?.length
             // enregistrer tous les demnades 
             localStorage.setItem("tousDemandes", JSON.stringify(this.demandesDesClients))
-            this.length = this.demandesDesClients?.length
 
         },
         // lorsque je clique sur button detail

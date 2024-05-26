@@ -46,6 +46,10 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
     Route::prefix("projets")->group(function () {
         Route::post("store/{demande_id}", "storeProjet");
     });
+
+    Route::prefix("clients")->group(function () {
+        Route::get("index", "indexClients");
+    });
     
 });
 
