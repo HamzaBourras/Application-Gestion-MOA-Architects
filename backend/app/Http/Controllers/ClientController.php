@@ -161,6 +161,32 @@ class ClientController extends Controller
     }
 
 
+    /***** recvoir tous les contrats *****/
+    public function indexMesContrats(int $user_id)
+    {
+        $contrats = Contrat::where("user_id",$user_id)->get();
+
+        $mesContrats = [];
+        foreach ($contrats as $contrat) {
+
+            $formatContrat = [
+                "id" => $contrat->id,
+                "date" => $contrat->date,
+                "segne" => $contrat->segne,
+                "vu" => $contrat->vu,
+                "demande_id" => $contrat->demandes_id
+
+            ];
+
+            array_push($mesContrats, $formatContrat);
+        }
+
+        return response()->json([
+            "data" => $mesContrats
+        ]);
+    }
+
+
 
     
 }
