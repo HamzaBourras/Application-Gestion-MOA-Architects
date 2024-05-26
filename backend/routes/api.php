@@ -30,26 +30,34 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 
 
 /***************** Admin *******************/
-Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function (){
-    Route::prefix("demandes")->group(function (){
-       Route::get("index","indexDemandes"); 
-       Route::put("editDemande/{demande_id}","changeDemandeStatut");
-       Route::put("editTerrain/{terrain_id}", "changeTerrainStatut");
-       Route::post("storeContrat/{demande_id}","storeContrat");
-       Route::put("editContrat/{contrat_id}","changeContratStatut");
-       Route::post("storeProjet/{demande_id}","storeProjet");
+Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function () {
+    Route::prefix("demandes")->group(function () {
+        Route::get("index", "indexDemandes");
+        Route::put("edit/{demande_id}", "changeDemandeStatut");
+        Route::put("editTerrain/{terrain_id}", "changeTerrainStatut");
     });
+    
+    Route::prefix("contrats")->group(function () {
+        Route::get("index","indexContrats");
+        Route::post("store/{demande_id}", "storeContrat");
+        Route::put("edit/{contrat_id}", "changeContratStatut");
+    });
+    
+    Route::prefix("projets")->group(function () {
+        Route::post("store/{demande_id}", "storeProjet");
+    });
+    
 });
 
 
 /***************** Client ******************/
-Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function (){
-    Route::prefix("mesDemandes")->group(function(){
-        Route::get("index/{user_id}","indexMesDemandes");
+Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function () {
+    Route::prefix("mesDemandes")->group(function () {
+        Route::get("index/{user_id}", "indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");
-        Route::put("edit/{user_id}/{demande_id}","editDemande");
-        Route::delete("destroy/{user_id}/{demande_id}","destroyDemande");
+        Route::put("edit/{user_id}/{demande_id}", "editDemande");
+        Route::delete("destroy/{user_id}/{demande_id}", "destroyDemande");
         Route::post("storeTerrain/{demande_id}", "storeTerrain");
-        Route::put("editContrat/{contrat_id}","editContrat");
+        Route::put("editContrat/{contrat_id}", "editContrat");
     });
 });

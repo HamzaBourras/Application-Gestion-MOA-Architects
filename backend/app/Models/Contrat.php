@@ -15,4 +15,5 @@ class Contrat extends Model
         "segne",
         "vu"
     ];
+
 }

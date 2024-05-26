@@ -22,11 +22,11 @@
             :demandeId="demandeId" />
 
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
-            <div v-for="(demande, i) in demandesDesClients" :key="demande.id"
+            <div v-for="demande in demandesDesClients" :key="demande.id"
                 class=" flex flex-col justify-between bg-slate-50 h-[360px]  m-3 py-[20px] px-[30px] w-[30%]">
                 <!-- div des informations -->
                 <div class="text-justify w-full space-y-[18px]">
-                    <p class="font-bold text-xl text-center"> {{ `demande N° ${i + 1}`.toUpperCase() }} </p>
+                    <p class="font-bold text-xl text-center"> {{ `demande N° ${demande.id}`.toUpperCase() }} </p>
                     <div>
                         <span class="font-semibold">Titre de la demande : </span>
                         <p class="inline font-[500]">{{ demande.nom_projet }}</p>
@@ -69,7 +69,7 @@
                 <!-- div des buttons -->
                 <div class=" space-x-3 flex items-center justify-between">
                     <!-- button pour afficher les details de la demande -->
-                    <button type="button" @click="selectionnerDemande(demande.id, i + 1)"
+                    <button type="button" @click="selectionnerDemande(demande.id, demande.id)"
                         class="focus:outline-none border-2 border-blue-500 bg-white text-blue-600  hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                         Detail </button>
                     <!-- button pour afficher les details du terain -->

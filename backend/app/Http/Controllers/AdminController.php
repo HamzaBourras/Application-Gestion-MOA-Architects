@@ -161,5 +161,33 @@ class AdminController extends Controller
     }
 
 
+
+    /***** recvoir tous les contrats *****/
+    public function indexContrats()
+    {
+        $contrats = Contrat::get();
+
+        $tousContrats = [];
+        foreach ($contrats as $contrat) {
+
+            $formatContrat = [
+                "id" => $contrat->id,
+                "date" => $contrat->date,
+                "segne" => $contrat->segne,
+                "vu" => $contrat->vu,
+                "demande_id" => $contrat->demandes_id
+
+            ];
+
+            array_push($tousContrats, $formatContrat);
+        }
+
+        return response()->json([
+            "data" => $tousContrats
+        ]);
+    }
+    
+
+
     
 }
