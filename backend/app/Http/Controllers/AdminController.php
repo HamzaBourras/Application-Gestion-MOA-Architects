@@ -10,6 +10,8 @@ use App\Models\Demandes;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
+use App\Http\Requests\ProjetRequest;
+use App\Models\Projet;
 
 class AdminController extends Controller
 {
@@ -34,6 +36,7 @@ class AdminController extends Controller
                 "accepte" => $demande->accepte,
                 "terain_ajoute" => $demande->terain_ajoute,
                 "contrat_ajoute" => $demande->contrat_ajoute,
+                "ajoute_aux_projets" => $demande->ajoute_aux_projets,
                 "userNom" => $demande->user->nom,
                 "userPrenom" => $demande->user->prenom,
                 "date" => $formattedDate,
@@ -130,4 +133,33 @@ class AdminController extends Controller
             ]);
         }
     }
+
+
+    /***** changer le statut du contrat c-à-d marquer qui est segné *****/
+    public function storeProjet(ProjetRequest $request, int $demande_id)
+    {
+        try {
+            
+            Projet::create([
+                "demandes_id" => $demande_id,
+                "prix" => $request->prix,
+                "date_termination" => $request->date_termination
+            ]);
+
+            Demandes::where(["id" => $demande_id])->update([
+                "ajoute_aux_projets" => 1
+            ]);
+
+            return response()->json([
+                "message" => "la demande est ajouté aux projets avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de l'ajout de la demande aux projets +$e"
+            ]);
+        }
+    }
+
+
+    
 }

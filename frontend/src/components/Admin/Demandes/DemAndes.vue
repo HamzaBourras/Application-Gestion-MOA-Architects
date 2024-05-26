@@ -16,6 +16,10 @@
         <!-- Component pour les details du contrat -->
         <DetailTContrat v-if="afficheCompDetailContrat == true" @changerVisibilite="afficheCompDetailContrat = false"
             @mettreAjourTousDemandes="recevoirDemandes" :contrat="contratSelectione" />
+        <!-- Component pour ajouter la demande aux projets en cours déxecution -->
+        <AjouterAuxProjets v-if="afficheCompAjouterAuxProjets == true"
+            @changerVisibilite="afficheCompAjouterAuxProjets = false" @mettreAjourTousDemandes="recevoirDemandes"
+            :demandeId="demandeId" />
 
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="(demande, i) in demandesDesClients" :key="demande.id"
@@ -88,6 +92,16 @@
                         @click="selectionnerContrat(demande.id)"
                         class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Voir
                         Contrat</button>
+                    <!-- button pour ajouter la demande aux projets en cours d'éxecution -->
+                    <button type="button"
+                        v-if="demande.contrat_ajoute == 1 && demande.contrat?.segne == 1 && demande.ajoute_aux_projets == 0 "
+                        @click="buttonAjouterAuxProjetsClick(demande.id)"
+                        class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ajouter
+                        aux projets</button>
+                    <!-- Si la demande est ajouté aux projets  -->
+                    <p v-if="demande.ajoute_aux_projets == 1"
+                        class="inline text-gray-500 font-[500] w-[150px] me-2 mb-2 text-sm text-center">Demande ajoutée
+                        aux projets</p>
                 </div>
             </div>
         </div>
@@ -102,6 +116,7 @@ import DetailDemande from "@/components/Admin/Demandes/DetailDemande"
 import DetailTerrain from "@/components/Admin/Demandes/DetailTerrain"
 import DetailTContrat from "@/components/Admin/Demandes/DetailContrat"
 import AjouterContrat from "@/components/Admin/Demandes/AjouterContrat"
+import AjouterAuxProjets from "@/components/Admin/Demandes/AjouterAuxProjets"
 
 export default {
     mixins: [EnvoyerForm],
@@ -109,10 +124,11 @@ export default {
         return {
             demandesDesClients: [],
             length: null, // la taille du tableau demandesDesClients
-            afficheCompDetailDemande: false, // pour controler l'affichage du div des details de la demande
-            afficheCompDetailTerrain: false, // pour controler l'affichage du div des details du terrain
-            afficheCompAjouterContrat: false, // pour controler l'affichage du div des contient la formulaire pour ajouter lecontrat
-            afficheCompDetailContrat: false, // pour controler l'affichage du div des contient les details du contrat
+            afficheCompDetailDemande: false, // pour controler l'affichage du component des details de la demande
+            afficheCompDetailTerrain: false, // pour controler l'affichage du component des details du terrain
+            afficheCompAjouterContrat: false, // pour controler l'affichage du component des contient la formulaire pour ajouter lecontrat
+            afficheCompDetailContrat: false, // pour controler l'affichage du component des contient les details du contrat
+            afficheCompAjouterAuxProjets: false, // pour controler l'affichage du component pour ajouter la demande aux projets en cours d'execution
 
             demandeSelectione: {}, // demande séléctionné pour afficher ces details
             terrainSelectione: {}, // terrain selectione pour afficher ces details
@@ -125,7 +141,8 @@ export default {
         DetailDemande,
         DetailTerrain,
         AjouterContrat,
-        DetailTContrat
+        DetailTContrat,
+        AjouterAuxProjets
     },
     methods: {
         async recevoirDemandes() {
@@ -165,6 +182,10 @@ export default {
 
             this.contratSelectione = demandeSelectione["0"].contrat;
             this.afficheCompDetailContrat = true
+        },
+        buttonAjouterAuxProjetsClick(demandeId) {
+            this.demandeId = demandeId;
+            this.afficheCompAjouterAuxProjets = true
         }
     },
     async mounted() {

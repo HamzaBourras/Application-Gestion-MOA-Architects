@@ -16,6 +16,7 @@ class Demandes extends Model
         "accepte",
         "terain_ajoute",
         "contrat_segne",
+        "ajoute_aux_projets",
         "user_id"  
     ];
 

@@ -1,4 +1,4 @@
-        <!-- J'ai utilisé ce component pour confirmer la modification du statut de lademande,du terrain et du contrat  -->
+        <!-- J'ai utilisé ce component pour confirmer la modification du statut du contrat  -->
 
 <template>
     <div class="absolute z-4 left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[90%] h-max ">

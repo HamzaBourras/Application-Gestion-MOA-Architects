@@ -70,7 +70,7 @@
                     </div>
                     <div v-else-if="demande.accepte == 1">
                         <!-- button pour ajouter le terrain -->
-                        <button v-if="true" type="button" @click="buttonAjouterTerrainClick(true, demande.id)"
+                        <button v-if="demande.terrain_ajoute == 0" type="button" @click="buttonAjouterTerrainClick(true, demande.id)"
                             class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ajouter
                             Terrain</button>
                         <!-- button pour voir les details du contrat -->

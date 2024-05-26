@@ -10,6 +10,7 @@ export const EDIT_STATUT_DEMANDES = "http://localhost:8000/api/admin/demandes/ed
 export const EDIT_STATUT_TERRAIN = "http://localhost:8000/api/admin/demandes/editTerrain/";  // pour changer le statut du terrain accepté(1) ou refusé(0)
 export const INSERER_CONTRAT = "http://localhost:8000/api/admin/demandes/storeContrat/";  // pour ajouter un rendez-vous pour la signature du contrat
 export const EDIT_STATUT_CONTRAT = "http://localhost:8000/api/admin/demandes/editContrat/";  // pour changer le statut du contrat: segné
+export const AJOUTER_AUX_PROJETS = "http://localhost:8000/api/admin/demandes/storeProjet/";  // pour ajouter la demande aux projets en cours d'éxecution
 
 
 /*************** Client ***************/

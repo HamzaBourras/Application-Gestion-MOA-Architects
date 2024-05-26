@@ -19,9 +19,9 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData = null, method, api, idsReuete = null, hasFile = false) {
+    async envoyer(maData = null, method, api, idsRequete = null, hasFile = false) {
       //vérifier si le idsRequete n'est pas null
-      const apiUrl = idsReuete != null ? `${api}${idsReuete}` : api;
+      const apiUrl = idsRequete != null ? `${api}${idsRequete}` : api;
 
       this.message = null;
       this.errors = null;
@@ -53,7 +53,6 @@ const envoyerForm = {
           response = await axios[method](apiUrl, maData, config);
           
         }
-        
         
         
         if(!token) this.token = response.data?.token;

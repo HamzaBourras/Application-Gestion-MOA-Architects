@@ -31,6 +31,7 @@ class ClientController extends Controller
                 "accepte" => $dema->accepte,
                 "terain_ajoute" => $dema->terain_ajoute, 
                 "contrat_ajoute" => $dema->contrat_ajoute,
+                "ajoute_aux_projets" => $dema->ajoute_aux_projets,
                 "terrain" => $dema->terrain,
                 "contrat" => $dema->contrat
             ];
@@ -53,7 +54,8 @@ class ClientController extends Controller
                 "accepte" => null,
                 "user_id" => $user_id,
                 "terain_ajoute" => 0,
-                "contrat_ajoute" => 0
+                "contrat_ajoute" => 0,
+                "ajoute_aux_projets" => 0
             ]);
 
             return response()->json([
