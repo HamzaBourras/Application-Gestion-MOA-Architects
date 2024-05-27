@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Exception;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Projet;
 use App\Models\Contrat;
 use App\Models\Terrain;
 use App\Models\Demandes;
+use App\Models\RendezVous;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProjetRequest;
 use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
-use App\Http\Requests\ProjetRequest;
-use App\Models\Projet;
-use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -197,6 +199,33 @@ class AdminController extends Controller
             "data" => $clients
         ]);
         
+    }
+
+
+    /***** Recevoir tous les endez-vous *****/
+    public function indexRendezVous()
+    {
+        $currentDate = Carbon::now();
+
+
+        $rendezVous = RendezVous::with("user")->where('date', '>', $currentDate)->orderBy('id', 'desc')->get();
+
+        $tousRendezVous = [];
+
+        foreach ($rendezVous as $rendez) {
+            $formatRendez = [
+                "id" => $rendez->id,
+                "date" => $rendez->date,
+                "user" => $rendez->user->nom . " " . $rendez->user->prenom 
+                
+            ];
+
+            array_push($tousRendezVous, $formatRendez);
+        }
+
+        return response()->json([
+            "data" => $tousRendezVous
+        ]);
     }
     
 

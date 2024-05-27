@@ -21,6 +21,8 @@ export const EDIT_STATUT_CONTRAT = "http://localhost:8000/api/admin/contrats/edi
 /**** Clients ****/
 export const TOUS_CLIENTS = "http://localhost:8000/api/admin/clients/index/";
 
+/**** Rendez-vous ****/
+export const TOUS_RENDEZVOUS = "http://localhost:8000/api/admin/rendez-vous/index/";
 
 
 

@@ -50,6 +50,10 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
     Route::prefix("clients")->group(function () {
         Route::get("index", "indexClients");
     });
+
+    Route::prefix("rendez-vous")->group(function(){
+       Route::get("index","indexRendezVous"); 
+    });
     
 });
 

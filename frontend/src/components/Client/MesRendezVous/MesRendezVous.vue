@@ -77,7 +77,7 @@ export default {
             await this.envoyer(null, "get", TOUS_MES_RENDEZVOUS, user_id, false)
             this.mesRendezVous = this.returnData
             this.length = this.mesRendezVous?.length
-            // enregistrer les demandes dans localStorage
+            // enregistrer les rendez-vous dans localStorage
             localStorage.setItem("mesRendezVous", JSON.stringify(this.mesRendezVous))
         },
 
