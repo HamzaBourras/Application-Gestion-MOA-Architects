@@ -44,7 +44,7 @@ const envoyerForm = {
         if (hasFile == true) config.headers["Content-Type"] = "multipart/form-data";
         
         if (maData == null) {
-          if (method == "get") {
+          if (method == "get" || method == "delete") {
             response = await axios[method](apiUrl, config);
           } else {
             response = await axios[method](apiUrl,null, config);  // pour la deconnexion 
@@ -54,7 +54,7 @@ const envoyerForm = {
           
         }
         
-        console.log(response);
+        // console.log(response);
         
         if(!token) this.token = response.data?.token;
         this.message = response.data.message;

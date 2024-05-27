@@ -23,6 +23,7 @@ export const TOUS_CLIENTS = "http://localhost:8000/api/admin/clients/index/";
 
 
 
+
 /*************** Client ***************/
 /**** Demandes ****/
 export const TOUS_MES_DEMANDES = "http://localhost:8000/api/client/mesDemandes/index/";
@@ -32,5 +33,10 @@ export const SUPPRIMER_DEMANDE = "http://localhost:8000/api/client/mesDemandes/d
 export const INSERER_TERRAIN = "http://localhost:8000/api/client/mesDemandes/storeTerrain/";
 
 /**** Contrats ****/
-export const TOUS_MES_CONTRATS = "http://localhost:8000/api/client/contrats/index/";
 export const EDIT_VU_CONTRAT = "http://localhost:8000/api/client/contrats/edit/";  // pour marquer le contrat vu
+
+/**** Rendez-vous ****/
+export const TOUS_MES_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/index/";
+export const INSERER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/store/";
+export const MODIFIER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/edit/";
+export const SUPPRIMER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/destroy/";

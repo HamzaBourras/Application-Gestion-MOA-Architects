@@ -46,10 +46,11 @@ export default {
     },
     methods: {
         async recevoirMesContrats() {
+            
             JSON.parse(localStorage.getItem("mesDemandes")).forEach(demande => {
                 if(demande.contrat) this.mesContrats.push(demande.contrat)
             });
-            console.log(this.mesContrats);
+
             this.length = this.mesContrats?.length
         }
     },

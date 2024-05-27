@@ -26,7 +26,7 @@ import DashBoard from "@/components/Admin/DashBoard"
 import MesDemandes from "@/components/Client/MesDemandes/MesDemandes"
 import MesContrats from "@/components/Client/MesContrats"
 import MesProjets from "@/components/Client/MesProjets"
-import MesRendezVous from "@/components/Client/MesRendezVous"
+import MesRendezVous from "@/components/Client/MesRendezVous/MesRendezVous"
 
 export default {
     data() {

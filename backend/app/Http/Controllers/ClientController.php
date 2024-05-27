@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Exception;
+use Carbon\Carbon;
+use App\Models\Contrat;
 use App\Models\Terrain;
 use App\Models\Demandes;
+use App\Models\RendezVous;
 use Illuminate\Http\Request;
 use App\Models\ImagesTerrain;
 use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
 use App\Http\Requests\TerrainRequest;
-use App\Models\Contrat;
+use App\Http\Requests\RendezVousRequest;
 
 class ClientController extends Controller
 {
@@ -141,7 +145,7 @@ class ClientController extends Controller
         }
     }
 
-    /***** ajouter le terrain à une demande *****/
+    /***** marquer une contrat vu *****/
     public function editContrat(ContratRequest $request, int $contrat_id)
     {
         try {
@@ -160,33 +164,117 @@ class ClientController extends Controller
         }
     }
 
+    
+    /************************************************** */
+    /***** Recevoir tous mes endez-vous *****/
+    public function indexRendezVous(int $user_id){
+        $currentDate = Carbon::now(); 
 
-    /***** recvoir tous les contrats *****/
-    public function indexMesContrats(int $user_id)
-    {
-        $contrats = Contrat::where("user_id",$user_id)->get();
+        
+        $rendezVous = RendezVous::where('user_id', $user_id)
+        ->where('date', '>', $currentDate)
+        ->get();
+        
+        $mesRendezVous = [];
 
-        $mesContrats = [];
-        foreach ($contrats as $contrat) {
-
-            $formatContrat = [
-                "id" => $contrat->id,
-                "date" => $contrat->date,
-                "segne" => $contrat->segne,
-                "vu" => $contrat->vu,
-                "demande_id" => $contrat->demandes_id
-
+        foreach ($rendezVous as $rendez) {
+            $formatRendez = [
+                "id" => $rendez->id,
+                "date" => $rendez->date, 
             ];
 
-            array_push($mesContrats, $formatContrat);
+            array_push($mesRendezVous,$formatRendez);
         }
 
         return response()->json([
-            "data" => $mesContrats
+            "data" => $mesRendezVous
         ]);
     }
 
+    /***** Ajouter un rendez-vous *****/
+    public function storeRendezVous(RendezVousRequest $request, int $user_id)
+    {
+        try {
+
+            $rendezVous = RendezVous::all();
+            $clientRendezVousTime = new DateTime($request->date);
+            //vérifier si cette heure est disponible
+            foreach ($rendezVous as $rendez) {
+                $rendezVousTime = new DateTime($rendez->date);
+                
+                if($clientRendezVousTime->format('Y-m-d') == $rendezVousTime->format('Y-m-d') && $rendezVousTime->modify('+1 hour') >= $clientRendezVousTime){
+                    return response()->json([
+                        "errorAction" => "cette heure n'est pas disponible"
+                    ]);
+                }
+            }
+            
+            RendezVous::create([
+                "user_id" => $user_id,
+                "date" => $request->date
+            ]);
+            
+
+            return response()->json([
+                "message" => "Le rendez-vous a été créé avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de création de rendez-vous +$e"
+            ]);
+        }
+    }
+
+    /***** Modifier la date  d'un rendez-vous *****/
+    public function editRendezVous(RendezVousRequest $request, int $rendez_vous_id)
+    {
+        try {
+
+            $rendezVous = RendezVous::all();
+            $clientRendezVousTime = new DateTime($request->date);
+            //vérifier si cette heure est disponible
+            foreach ($rendezVous as $rendez) {
+                $rendezVousTime = new DateTime($rendez->date);
+
+                if ($clientRendezVousTime->format('Y-m-d') == $rendezVousTime->format('Y-m-d') &&
+                 $rendezVousTime->modify('+1 hour') >= $clientRendezVousTime &&
+                  $rendez->id != $rendez_vous_id) {
+                    return response()->json([
+                        "errorAction" => "cette heure n'est pas disponible"
+                    ]);
+                }
+            }
+
+            RendezVous::where("id",$rendez_vous_id)->update([
+                "date" => $request->date
+            ]);
 
 
+            return response()->json([
+                "message" => "La date de rendez-vous a été modifié avec succès"
+            ]);
+
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de la modification du rendez-vous +$e"
+            ]);
+        }
+    }
+
+    /***** Supprimer un rendez-vous *****/
+    public function destroyRendezVous( int $rendez_vous_id){
+        try{
+            RendezVous::where("id", $rendez_vous_id)->delete();
+
+            return response()->json([
+                "message" => "Rendez-vous a été supprimé avec succès"
+            ]);
+
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de la suppression du rendez-vous +$e"
+            ]);
+        }
+    }
     
 }

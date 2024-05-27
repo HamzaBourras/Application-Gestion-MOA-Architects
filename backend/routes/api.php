@@ -55,7 +55,7 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
 
 
 /***************** Client ******************/
-Route::prefix("client")->controller(ClientController::class)->group(function () {
+Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function () {
     Route::prefix("mesDemandes")->group(function () {
         Route::get("index/{user_id}", "indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");
@@ -65,8 +65,14 @@ Route::prefix("client")->controller(ClientController::class)->group(function () 
     });
     
     Route::prefix("contrats")->group(function () {
-        Route::get("index/{user_id}","indexMesContrats");
         Route::put("edit/{contrat_id}", "editContrat");
-        
     });
+
+    Route::prefix("rendez-vous")->group(function (){
+        Route::get("index/{user_id}","indexRendezVous");
+        Route::post("store/{user_id}", "storeRendezVous");
+        Route::put("edit/{rendez_vous_id}", "editRendezVous");
+        Route::delete("destroy/{rendez_vous_id}", "destroyRendezVous");
+    });
+    
 });

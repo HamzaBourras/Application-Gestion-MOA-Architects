@@ -1,14 +1,14 @@
 <template>
     <div class="relative h-[86.7vh]">
         <div class="py-[15px] pr-[20px] flex justify-end h-[12vh] ">
-            <button @click="afficheCompAjouter = true; action = 'ajouter'"
-                :class="afficheCompAjouter ? 'hidden' : 'block'"
+            <button @click="afficheCompAjouterModifier = true; action = 'ajouter'"
+                :class="afficheCompAjouterModifier ? 'hidden' : 'block'"
                 class="bg-blue-600 h-max text-white w-[150px] py-2.5 px-3 rounded-[10px] font-[600] tracking-[0.5px] hover:bg-blue-500 duration-300">Ajouter
                 <i class="fa-solid fa-plus ml-2"></i>
             </button>
         </div>
         <!-- Component pour ajouter une demande  -->
-        <AjouterDemande v-if="afficheCompAjouter" @changerVisibilite="afficheCompAjouter = false"
+        <AjouterModifierDemande v-if="afficheCompAjouterModifier" @changerVisibilite="afficheCompAjouterModifier = false"
             @mettreAjourDemandes="recevoirDemandes" @effacerDonnees="demandeSelectione = {}"
             :demandeSelectione="demandeSelectione" :action="action" />
         <!-- Component pour supprimer une demande -->
@@ -90,7 +90,7 @@
 <script>
 import { TOUS_MES_DEMANDES } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
-import AjouterDemande from "@/components/Client/MesDemandes/AjouterDemande"
+import AjouterModifierDemande from "@/components/Client/MesDemandes/AjouterModifierDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
 import AjouterTerrain from "@/components/Client/MesDemandes/AjouterTerrain"
 import DetailTContrat from "@/components/Client/MesDemandes/DetailContrat"
@@ -98,7 +98,7 @@ import DetailTContrat from "@/components/Client/MesDemandes/DetailContrat"
 export default {
     mixins: [EnvoyerForm],
     components: {
-        AjouterDemande,
+        AjouterModifierDemande,
         SupprimerDemande,
         AjouterTerrain,
         DetailTContrat,
@@ -107,7 +107,7 @@ export default {
         return {
             mesDemandes: [],
             length: null, // la taille dyu tableau mesDemandes
-            afficheCompAjouter: false, // pour controler l'affichage du component contient le formulaire d'ajout ou modification du demande
+            afficheCompAjouterModifier: false, // pour controler l'affichage du component contient le formulaire d'ajout ou modification du demande
             afficheCompSupprimer: false, // pour controler l'affichage du component contient le button de suprimer
             afficheCompTerrain: false, // pour controler l'affichage du component contient le formulaire d'ajout du terrain
             afficheCompDetailContrat: false, // pour controler l'affichage du div des contient les details du contrat
@@ -135,7 +135,7 @@ export default {
             const tousMesDemandes = JSON.parse(localStorage.getItem("mesDemandes"))
             const demandeSelectione = tousMesDemandes.filter(it => it.id == demandeId)
             this.demandeSelectione = demandeSelectione
-            this.afficheCompAjouter = true
+            this.afficheCompAjouterModifier = true
         },
 
         // lorsque je clique sur le button Ajouter Terrain
