@@ -12,6 +12,16 @@ class Projet extends Model
     protected $fillable = [
       "demandes_id",
       "prix",
-      "date_termination"  
+      "date_termination",
+      "termine"  
     ];
+
+    public function demandes(){
+      return $this->belongsTo(Demandes::class);
+    }
+
+  public function images_projet()
+  {
+    return $this->hasMany(ImagesProjet::class);
+  }
 }

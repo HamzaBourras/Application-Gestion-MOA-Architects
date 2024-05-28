@@ -27,7 +27,7 @@ import DashBoard from "@/components/Admin/DashBoard"
 import DemAndes from "@/components/Admin/Demandes/DemAndes"
 import CliEnts from "@/components/Admin/CliEnts"
 import ConTrats from "@/components/Admin/ConTrats"
-import ProJets from "@/components/Admin/ProJets"
+import ProJets from "@/components/Admin/Projets/ProJets"
 import RendezVous from "@/components/Admin/RendezVous"
 
 export default {

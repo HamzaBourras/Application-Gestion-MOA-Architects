@@ -24,6 +24,11 @@ export const TOUS_CLIENTS = "http://localhost:8000/api/admin/clients/index/";
 /**** Rendez-vous ****/
 export const TOUS_RENDEZVOUS = "http://localhost:8000/api/admin/rendez-vous/index/";
 
+/**** Projets ****/
+export const TOUS_PROJETS = "http://localhost:8000/api/admin/projets/index/";
+export const TOUS_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/index/"
+export const INSERER_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/store/";
+
 
 
 /*************** Client ***************/

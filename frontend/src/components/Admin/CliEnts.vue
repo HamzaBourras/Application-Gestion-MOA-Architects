@@ -45,11 +45,11 @@
                         <td class="px-6 py-4">
                             {{ client.telephone }}
                         </td>
-                        <td class="px-6 py-4">
+                        <!-- <td class="px-6 py-4">
                             <button type="button" 
                                 class="focus:outline-none border-2 border-blue-500 bg-white text-blue-600  hover:bg-blue-50 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-4 py-2 ">
                                 Voir plus </button>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>

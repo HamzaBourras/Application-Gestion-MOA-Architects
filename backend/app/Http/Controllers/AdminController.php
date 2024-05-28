@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProjetRequest;
 use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
+use App\Http\Requests\ImagesProjetRequest;
+use App\Models\ImagesProjet;
 
 class AdminController extends Controller
 {
@@ -23,11 +25,11 @@ class AdminController extends Controller
     /***** recvoir tous les demandes *****/
     public function indexDemandes()
     {
-        $demandes = Demandes::with("user","terrain.images_terrain","contrat")->get();
+        $demandes = Demandes::with("user", "terrain.images_terrain", "contrat")->get();
 
         $tousDemandes = [];
         foreach ($demandes as $demande) {
-            
+
             $date = new DateTime($demande->created_at);
             $formattedDate = $date->format('d-m-Y H:i:s');
 
@@ -45,7 +47,7 @@ class AdminController extends Controller
                 "date" => $formattedDate,
                 "terrain" => $demande->terrain,
                 "contrat" => $demande->contrat
-                
+
             ];
 
             array_push($tousDemandes, $formatDemande);
@@ -57,7 +59,8 @@ class AdminController extends Controller
     }
 
     /***** changer le statut de la demande accepter/refuser *****/
-    public function changeDemandeStatut(DemandeRequest $request, int $demande_id) {
+    public function changeDemandeStatut(DemandeRequest $request, int $demande_id)
+    {
         try {
             Demandes::where("id", $demande_id)->update([
                 "accepte" => $request->statut
@@ -93,7 +96,7 @@ class AdminController extends Controller
     }
 
 
-     /***** ajouter une contrat *****/
+    /***** ajouter une contrat *****/
     public function storeContrat(ContratRequest $request, int $demande_id)
     {
         try {
@@ -142,11 +145,12 @@ class AdminController extends Controller
     public function storeProjet(ProjetRequest $request, int $demande_id)
     {
         try {
-            
+
             Projet::create([
                 "demandes_id" => $demande_id,
                 "prix" => $request->prix,
-                "date_termination" => $request->date_termination
+                "date_termination" => $request->date_termination,
+                "termine" => 0
             ]);
 
             Demandes::where(["id" => $demande_id])->update([
@@ -192,13 +196,13 @@ class AdminController extends Controller
 
 
     /***** recvoir tous les clients *****/
-    public function indexClients(){
-        $clients = User::where("role_id",2)->get();
+    public function indexClients()
+    {
+        $clients = User::where("role_id", 2)->get();
 
         return response()->json([
             "data" => $clients
         ]);
-        
     }
 
 
@@ -216,8 +220,8 @@ class AdminController extends Controller
             $formatRendez = [
                 "id" => $rendez->id,
                 "date" => $rendez->date,
-                "user" => $rendez->user->nom . " " . $rendez->user->prenom 
-                
+                "user" => $rendez->user->nom . " " . $rendez->user->prenom
+
             ];
 
             array_push($tousRendezVous, $formatRendez);
@@ -227,8 +231,82 @@ class AdminController extends Controller
             "data" => $tousRendezVous
         ]);
     }
-    
 
 
-    
+    /***** recevoir tous les projets *****/
+    public function indexProjets()
+    {
+        $projets = Projet::with("demandes.contrat", "demandes.terrain.images_terrain")->get();
+
+        $tousProjets = [];
+
+        foreach ($projets as $projet) {
+            $formatProjet = [
+                "id" => $projet->id,
+                "prix" => $projet->prix,
+                "date_termination" => $projet->date_termination,
+                "nom_projet" => $projet->demandes->nom_projet,
+                "type" => $projet->demandes->type,
+                "description" => $projet->demandes->description,
+                "termine" => $projet->termine,
+                "numero_demande" => $projet->demandes->id,
+                "numero_contrat" => $projet->demandes->contrat->id,
+                "terrain" => [
+                    "adresse" => $projet->demandes->terrain->adresse,
+                    "largeur" => $projet->demandes->terrain->largeur,
+                    "longeur" => $projet->demandes->terrain->longeur,
+                    "images_terrain" => []
+                ],
+            ];
+
+            //insertion des images du terrain
+            foreach ($projet->demandes->terrain->images_terrain as $image_terrain) {
+                array_push($formatProjet["terrain"]["images_terrain"], $image_terrain->chemin);
+            }
+
+            //ajout du projet dans le tableau
+            array_push($tousProjets, $formatProjet);
+        }
+
+        return response()->json([
+            "data" => $tousProjets
+        ]);
+    }
+
+
+    /********************** Images */
+    /**** Recevoir tous les images du projet ****/
+    public function indexImages(int $projet_id)
+    {
+        $images = ImagesProjet::where("projet_id", $projet_id)->orderBy('id','desc')->get();
+
+        return response()->json([
+            "data" => $images
+        ]);
+    }
+
+    /**** Ajouter les images au projet ****/
+    public function storeImages(ImagesProjetRequest $request, int $projet_id)
+    {
+        try {
+            $imagesRecu = $request->file("images");
+            // ajout des images du terrain
+            foreach ($imagesRecu as $imageR) {
+                $chemin = $imageR->store('images_projet', 'public');
+
+                ImagesProjet::create([
+                    "projet_id" => $projet_id,
+                    "chemin" => $chemin
+                ]);
+            }
+
+            return response()->json([
+                "message" => "les images ont été ajouté avec succès"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de l'ajout des images +$e"
+            ]);
+        }
+    }
 }

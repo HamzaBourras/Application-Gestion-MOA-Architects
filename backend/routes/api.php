@@ -30,19 +30,19 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 
 
 /***************** Admin *******************/
-Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function () {
+Route::prefix("admin")->controller(AdminController::class)->group(function () {
     Route::prefix("demandes")->group(function () {
         Route::get("index", "indexDemandes");
         Route::put("edit/{demande_id}", "changeDemandeStatut");
         Route::put("editTerrain/{terrain_id}", "changeTerrainStatut");
     });
-    
+
     Route::prefix("contrats")->group(function () {
-        Route::get("index","indexContrats");
+        Route::get("index", "indexContrats");
         Route::post("store/{demande_id}", "storeContrat");
         Route::put("edit/{contrat_id}", "changeContratStatut");
     });
-    
+
     Route::prefix("projets")->group(function () {
         Route::post("store/{demande_id}", "storeProjet");
     });
@@ -51,10 +51,17 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
         Route::get("index", "indexClients");
     });
 
-    Route::prefix("rendez-vous")->group(function(){
-       Route::get("index","indexRendezVous"); 
+    Route::prefix("rendez-vous")->group(function () {
+        Route::get("index", "indexRendezVous");
     });
-    
+
+    Route::prefix("projets")->group(function () {
+        Route::get("index", "indexProjets");
+        Route::prefix("images")->group(function () {
+            Route::get("index/{projet_id}","indexImages");
+            Route::post("store/{projet_id}", "storeImages");
+        });
+    });
 });
 
 
@@ -67,16 +74,15 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
         Route::delete("destroy/{user_id}/{demande_id}", "destroyDemande");
         Route::post("storeTerrain/{demande_id}", "storeTerrain");
     });
-    
+
     Route::prefix("contrats")->group(function () {
         Route::put("edit/{contrat_id}", "editContrat");
     });
 
-    Route::prefix("rendez-vous")->group(function (){
-        Route::get("index/{user_id}","indexRendezVous");
+    Route::prefix("rendez-vous")->group(function () {
+        Route::get("index/{user_id}", "indexRendezVous");
         Route::post("store/{user_id}", "storeRendezVous");
         Route::put("edit/{rendez_vous_id}", "editRendezVous");
         Route::delete("destroy/{rendez_vous_id}", "destroyRendezVous");
     });
-    
 });
