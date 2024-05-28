@@ -1,6 +1,9 @@
 <template>
     <div class="relative h-max pb-[40px] ">
-        <div class="py-[10px] flex items-center justify-end pr-[20px] ">
+        <div class="py-[10px] flex items-center justify-between pr-[20px] ">
+            <div class=" flex justify-start items-center pl-[15px] mb-[5px] ">
+                <h1 class="text-[30px] font-[900] text-black"> {{ projet.nom_projet.toUpperCase() }} </h1>
+            </div>
             <button type="button" @click="this.$emit('changerVisibilite')"
                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Fermer</button>
         </div>
@@ -10,9 +13,6 @@
             @changerVisibilite="afficheComAjouterImages = false" @mettreAjourImages="recevoirImages()" />
 
         <div>
-            <div class=" flex justify-start items-center pl-[15px] mb-[5px] ">
-                <h1 class="text-[30px] font-[900] text-black"> {{ projet.nom_projet.toUpperCase() }} </h1>
-            </div>
             <!-- infos du projet -->
             <div class=" text-left bg-slate-50 text-black h-max w-[99%] mx-auto py-[20px] px-[10px] ">
                 <div class="flex items-center justify-between">
@@ -69,19 +69,25 @@
 
             <!-- images du projet -->
             <div class="h-max w-[99%] mx-auto py-[20px] px-[10px]">
-                <h1 class="font-[800] text-xl text-left">Images</h1>
-                <div class="flex mt-2 justify-end ">
-                    <button type="button" @click="afficheComAjouterImages = true; projetId=projet.id "
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
+                <div class="flex w-1/4 mt-2 mb-3 items-center justify-between ">
+                    <h1 class="font-[800] text-2xl text-left">Images</h1>
+                    <button v-if="userRole == 'admin'" type="button"
+                        @click="afficheComAjouterImages = true; projetId=projet.id "
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
                         image</button>
                 </div>
-                <div class="mt-2" >
+                <div class="mt-2">
                     <div v-if="length != null && length == 0" class="pl-8 text-left">
-                        <p class="text-lg">Vous n'avez pas des images à afficher</p>
+                        <p class="text-lg font-[500]">Vous n'avez pas des images à afficher</p>
                     </div>
-                    <div class="w-full flex justify-between" v-else>
-                        <img class="w-[32%] h-[250px] object-cover " v-for="(image, i) in imagesProjet " :key="i"
-                            :src="`http://localhost:8000/storage/${image.chemin}`" alt="">
+                    <div v-else>
+                        <div class="my-2">
+                            <p class="text-md font-[500] text-left">Voici l'état arrivé de votre projet</p>
+                        </div>
+                        <div class="w-full flex justify-between">
+                            <img class="w-[32%] h-[250px] object-cover " v-for="(image, i) in imagesProjet " :key="i"
+                                :src="`http://localhost:8000/storage/${image.chemin}`" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,6 +109,9 @@ export default {
     props: {
         projet: {
             type: Object
+        },
+        userRole: {
+            type: String  // pour ne pas afficher le button d'ajouter des images au client
         }
     },
     emits: ["changerVisibilite"],

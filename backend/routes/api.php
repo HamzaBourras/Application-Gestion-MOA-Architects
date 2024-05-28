@@ -30,7 +30,7 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 
 
 /***************** Admin *******************/
-Route::prefix("admin")->controller(AdminController::class)->group(function () {
+Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function () {
     Route::prefix("demandes")->group(function () {
         Route::get("index", "indexDemandes");
         Route::put("edit/{demande_id}", "changeDemandeStatut");
@@ -84,5 +84,9 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
         Route::post("store/{user_id}", "storeRendezVous");
         Route::put("edit/{rendez_vous_id}", "editRendezVous");
         Route::delete("destroy/{rendez_vous_id}", "destroyRendezVous");
+    });
+
+    Route::prefix("mesProjets")->group(function (){
+       Route::get("index/{user_id}","indexMesProjets");
     });
 });

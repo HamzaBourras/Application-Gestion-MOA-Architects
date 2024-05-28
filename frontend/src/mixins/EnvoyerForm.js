@@ -54,7 +54,7 @@ const envoyerForm = {
           
         }
         
-        console.log(response);
+        // console.log(response);
         
         if(!token) this.token = response.data?.token;
         this.message = response.data.message;

@@ -47,3 +47,6 @@ export const TOUS_MES_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous
 export const INSERER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/store/";
 export const MODIFIER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/edit/";
 export const SUPPRIMER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vous/destroy/";
+
+/**** Mes projets ****/
+export const TOUS_MES_PROJETS = "http://localhost:8000/api/client/mesProjets/index/";

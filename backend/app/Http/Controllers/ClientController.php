@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use Exception;
 use Carbon\Carbon;
+use App\Models\Projet;
 use App\Models\Contrat;
 use App\Models\Terrain;
 use App\Models\Demandes;
@@ -275,6 +276,49 @@ class ClientController extends Controller
                 "errorAction" => "Échec de la suppression du rendez-vous +$e"
             ]);
         }
+    }
+
+
+    /***** recevoir tous mes projets *****/
+    public function indexMesProjets(int $user_id)
+    {
+        $projets = Projet::with("demandes.contrat", "demandes.terrain.images_terrain")->get();
+
+        $tousProjets = [];
+
+        foreach ($projets as $projet) {
+            if($projet->demandes->user_id == $user_id ){
+                $formatProjet = [
+                    "id" => $projet->id,
+                    "prix" => $projet->prix,
+                    "date_termination" => $projet->date_termination,
+                    "nom_projet" => $projet->demandes->nom_projet,
+                    "type" => $projet->demandes->type,
+                    "description" => $projet->demandes->description,
+                    "termine" => $projet->termine,
+                    "numero_demande" => $projet->demandes->id,
+                    "numero_contrat" => $projet->demandes->contrat->id,
+                    "terrain" => [
+                        "adresse" => $projet->demandes->terrain->adresse,
+                        "largeur" => $projet->demandes->terrain->largeur,
+                        "longeur" => $projet->demandes->terrain->longeur,
+                        "images_terrain" => []
+                    ],
+                ];
+
+                //insertion des images du terrain
+                foreach ($projet->demandes->terrain->images_terrain as $image_terrain) {
+                    array_push($formatProjet["terrain"]["images_terrain"], $image_terrain->chemin);
+                }
+
+                //ajout du projet dans le tableau
+                array_push($tousProjets, $formatProjet);
+            }
+        }
+
+        return response()->json([
+            "data" => $tousProjets
+        ]);
     }
     
 }
