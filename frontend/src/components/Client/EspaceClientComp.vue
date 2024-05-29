@@ -5,7 +5,10 @@
         </div>
         <div class="w-5/6 ">
             <div>
-                <HeaDer :titre="lienActif" />
+                <HeaDer :titre="lienActif" @changeLienEmit="changeLienActif" />
+            </div>
+            <div>
+                <InfosProfile v-if="lienActif == 'Profile'" @changeLienEmit="changeLienActif" />
             </div>
             <div>
                 <DashBoard v-if="lienActif == 'Dashboard'" />
@@ -28,6 +31,8 @@ import MesContrats from "@/components/Client/MesContrats"
 import MesProjets from "@/components/Client/MesProjets"
 import MesRendezVous from "@/components/Client/MesRendezVous/MesRendezVous"
 
+import InfosProfile from "@/components/InfosProfile"
+
 export default {
     data() {
         return {
@@ -49,7 +54,8 @@ export default {
         MesDemandes,
         MesContrats,
         MesProjets,
-        MesRendezVous
+        MesRendezVous,
+        InfosProfile
     },
     methods: {
         changeLienActif(lien) {

@@ -5,12 +5,13 @@
         </div>
         <div class="w-5/6 ">
             <div>
-                <HeaDer :titre="lienActif" @afficherProfile="afficheCompProfile = true" />
+                <HeaDer :titre="lienActif" @changeLienEmit="changeLienActif" />
             </div>
             <div>
-                <InfosProfile v-if="afficheCompProfile == true" />
+                <InfosProfile v-if="lienActif == 'Profile' " @changeLienEmit="changeLienActif"
+                     />
             </div>
-            <div v-if="afficheCompProfile == false ">
+            <div>
                 <DashBoard v-if="lienActif == 'Dashboard'" />
                 <DemAndes v-if="lienActif == 'Demandes'" />
                 <CliEnts v-if="lienActif == 'Clients'" />
@@ -39,7 +40,6 @@ export default {
     data() {
         return {
             lienActif: "",
-            afficheCompProfile: true,
             liens: [
                 { lien: 'Dashboard', span: 'fa-solid fa-house' },
                 { lien: 'Demandes', span: 'fa-solid fa-code-pull-request' },
@@ -64,6 +64,9 @@ export default {
     methods: {
         changeLienActif(lien) {
             this.lienActif = lien
+        },
+        changeAncienLienActif(ancienLien) {
+            this.ancienlienActif = ancienLien
         }
     },
     mounted() {

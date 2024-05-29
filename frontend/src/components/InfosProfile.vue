@@ -1,6 +1,12 @@
 <template>
-    <div class="h-max py-[10px] ">
-        <div class="w-[50%] py-[20px] mx-auto bg-slate-50 px-[10px] ">
+    <div class="h-max py-[30px] ">
+        <div class="w-[50%] py-[20px] mx-auto bg-slate-50 px-[10px] relative ">
+
+            <!-- pour fermer la modification du profile -->
+            <button @click="changeLien()"
+                class="absolute top-[-10px] right-[-10px] bg-gray-500 hover:bg-gray-800 duration-200 text-white flex justify-center items-center rounded-[50%] w-[30px] h-[30px] cursor-pointer ">
+                <i class="fa-solid fa-x text-sm"></i>
+            </button>
 
             <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
@@ -109,18 +115,27 @@ export default {
     components: {
         MessAgeComponent
     },
+    emits: ["changeLienEmit"],
     data() {
         return {
             user: {},
             image: null,
             password: null,
-            motpasseverif: null
+            motpasseverif: null,
         }
     },
     methods: {
+        changeLien() {
+            const lienActif = localStorage.getItem('ancienLienActif')
+            this.$emit("changeLienEmit", lienActif);
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('lienActif', lienActif);
+            } else {
+                console.error('LocalStorage n\'est pas disponible.');
+            }
+        },
         ajouterImage(event) {
             this.image = event.target.files[0]
-
         },
         telechargerImage() {
             this.$refs.profileImage.click()
