@@ -25,6 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'role_id',
         'email',
         'password',
+        'image'
     ];
 
     protected $guarded = [];

@@ -32,16 +32,28 @@ class AuthentificationRequest extends FormRequest
                 "password" => "required|min:8|max:10",
                 "motpasseverif" => "required|same:password"
             ];
-        } elseif (strpos($url, 'api/auth/connecter') !== false) {
+        }
+        if (strpos($url, 'api/auth/connecter') !== false) {
             return [
                 "email" => "required|email",
                 "password" => "required|min:8|max:10",
             ];
         }
-        
+
+        if (strpos($url, 'api/auth/modifierProfile') !== false) {
+            return [
+                "prenom" => "required",
+                "nom" => "required",
+                "email" => "required|email",
+                "telephone" => "required",
+                "password" => "required|min:8|max:10",
+                "motpasseverif" => "required|same:password",
+                "images" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048"
+            ];
+        }
     }
 
-    
+
     public function messages(): array
     {
         return [

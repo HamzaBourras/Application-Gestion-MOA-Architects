@@ -25,6 +25,7 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
     Route::post("inscrire", "inscrire");
     Route::post("connecter", "connecter");
     Route::post("deconnecter/{user_id}", "deconnecter")->middleware("auth:sanctum");
+    Route::put("modifierProfile/{user_id}", "modifierProfile")->middleware("auth:sanctum");
 });
 
 

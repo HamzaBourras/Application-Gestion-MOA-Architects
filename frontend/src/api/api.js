@@ -1,6 +1,7 @@
 export const INSCRIRE_API = "http://localhost:8000/api/auth/inscrire";
 export const CONNECTER_API = "http://localhost:8000/api/auth/connecter";
 export const DECONNECTER_API = "http://localhost:8000/api/auth/deconnecter/";
+export const MODIFIER_PROFILE_API = "http://localhost:8000/api/auth/modifierProfile/";
 
 
 /*************** Admin ****************/

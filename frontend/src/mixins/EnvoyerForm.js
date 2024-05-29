@@ -34,34 +34,33 @@ const envoyerForm = {
           headers: {},
         };
 
-        
         const token = localStorage.getItem("token");
-        
+
         if (token) {
-          config.headers["Authorization"] = `Bearer ${token}`;  // ajouter le token au header
+          config.headers["Authorization"] = `Bearer ${token}`; // ajouter le token au header
         }
-        
-        if (hasFile == true) config.headers["Content-Type"] = "multipart/form-data";
+
+        if (hasFile == true) {
+          config.headers["Content-Type"] = "multipart/form-data";
+        }
         
         if (maData == null) {
           if (method == "get" || method == "delete") {
             response = await axios[method](apiUrl, config);
           } else {
-            response = await axios[method](apiUrl,null, config);  // pour la deconnexion 
+            response = await axios[method](apiUrl, null, config); // pour la deconnexion
           }
         } else if (maData != null) {
           response = await axios[method](apiUrl, maData, config);
           
         }
-        
+
         // console.log(response);
-        
-        if(!token) this.token = response.data?.token;
+
+        if (!token) this.token = response.data?.token;
         this.message = response.data.message;
         this.errorAction = response.data.errorAction;
         this.returnData = response.data?.data;
-        
-        
 
         this.disableMessage(); // pour cacher le message
       } catch (error) {

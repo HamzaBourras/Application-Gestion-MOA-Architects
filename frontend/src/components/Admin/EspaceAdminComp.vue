@@ -5,9 +5,12 @@
         </div>
         <div class="w-5/6 ">
             <div>
-                <HeaDer :titre="lienActif" />
+                <HeaDer :titre="lienActif" @afficherProfile="afficheCompProfile = true" />
             </div>
             <div>
+                <InfosProfile v-if="afficheCompProfile == true" />
+            </div>
+            <div v-if="afficheCompProfile == false ">
                 <DashBoard v-if="lienActif == 'Dashboard'" />
                 <DemAndes v-if="lienActif == 'Demandes'" />
                 <CliEnts v-if="lienActif == 'Clients'" />
@@ -30,10 +33,13 @@ import ConTrats from "@/components/Admin/ConTrats"
 import ProJets from "@/components/Admin/Projets/ProJets"
 import RendezVous from "@/components/Admin/RendezVous"
 
+import InfosProfile from "@/components/InfosProfile"
+
 export default {
     data() {
         return {
             lienActif: "",
+            afficheCompProfile: true,
             liens: [
                 { lien: 'Dashboard', span: 'fa-solid fa-house' },
                 { lien: 'Demandes', span: 'fa-solid fa-code-pull-request' },
@@ -53,6 +59,7 @@ export default {
         ConTrats,
         ProJets,
         RendezVous,
+        InfosProfile
     },
     methods: {
         changeLienActif(lien) {

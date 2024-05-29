@@ -81,7 +81,7 @@
                         <p class="text-lg font-[500]">Vous n'avez pas des images à afficher</p>
                     </div>
                     <div v-else>
-                        <div class="my-2">
+                        <div v-if="userRole == 'client' " class="my-2">
                             <p class="text-md font-[500] text-left">Voici l'état arrivé de votre projet</p>
                         </div>
                         <div class="w-full flex justify-between">
