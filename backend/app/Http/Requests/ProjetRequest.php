@@ -21,10 +21,15 @@ class ProjetRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "prix" => "required",
-            "date_termination" => "required|after:today"
-        ];
+        $url = $this->url();
+
+        if(strpos('api/admin/projets/store/',$url) !== false){
+            return [
+                "prix" => "required",
+                "date_termination" => "required|after:today"
+            ];
+        }
+        
     }
 
 

@@ -1,8 +1,12 @@
 <template>
     <div class="relative h-max pb-[40px] ">
         <div class="py-[10px] flex items-center justify-between pr-[20px] ">
-            <div class=" flex justify-start items-center pl-[15px] mb-[5px] ">
+            <div class=" flex justify-start items-end pl-[15px] mb-[5px] ">
                 <h1 class="text-[30px] font-[900] text-black"> {{ projet.nom_projet.toUpperCase() }} </h1>
+                <span v-if="projet.termine == 0" class="inline text-blue-500 font-[600] ml-1 italic ">En cours
+                    d'exécution ...</span>
+                <span v-if="projet.termine == 1" class="inline text-green-500 font-[600] ml-1 italic "> Projet
+                    terminé</span>
             </div>
             <button type="button" @click="this.$emit('changerVisibilite')"
                 class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Fermer</button>
@@ -68,13 +72,25 @@
             </div>
 
             <!-- images du projet -->
-            <div class="h-max w-[99%] mx-auto py-[20px] px-[10px]">
-                <div class="flex w-1/4 mt-2 mb-3 items-center justify-between ">
-                    <h1 class="font-[800] text-2xl text-left">Images</h1>
-                    <button v-if="userRole == 'admin'" type="button"
-                        @click="afficheComAjouterImages = true; projetId=projet.id "
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
-                        image</button>
+            <div class="h-max w-[99%] mx-auto py-[20px] px-[10px] relative">
+                <!-- Component pour marqué le projet terminé -->
+                <ConfirmationComp v-if="afficheComConfirmation == true" :projetId="projet.id"
+                    @changerVisibilite="afficheComConfirmation = false" />
+
+                <div class="flex w-full mt-2 mb-3 items-center justify-between ">
+                    <div class="w-1/4 flex items-center justify-between">
+                        <h1 class="font-[800] text-2xl text-left">Images</h1>
+                        <button v-if="userRole == 'admin' && projet.termine == 0 " type="button"
+                            @click="afficheComAjouterImages = true; projetId = projet.id"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
+                            image</button>
+                    </div>
+                    <div>
+                        <button v-if="projet.termine == 0" @click="afficheComConfirmation = true"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Projet terminé
+                        </button>
+                    </div>
                 </div>
                 <div class="mt-2">
                     <div v-if="length != null && length == 0" class="pl-8 text-left">
@@ -100,14 +116,16 @@
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import { TOUS_IMAGES_PROJET } from "@/api/api"
 import AjouterImages from '@/components/Admin/Projets/AjouterImages'
+import ConfirmationComp from '@/components/Admin/Projets/ConfirmationComp'
 
 export default {
     mixins: [EnvoyerForm],
     components: {
-        AjouterImages
+        AjouterImages,
+        ConfirmationComp
     },
     props: {
-        projet: {
+        projetRecu: {
             type: Object
         },
         userRole: {
@@ -117,13 +135,21 @@ export default {
     emits: ["changerVisibilite"],
     data() {
         return {
+            telecharge :0,
             imagesProjet: [],
+            projet: this.projetRecu,
             length: null,
             afficheComAjouterImages: false, // pour controler l'affichage du component d'ajout des images au projet
+            afficheComConfirmation: false, // pour controler l'affichage du component d'ajout des images au projet
             projetId: null
         }
     },
     methods: {
+        // async recevoirProjet() {
+        //     await this.envoyer(null, "get", TOUS_PROJETS, null, false) 
+        //     const tousProjets = this.returnData  
+        //     this.projet = tousProjets.filter(it => it.id == this.projet.id)
+        // },
         async recevoirImages() {
             await this.envoyer(null, "get", TOUS_IMAGES_PROJET, this.projet.id, false)
             this.imagesProjet = this.returnData
@@ -132,6 +158,6 @@ export default {
     },
     async mounted() {
         await this.recevoirImages()
-    }
+    },
 }
 </script>

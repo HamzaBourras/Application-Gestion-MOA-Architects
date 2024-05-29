@@ -13,6 +13,11 @@ export const EDIT_STATUT_DEMANDES = "http://localhost:8000/api/admin/demandes/ed
 export const EDIT_STATUT_TERRAIN = "http://localhost:8000/api/admin/demandes/editTerrain/";  // pour changer le statut du terrain accepté(1) ou refusé(0)
 /**** Projets ****/
 export const AJOUTER_AUX_PROJETS = "http://localhost:8000/api/admin/projets/store/";  // pour ajouter la demande aux projets en cours d'éxecution
+export const TOUS_PROJETS = "http://localhost:8000/api/admin/projets/index/";
+export const TOUS_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/index/"
+export const INSERER_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/store/";
+export const EDIT_PROJET_TERMINE = "http://localhost:8000/api/admin/projets/edit/";  // pour marquer le projet terminé
+
 
 /**** Contrats ****/
 export const TOUS_CONTRATS = "http://localhost:8000/api/admin/contrats/index/";
@@ -25,10 +30,7 @@ export const TOUS_CLIENTS = "http://localhost:8000/api/admin/clients/index/";
 /**** Rendez-vous ****/
 export const TOUS_RENDEZVOUS = "http://localhost:8000/api/admin/rendez-vous/index/";
 
-/**** Projets ****/
-export const TOUS_PROJETS = "http://localhost:8000/api/admin/projets/index/";
-export const TOUS_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/index/"
-export const INSERER_IMAGES_PROJET = "http://localhost:8000/api/admin/projets/images/store/";
+
 
 
 

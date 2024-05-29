@@ -2,7 +2,7 @@
     <div class="relative h-[86.7vh]">
 
         <!-- Component pour afficher les informations du projet -->
-        <InfosProjet v-if="afficheComInfosProjets == true" :projet="projetSelectione" :userRole="'client'"
+        <InfosProjet v-if="afficheComInfosProjets == true" :projetRecu="projetSelectione" :userRole="'client'"
             @changerVisibilite="afficheComInfosProjets = false" />
 
         <div v-if="afficheComInfosProjets == false">
@@ -20,7 +20,7 @@
                                 }}
                             </h1>
                             <p class="text-white font-[600] mt-[10px]">statut : <span class="font-normal">{{
-                                projet.termine == 0 ? "En cours d'exécution" :
+                                    projet.termine == 0 ? "En cours d'exécution" :
                                     "terminé" }}</span></p>
                         </div>
                         <button type="button" @click="projetSelectione = projet; afficheComInfosProjets = true"

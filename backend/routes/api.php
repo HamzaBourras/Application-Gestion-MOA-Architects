@@ -43,26 +43,26 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
         Route::post("store/{demande_id}", "storeContrat");
         Route::put("edit/{contrat_id}", "changeContratStatut");
     });
-
-    Route::prefix("projets")->group(function () {
-        Route::post("store/{demande_id}", "storeProjet");
-    });
-
-    Route::prefix("clients")->group(function () {
-        Route::get("index", "indexClients");
-    });
-
-    Route::prefix("rendez-vous")->group(function () {
-        Route::get("index", "indexRendezVous");
-    });
-
+    
     Route::prefix("projets")->group(function () {
         Route::get("index", "indexProjets");
+        Route::post("store/{demande_id}", "storeProjet");
+        Route::put("edit/{projet_id}","marquerProjetTermine");
+        
         Route::prefix("images")->group(function () {
             Route::get("index/{projet_id}","indexImages");
             Route::post("store/{projet_id}", "storeImages");
         });
     });
+    
+    Route::prefix("clients")->group(function () {
+        Route::get("index", "indexClients");
+    });
+    
+    Route::prefix("rendez-vous")->group(function () {
+        Route::get("index", "indexRendezVous");
+    });
+    
 });
 
 

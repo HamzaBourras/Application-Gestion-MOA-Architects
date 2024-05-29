@@ -309,4 +309,24 @@ class AdminController extends Controller
             ]);
         }
     }
+
+
+    /****** marquer le projet terminé *******/
+    public function marquerProjetTermine(int $projet_id){
+        try{
+            
+            Projet::where('id',$projet_id)->update([
+                "termine" => 1
+            ]);
+
+            return response()->json([
+                "message" => "Projet a été marqué terminé avec succès"
+            ]);
+            
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de marquer le projet Terminé +$e"
+            ]);
+        }
+    }
 }

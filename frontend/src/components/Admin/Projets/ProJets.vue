@@ -2,7 +2,8 @@
     <div class="relative h-[86.7vh]">
 
         <!-- Component pour afficher les informations du projet -->
-        <InfosProjet v-if="afficheComInfosProjets == true" :projet="projetSelectione" :userRole="'admin'"  @changerVisibilite="afficheComInfosProjets = false" />
+        <InfosProjet v-if="afficheComInfosProjets == true" :projetRecu="projetSelectione" :userRole="'admin'"
+            @changerVisibilite="afficheComInfosProjets = false" />
 
         <div v-if="afficheComInfosProjets == false">
             <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
