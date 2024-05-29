@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentaireRequest;
 use DateTime;
 use Exception;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ use App\Http\Requests\ContratRequest;
 use App\Http\Requests\DemandeRequest;
 use App\Http\Requests\TerrainRequest;
 use App\Http\Requests\RendezVousRequest;
+use App\Models\Commentaire;
 
 class ClientController extends Controller
 {
@@ -320,5 +322,27 @@ class ClientController extends Controller
             "data" => $tousProjets
         ]);
     }
+
+
+    /***** ajouter un commentaire *****/
+    public function storeCommentaire(CommentaireRequest $request, int $user_id){
+        try{
+            Commentaire::create([
+               "user_id" => $user_id,
+               "text" => $request->text
+                
+            ]);
+
+            return response()->json([
+                "message" => "Le commentaire a été ajouter avec succès"  
+            ]);
+            
+        } catch (Exception $e) {
+            return response()->json([
+                "errorAction" => "Échec de l'ajout du commentaire +$e"
+            ]);
+        }
+    }
+        
     
 }

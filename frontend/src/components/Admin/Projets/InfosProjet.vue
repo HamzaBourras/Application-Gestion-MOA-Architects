@@ -77,27 +77,40 @@
                 <ConfirmationComp v-if="afficheComConfirmation == true" :projetId="projet.id"
                     @changerVisibilite="afficheComConfirmation = false" />
 
-                <div class="flex w-full mt-2 mb-3 items-center justify-between ">
-                    <div class="w-1/4 flex items-center justify-between">
+                <!-- Component pour ajouter un commentaire -->
+                <AjouterCommentaire v-if="userRole == 'client' && afficheComAjouterCommentaire == true"
+                    @changerVisibilite="afficheComAjouterCommentaire = false" />
+
+                <div class="flex w-full mt-2 mb-3 items-center">
+                    <div class="w-1/4">
                         <h1 class="font-[800] text-2xl text-left">Images</h1>
-                        <button v-if="userRole == 'admin' && projet.termine == 0 " type="button"
-                            @click="afficheComAjouterImages = true; projetId = projet.id"
+                    </div>
+
+                    <div v-if="userRole == 'admin' && projet.termine == 0"
+                        class="w-3/4 flex items-center justify-between">
+                        <button type="button" @click="afficheComAjouterImages = true; projetId = projet.id"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
                             image</button>
-                    </div>
-                    <div>
-                        <button v-if="projet.termine == 0" @click="afficheComConfirmation = true"
+                        <button @click="afficheComConfirmation = true"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             Projet terminé
                         </button>
                     </div>
+
+                    <div v-if="userRole == 'client' && projet.termine == 1" class="w-3/4 flex items-center justify-end">
+                        <button @click="afficheComAjouterCommentaire = true"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Ajouter un commentaire
+                        </button>
+                    </div>
+
                 </div>
                 <div class="mt-2">
                     <div v-if="length != null && length == 0" class="pl-8 text-left">
                         <p class="text-lg font-[500]">Vous n'avez pas des images à afficher</p>
                     </div>
                     <div v-else>
-                        <div v-if="userRole == 'client' " class="my-2">
+                        <div v-if="userRole == 'client'" class="my-2">
                             <p class="text-md font-[500] text-left">Voici l'état arrivé de votre projet</p>
                         </div>
                         <div class="w-full flex justify-between">
@@ -117,12 +130,14 @@ import EnvoyerForm from "@/mixins/EnvoyerForm"
 import { TOUS_IMAGES_PROJET } from "@/api/api"
 import AjouterImages from '@/components/Admin/Projets/AjouterImages'
 import ConfirmationComp from '@/components/Admin/Projets/ConfirmationComp'
+import AjouterCommentaire from './../../Client/MesProjets/AjouterCommentaire.vue'
 
 export default {
     mixins: [EnvoyerForm],
     components: {
         AjouterImages,
-        ConfirmationComp
+        ConfirmationComp,
+        AjouterCommentaire
     },
     props: {
         projetRecu: {
@@ -135,12 +150,13 @@ export default {
     emits: ["changerVisibilite"],
     data() {
         return {
-            telecharge :0,
+            telecharge: 0,
             imagesProjet: [],
             projet: this.projetRecu,
             length: null,
             afficheComAjouterImages: false, // pour controler l'affichage du component d'ajout des images au projet
-            afficheComConfirmation: false, // pour controler l'affichage du component d'ajout des images au projet
+            afficheComConfirmation: false, 
+            afficheComAjouterCommentaire: false, // pour controler l'affichage du component d'ajout de commentaire
             projetId: null
         }
     },

@@ -89,5 +89,6 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
 
     Route::prefix("mesProjets")->group(function (){
        Route::get("index/{user_id}","indexMesProjets");
+       Route::post("commentaire/store/{user_id}","storeCommentaire");
     });
 });

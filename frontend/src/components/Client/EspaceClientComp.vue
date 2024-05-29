@@ -28,7 +28,7 @@ import HeaDer from '@/components/Admin/HeaDer'
 import DashBoard from "@/components/Admin/DashBoard"
 import MesDemandes from "@/components/Client/MesDemandes/MesDemandes"
 import MesContrats from "@/components/Client/MesContrats"
-import MesProjets from "@/components/Client/MesProjets"
+import MesProjets from "@/components/Client/MesProjets/MesProjets"
 import MesRendezVous from "@/components/Client/MesRendezVous/MesRendezVous"
 
 import InfosProfile from "@/components/InfosProfile"
