@@ -11,7 +11,7 @@
                     <p class="font-bold text-xl text-center"> {{ `contrat N° ${contrat.id}`.toUpperCase() }} </p>
                     <div>
                         <span class="font-semibold">Numero demande : </span>
-                        <p class="inline font-[500]">{{ contrat.demande_id }}</p>
+                        <p class="inline font-[500]">{{ contrat.demandes_id }}</p>
                     </div>
                     <div>
                         <span class="font-semibold">Date de signature : </span>

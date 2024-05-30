@@ -56,6 +56,7 @@ const envoyerForm = {
         }
 
         // console.log(response);
+        // console.log(maData);
 
         if (!token) this.token = response.data?.token;
         this.message = response.data.message;
@@ -66,6 +67,7 @@ const envoyerForm = {
       } catch (error) {
         // Gérer les erreurs
         this.errors = error.response?.data?.errors;
+        // console.log(this.errors);
       }
     },
   },

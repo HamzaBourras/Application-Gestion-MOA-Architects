@@ -54,7 +54,6 @@ export default {
         async deconnecter() {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id;
             await this.envoyer(null, "post", DECONNECTER_API, user_id, false)
-            // console.log(this.message);
             if (this.message != null) {
                 localStorage.clear();
                 this.$router.push('/authentifier');

@@ -23,21 +23,24 @@ class ContratRequest extends FormRequest
     {
         $url = $this->url();
 
-        if (strpos($url, 'api/admin/demandes/editContrat') !== false) {
+        if (strpos($url, 'api/admin/contrats/edit') !== false) {
             return [
                 "statut" => "required"
             ];
         }
 
-        if (strpos($url, 'api/client/mesDemandes/editContrat') !== false) {
+        if(strpos($url, 'api/admin/contrats/store') !== false){
+            return [
+                "date" => "required|after:today"
+            ];
+        }
+        
+        if (strpos($url, 'api/client/contrats/edit') !== false) {
             return [
                 "vu" => "required"
             ];
         }
         
-        return [
-            "date" => "required|after:today"
-        ];
     }
 
     public function messages()

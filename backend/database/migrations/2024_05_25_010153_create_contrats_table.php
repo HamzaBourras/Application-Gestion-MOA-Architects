@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('contrats', function (Blueprint $table) {
             $table->id();
             $table->timestamp("date");
-            $table->foreignIdFor(Demandes::class);
+            $table->foreignIdFor(Demandes::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

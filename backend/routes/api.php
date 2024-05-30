@@ -92,3 +92,8 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
        Route::post("commentaire/store/{user_id}","storeCommentaire");
     });
 });
+
+
+// Route::prefix("public")->group(function (){
+//    Route::get("commentaires/index","index") 
+// });

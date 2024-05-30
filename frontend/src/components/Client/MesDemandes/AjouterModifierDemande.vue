@@ -90,7 +90,8 @@ export default {
             const api = this.action == "modifier"  ? MODIFIER_DEMANDE : INSERER_DEMANDE;
             const idsRequete = this.action == "modifier" ? `${user_id}/${demandeId}` : user_id;
             
-            await this.envoyer(this.demande,method ,api, idsRequete, false)
+            await this.envoyer(this.demande, method, api, idsRequete, false)
+            // console.log(this.errorAction);
             if (this.demandeSelectione == {}) this.demande = {};
             
             if (this.message != null) {
