@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-    <div class="container">
+    <div class="container1">
         <div class="site-container">
             <div class="space-y-2">
                 <p>Bienvenue à</p>
@@ -30,10 +30,9 @@
     outline: none;
 }
 
-.container {
+.container1 {
     text-align: left;
     position: relative;
-    height: 90vh;
     width: 100%;
     height: 89vh;
     padding: 0 8%;
@@ -57,12 +56,12 @@
         line-height: 120px;
         margin-left: -5px;
         font-weight: 900;
-        color: white;
+        color: transparent;
         -webkit-text-stroke: 1px #fff;
         background: url('@/assets/pattern.png');
         -webkit-background-clip: text;
         background-position: 0 0;
-        animation: animite 20s linear 2s infinite alternate;
+        animation: animite 10s linear 2s infinite alternate;
     }
 
     @keyframes animite {
@@ -94,7 +93,7 @@
             margin-right: 40px;
             font-size: 18px;
             transition: 0.4s;
-            width: 280px;
+            width: 24%;
             
         }
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue-950 text-white h-[51vh]">
+    <div class="bg-blue-950 text-white h-max">
         <div class="flex flex-col justify-between items-start py-[30px] px-[30px]">
             <div class="w-full flex items-center justify-between mb-[20px]">
                 <div class="flex items-center">

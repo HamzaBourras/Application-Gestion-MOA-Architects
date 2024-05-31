@@ -1,5 +1,5 @@
 <template>
-    <div class="container h-[100vh] py-[20px] flex items-center justify-center">
+    <div class="container2 h-[100vh] py-[20px] flex items-center justify-center">
         <div class=" w-full flex flex-col items-center ">
             <div class=" pt-[15px] rounded-t-2xl w-[57%] flex justify-between items-end ">
                 <div class=" flex items-end">
@@ -57,7 +57,7 @@ export default {
 
 
 <style scoped>
-.container {
+.container2 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .1)), url('@/assets/pres1.png');
 }
 
