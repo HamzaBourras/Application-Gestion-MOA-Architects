@@ -54,3 +54,7 @@ export const SUPPRIMER_RENDEZVOUS = "http://localhost:8000/api/client/rendez-vou
 /**** Mes projets ****/
 export const TOUS_MES_PROJETS = "http://localhost:8000/api/client/mesProjets/index/";
 export const INSERER_COMMENTAIRE = "http://localhost:8000/api/client/mesProjets/commentaire/store/";
+
+
+/************************ Public ******/
+export const TOUS_COMMENTAIRES = "http://localhost:8000/api/public/commentaires/index/";

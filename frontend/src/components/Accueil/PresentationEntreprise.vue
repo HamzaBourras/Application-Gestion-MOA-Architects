@@ -8,7 +8,6 @@
                 <h4>Moroccan Office of Architecture & Architecte DENA</h4>
             </div>
             <div class="row">
-                <a href="#services">Prendre un rendez-vous</a>
                 <router-link to="/types-des-experiences"><span class="border-none" href="">Voir les experiences <span
                             class="ml-2 text-[20px]">&#x27f6</span></span></router-link>
             </div>

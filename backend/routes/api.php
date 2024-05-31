@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,6 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
 });
 
 
-// Route::prefix("public")->group(function (){
-//    Route::get("commentaires/index","index") 
-// });
+Route::prefix("public")->controller(PublicController::class)->group(function (){
+   Route::get("commentaires/index","indexCommentaires");
+});

@@ -48,8 +48,5 @@ export default {
             type: Array
         }
     },
-    mounted() {
-        console.log(this.typeExperience);
-    },
 }
 </script>
