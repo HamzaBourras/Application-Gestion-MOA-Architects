@@ -58,3 +58,4 @@ export const INSERER_COMMENTAIRE = "http://localhost:8000/api/client/mesProjets/
 
 /************************ Public ******/
 export const TOUS_COMMENTAIRES = "http://localhost:8000/api/public/commentaires/index/";
+export const TOUS_PROJETS_DU_TYPE = "http://localhost:8000/api/public/projets-du-type/index/";

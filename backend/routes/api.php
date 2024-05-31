@@ -97,4 +97,5 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
 
 Route::prefix("public")->controller(PublicController::class)->group(function (){
    Route::get("commentaires/index","indexCommentaires");
+   Route::get("projets-du-type/index/{type_experience}","indexProjets");  // pour retourner les projets d'un type des experiences (concours/villa...) avec les images de chaque projet
 });

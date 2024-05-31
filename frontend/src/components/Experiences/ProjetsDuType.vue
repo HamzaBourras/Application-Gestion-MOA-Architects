@@ -1,7 +1,8 @@
 <template>
     <div class="flex flex-col justify-center bg-[#062a74] text-white">
         <div class="flex items-center justify-between py-4 pl-4 border-b-2  border-blue-400">
-            <h1 class="text-[35px] font-bold w-1/4 text-blue-400">{{ typeExperienceChoisi.titre }}</h1>
+            <h1 @click="$emit('changeComponentAafficher', 'ExperiencesEntreprise')"
+                class="text-[35px] font-bold w-1/4 text-blue-400 cursor-pointer">{{ typeExperienceChoisi }}</h1>
             <div class="w-1/3">
                 <form class="flex items-center max-w-sm mx-auto">
                     <label for="simple-search" class="sr-only">Search</label>
@@ -31,10 +32,12 @@
             </div>
         </div>
         <div class="flex justify-between items-center flex-wrap mt-[30px]">
-            <div class="flex flex-col items-center justify-center w-[45%] h-[450px] "
-                v-for="projet in typeExperienceChoisi.projets" :key="projet.id">
-                <img class="h-[70%] w-[75%] rounded-md" :src="projet.image" alt="">
-                <h2 class="text-xl font-semibold mt-4 ">{{projet.title}}</h2>
+            <div @click="$emit('changeComponentAafficher', 'ImagesProjet'); $emit('changeProjet', projet) "
+                class="flex flex-col items-center justify-center w-[45%] h-[450px] cursor-pointer "
+                v-for="projet in projets" :key="projet.id">
+                <img class="h-[70%] w-[75%] rounded-md" :src="`http://localhost:8000/storage/${projet.images[0]}`"
+                    alt="">
+                <h2 class="text-xl font-semibold mt-4 ">{{projet.titre}}</h2>
             </div>
         </div>
 
@@ -42,11 +45,31 @@
 </template>
 
 <script>
+import {TOUS_PROJETS_DU_TYPE} from "@/api/api"
+import EnvoyerForm from "@/mixins/EnvoyerForm"
 export default {
+    emits: ["changeComponentAafficher","changeProjet"],
+    mixins: [EnvoyerForm],
     props: {
         typeExperienceChoisi: {
-            type: Array
+            type: String
         }
+    },
+    data() {
+        return {
+            projets : [],
+        }
+    },
+    methods: {
+        async recevoirProjets() {
+            await this.envoyer(null, "get", TOUS_PROJETS_DU_TYPE, this.typeExperienceChoisi, false)
+            this.projets = this.returnData
+        }
+    },
+    async mounted() {
+        await this.recevoirProjets()
+        // console.log(this.TypesDesExperiences);
+
     },
 }
 </script>

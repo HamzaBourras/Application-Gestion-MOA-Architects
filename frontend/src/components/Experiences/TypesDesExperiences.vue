@@ -3,9 +3,9 @@
         <h1 class="text-center pt-[1%] mb-[40px] relative text-[45px] font-[700] tracking-[1px] ">Experiences</h1>
         <div class="flex flex-col items-center justify-center">
             <div class=" w-[90%] h-[50vh] my-[20px] border-2 border-blue-400 overflow-hidden  rounded-none"
-                v-for="(exper, i) in experiences" :key="i" >
+                v-for="(exper, i) in experiences" :key="i">
                 <div class="flex items-center justify-between ">
-                    <div :class="`${i % 2 == 0 ? 'order-first' : 'order-last'} w-1/2`" >
+                    <div :class="`${i % 2 == 0 ? 'order-first' : 'order-last'} w-1/2`">
                         <img class="h-[50vh] w-full object-cover" :src="exper.image" alt="">
                     </div>
                     <div class="w-1/2 h-[48vh] flex flex-col items-center justify-around">
@@ -14,9 +14,11 @@
                             <p class="text-justify w-2/3 m-auto tracking-[0.5px]">{{ exper.description }}</p>
                         </div>
                         <div>
-                            <router-link :to="'/projets-du-type/' + exper.title"><button
-                                    class="text-white bg-blue-400 py-[10px] px-[30px] mb-[20px] cursor-pointer hover:px-[45px] duration-300  ">Voir
-                                    les projets</button></router-link>
+                            <button
+                                @click="$emit('changeComponentAafficher', 'ProjetsDuType'); $emit('changeTypeChoisi',exper.title) "
+                                class=" text-white bg-blue-400 py-[10px] px-[30px] mb-[20px] cursor-pointer
+                                hover:px-[45px] duration-300 ">Voir
+                                les projets</button>
                         </div>
                     </div>
 
@@ -31,6 +33,7 @@
 import { Experiences } from '@/data/data1.js';
 
 export default {
+    emits:["changeComponentAafficher","changeTypeChoisi"],
     data() {
         return {
             experiences: Experiences,
