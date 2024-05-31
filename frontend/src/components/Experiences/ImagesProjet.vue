@@ -5,7 +5,7 @@
                 class="text-[35px] font-bold w-1/4 text-blue-400 cursor-pointer">{{
                 projet.titre }}</h1>
         </div>
-        <div class="flex justify-between items-center flex-wrap mt-[30px]">
+        <div class="flex justify-between items-center flex-wrap my-[20px]">
             <div class="flex items-center justify-center flex-wrap w-full h-[450px] ">
                 <img v-for="(image, i) in projet.images" :key="i" class="h-[350px] w-[40%] m-5 rounded-md"
                     :src="`http://localhost:8000/storage/${image}`" alt="">

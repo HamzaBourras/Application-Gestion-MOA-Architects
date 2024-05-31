@@ -31,13 +31,13 @@
                 </form>
             </div>
         </div>
-        <div class="flex justify-between items-center flex-wrap mt-[30px]">
+        <div class="flex justify-between items-center flex-wrap mt-[30px] p-[30px] h-max">
             <div @click="$emit('changeComponentAafficher', 'ImagesProjet'); $emit('changeProjet', projet) "
-                class="flex flex-col items-center justify-center w-[45%] h-[450px] cursor-pointer "
+                class="flex flex-col items-center justify-center w-[48%] h-max cursor-pointer "
                 v-for="projet in projets" :key="projet.id">
-                <img class="h-[70%] w-[75%] rounded-md" :src="`http://localhost:8000/storage/${projet.images[0]}`"
-                    alt="">
-                <h2 class="text-xl font-semibold mt-4 ">{{projet.titre}}</h2>
+                <img class="object-cover h-[250px] w-[70%] rounded-md"
+                    :src="`http://localhost:8000/storage/${projet.images[0]}`" alt="">
+                <h2 class="text-xl font-bold mt-4 ">{{projet.titre}}</h2>
             </div>
         </div>
 

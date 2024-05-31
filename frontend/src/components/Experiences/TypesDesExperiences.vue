@@ -1,14 +1,14 @@
 <template>
     <div class="bg-[#062a74] text-white py-[20px]">
         <h1 class="text-center pt-[1%] mb-[40px] relative text-[45px] font-[700] tracking-[1px] ">Experiences</h1>
-        <div class="flex flex-col items-center justify-center">
-            <div class=" w-[90%] h-[50vh] my-[20px] border-2 border-blue-400 overflow-hidden  rounded-none"
+        <div class="flex flex-col items-center h-full justify-center">
+            <div class=" w-[90%] h-[318px] my-[20px] border-2 border-blue-400 overflow-hidden  rounded-none"
                 v-for="(exper, i) in experiences" :key="i">
-                <div class="flex items-center justify-between ">
+                <div class="flex h-full items-center justify-between ">
                     <div :class="`${i % 2 == 0 ? 'order-first' : 'order-last'} w-1/2`">
-                        <img class="h-[50vh] w-full object-cover" :src="exper.image" alt="">
+                        <img class="h-full w-full object-cover" :src="exper.image" alt="">
                     </div>
-                    <div class="w-1/2 h-[48vh] flex flex-col items-center justify-around">
+                    <div class="w-1/2 h-full flex flex-col space-y-[40px] justify-around">
                         <div class="space-y-5 flex flex-col justify-around">
                             <h2 class="text-[32px] tracking-[1px] font-[500]">{{ exper.title }}</h2>
                             <p class="text-justify w-2/3 m-auto tracking-[0.5px]">{{ exper.description }}</p>
