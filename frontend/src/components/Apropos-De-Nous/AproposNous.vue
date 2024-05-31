@@ -16,8 +16,8 @@
                         laboriosam
                         soluta architecto cum vero, sapiente omnis quos dolores ad id, quam non placeat labore minus
                         molestiae veniam.</p>
-                    <a class="inline-block uppercase bg-blue-400 text-white py-[15px] px-[40px] tracking-[1px] select-none"
-                        href="">Décorer votre maison</a>
+                    <router-link to="/authentifier" class="inline-block uppercase bg-blue-400 text-white py-[15px] px-[40px] tracking-[1px] select-none"
+                        >Décorer votre maison</router-link>
                 </div>
             </div>
         </div>
