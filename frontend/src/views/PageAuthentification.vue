@@ -1,6 +1,6 @@
 <template>
     <div class="container2 h-[100vh] py-[20px] flex items-center justify-center">
-        <div class=" w-full flex flex-col items-center ">
+        <div class=" w-full flex flex-col items-center  ">
             <div class=" pt-[15px] rounded-t-2xl w-[57%] flex justify-between items-end ">
                 <div class=" flex items-end">
                     <button @click="authentifier = 'seconnecter'"
@@ -24,7 +24,7 @@
             </div>
 
             <div
-                class="bg-[#f3f4f6] flex items-center justify-between w-[57%] h-[80vh] rounded-b-2xl pb-[30px] pt-[20px]  px-[10px] ">
+                class="bg-[#f3f4f6] flex items-center justify-between w-[57%] h-max rounded-b-2xl p-[15px]  px-[10px] ">
                 <SeConnecter class="" v-if="authentifier === 'seconnecter'" />
                 <!-- Image -->
                 <div class="w-[50%] h-full mx-[10px] " v-if="authentifier === 'seconnecter'">

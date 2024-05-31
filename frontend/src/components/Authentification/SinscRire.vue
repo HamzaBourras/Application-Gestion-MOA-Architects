@@ -18,7 +18,7 @@
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block  text-gray-700" for="prenom">Votre prénom</label>
                             <input v-model="client.prenom"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="prenom">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.prenom"><span
                                     v-for="(error, i) in errors?.prenom" :key="i">{{ error }} </span></p>
@@ -27,7 +27,7 @@
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block text-gray-700" for="nom">Votre nom</label>
                             <input v-model="client.nom"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="nom">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.nom"><span
                                     v-for="(error, i) in errors?.nom" :key="i">{{ error }} </span></p>
@@ -38,7 +38,7 @@
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block text-gray-700" for="email">Adresse e-mail</label>
                             <input v-model="client.email"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="email" id="email">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.email"><span
                                     v-for="(error, i) in errors?.email" :key="i">{{ error }} </span></p>
@@ -47,7 +47,7 @@
                         <div class="flex flex-col items-start w-full">
                             <label class="font-[450] block text-gray-700" for="telephone">Télephone</label>
                             <input v-model="client.telephone"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="text" id="telephone">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.telephone"><span
                                     v-for="(error, i) in errors?.telephone" :key="i">{{ error }} </span></p>
@@ -58,7 +58,7 @@
                         <div class="flex flex-col items-start w-1/2">
                             <label class="font-[450] block text-gray-700" for="password">Mot de passe</label>
                             <input v-model="client.password"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="password" id="password">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.password"><span
                                     v-for="(error, i) in errors?.password" :key="i">{{ error }} </span></p>
@@ -66,7 +66,7 @@
                         <div class="flex flex-col items-start w-1/2">
                             <label class="font-[450] block text-gray-700" for="motpasseverif">Vérification</label>
                             <input v-model="client.motpasseverif"
-                                class="w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
                                 type="password" id="motpasseverif">
                             <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasseverif"><span
                                     v-for="(error, i) in errors?.motpasseverif" :key="i">{{ error }} </span></p>
