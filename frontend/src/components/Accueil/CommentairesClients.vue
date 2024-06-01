@@ -8,8 +8,7 @@
                         <img v-if="commentaireAafficher1?.userImage != null" class="rounded-[50%] w-[30px] h-[30px] "
                             :src="`http://localhost:8000/storage/${commentaireAafficher1?.userImage}`" alt="">
                         <p v-else
-                            class="bg-slate-200 flex justify-center items-center h-[70px] w-[70px] p-2 rounded-[50%] cursor-pointer "
-                            @click="toggleDropdown">
+                            class="bg-slate-200 flex justify-center items-center h-[70px] w-[70px] p-2 rounded-[50%] cursor-pointer ">
                             <i class="fa-solid fa-user text-2xl"></i>
                         </p>
                         <div class="text-start ml-2">

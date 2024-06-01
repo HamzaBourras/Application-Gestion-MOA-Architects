@@ -48,7 +48,6 @@
 
 
 <script>
-import { TOUS_MES_RENDEZVOUS } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterModifierRendez from './AjouterModifierRendez.vue'
 import SupprimerRendezVous from "@/components/Client/MesRendezVous/SupprimerRendezVous"
@@ -73,12 +72,8 @@ export default {
     },
     methods: {
         async recevoirRendezVous() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_RENDEZVOUS, user_id, false)
-            this.mesRendezVous = this.returnData
+            this.mesRendezVous = JSON.parse(localStorage.getItem("MesRendezVous"))
             this.length = this.mesRendezVous?.length
-            // enregistrer les rendez-vous dans localStorage
-            localStorage.setItem("mesRendezVous", JSON.stringify(this.mesRendezVous))
         },
 
         // lorsque je clique sur le button "modifier"

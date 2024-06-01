@@ -172,7 +172,7 @@ class AdminController extends Controller
     /***** recvoir tous les contrats *****/
     public function indexContrats()
     {
-        $contrats = Contrat::get();
+        $contrats = Contrat::with("demandes.user")->get();
 
         $tousContrats = [];
         foreach ($contrats as $contrat) {
@@ -182,7 +182,8 @@ class AdminController extends Controller
                 "date" => $contrat->date,
                 "segne" => $contrat->segne,
                 "vu" => $contrat->vu,
-                "demande_id" => $contrat->demandes_id
+                "demande_id" => $contrat->demandes_id,
+                "user" => $contrat->demandes->user->nom . " " . $contrat->demandes->user->prenom
 
             ];
 
@@ -198,7 +199,7 @@ class AdminController extends Controller
     /***** recvoir tous les clients *****/
     public function indexClients()
     {
-        $clients = User::where("role_id", 2)->get();
+        $clients = User::where("role_id", 2)->orderBy("id","desc")->get();
 
         return response()->json([
             "data" => $clients

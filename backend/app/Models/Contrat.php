@@ -16,4 +16,8 @@ class Contrat extends Model
         "vu"
     ];
 
+    public function demandes(){
+        return $this->belongsTo(Demandes::class);
+    }
+
 }

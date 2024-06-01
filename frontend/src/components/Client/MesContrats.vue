@@ -45,17 +45,15 @@ export default {
         }
     },
     methods: {
-        async recevoirMesContrats() {
+        recevoirMesContrats() {
             
-            JSON.parse(localStorage.getItem("mesDemandes")).forEach(demande => {
-                if(demande.contrat) this.mesContrats.push(demande.contrat)
-            });
+            this.mesContrats = JSON.parse(localStorage.getItem("MesContrats"))
 
             this.length = this.mesContrats?.length
         }
     },
-    async mounted() {
-        await this.recevoirMesContrats()
+    mounted() {
+        this.recevoirMesContrats()
     }
 }
 

@@ -35,7 +35,6 @@
 
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
-import { TOUS_CONTRATS } from '@/api/api'
 
 export default {
     mixins: [EnvoyerForm],
@@ -46,14 +45,13 @@ export default {
         }
     },
     methods: {
-        async recevoirContrats() {
-            await this.envoyer(null, "get", TOUS_CONTRATS, null, false)
-            this.contratsDesClients = this.returnData
+        recevoirContrats() {
+            this.contratsDesClients = JSON.parse(localStorage.getItem("Contrats"))
             this.length = this.contratsDesClients?.length
         }
     },
-    async mounted() {
-        await this.recevoirContrats()
+    mounted() {
+         this.recevoirContrats()
     }
 }
 

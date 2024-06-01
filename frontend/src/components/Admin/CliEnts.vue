@@ -22,9 +22,9 @@
                         <th scope="col" class="px-6 py-3">
                             Telephone
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <!-- <th scope="col" class="px-6 py-3">
 
-                        </th>
+                        </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,6 @@
 
 
 <script>
-import {TOUS_CLIENTS} from "@/api/api"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 
 
@@ -73,15 +72,13 @@ export default {
         }
     },
     methods: {
-        async recevoirClients() {
-            await this.envoyer(null, "get", TOUS_CLIENTS, null, false)
-            this.tousClients = this.returnData
+        recevoirClients() {
+            this.tousClients = JSON.parse(localStorage.getItem("Clients"))
             this.length = this.tousClients?.length
         }
     },
-    async mounted() {
-        await this.recevoirClients()
-        console.log(this.tousClients);
+    mounted() {
+        this.recevoirClients()
     }
 }
 </script>

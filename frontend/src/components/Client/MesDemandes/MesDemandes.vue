@@ -88,7 +88,6 @@
 
 
 <script>
-import { TOUS_MES_DEMANDES } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterModifierDemande from "@/components/Client/MesDemandes/AjouterModifierDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
@@ -120,13 +119,9 @@ export default {
         }
     },
     methods: {
-        async recevoirDemandes() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_DEMANDES, user_id, false)
-            this.mesDemandes = this.returnData
+        recevoirDemandes() {
+            this.mesDemandes = JSON.parse(localStorage.getItem("Projets"))
             this.length = this.mesDemandes?.length
-            // enregistrer les demandes dans localStorage
-            localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
         },
 
         // lorsque je clique sur le button "modifier"
@@ -153,8 +148,8 @@ export default {
         }
 
     },
-    async mounted() {
-        await this.recevoirDemandes()
+    mounted() {
+        this.recevoirDemandes()
     }
 }
 </script>

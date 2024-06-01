@@ -1,8 +1,8 @@
 <template>
     <div class="relative h-[86.7vh]">
 
-        <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
-            <p class="text-lg">Vous n'avez pas des rendez-vous à afficher</p>
+        <div v-if="length != null && length == 0" class="text-white py-4 pl-8 text-left">
+            <p class="text-lg">Pas de rendez-vous à afficher !</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-around mt-[30px] ">
@@ -31,7 +31,6 @@
 
 
 <script>
-import { TOUS_RENDEZVOUS } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 
 export default {
@@ -43,15 +42,14 @@ export default {
         }
     },
     methods: {
-        async recevoirRendezVous() {
-            await this.envoyer(null, "get", TOUS_RENDEZVOUS, null, false)
-            this.tousRendezVous = this.returnData
+        recevoirRendezVous() {
+            this.tousRendezVous = JSON.parse(localStorage.getItem("RendezVous"))
             this.length = this.tousRendezVous?.length
         },
 
     },
-    async mounted() {
-        await this.recevoirRendezVous()
+    mounted() {
+        this.recevoirRendezVous()
     }
 }
 </script>

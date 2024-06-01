@@ -36,7 +36,6 @@
 
 
 <script>
-import { TOUS_MES_PROJETS } from "@/api/api"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import InfosProjet from "@/components/Admin/Projets/InfosProjet"
 
@@ -55,9 +54,8 @@ export default {
     },
     methods: {
         async recevoirProjets() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_PROJETS, user_id, false)
-            this.projets = this.returnData
+            this.projets = JSON.parse(localStorage.getItem("MesProjets"))
+            this.length = this.projets.length
         }
     },
     async mounted() {

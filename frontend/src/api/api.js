@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.0.145:8000/";
+const baseUrl = "http://localhost:8000/";
 
 export const INSCRIRE_API = `${baseUrl}api/auth/inscrire`;
 export const CONNECTER_API = `${baseUrl}api/auth/connecter`;

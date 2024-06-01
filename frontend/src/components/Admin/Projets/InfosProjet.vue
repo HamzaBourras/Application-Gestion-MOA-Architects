@@ -2,10 +2,10 @@
     <div class="relative h-max pb-[40px] ">
         <div class="py-[10px] flex items-center justify-between pr-[20px] ">
             <div class=" flex justify-start items-end pl-[15px] mb-[5px] ">
-                <h1 class="text-[30px] font-[900] text-black"> {{ projet.nom_projet.toUpperCase() }} </h1>
+                <h1 class="text-[30px] font-[900] text-white"> {{ projet.nom_projet.toUpperCase() }} </h1>
                 <span v-if="projet.termine == 0" class="inline text-blue-500 font-[600] ml-1 italic ">En cours
                     d'exécution ...</span>
-                <span v-if="projet.termine == 1" class="inline text-green-500 font-[600] ml-1 italic "> Projet
+                <span v-if="projet.termine == 1" class="inline text-green-400 font-[700] ml-1 italic "> Projet
                     terminé</span>
             </div>
             <button type="button" @click="this.$emit('changerVisibilite')"
@@ -83,7 +83,7 @@
 
                 <div class="flex w-full mt-2 mb-3 items-center">
                     <div class="w-1/4">
-                        <h1 class="font-[800] text-2xl text-left">Images</h1>
+                        <h1 class="font-[800] text-2xl text-left text-white">Images</h1>
                     </div>
 
                     <div v-if="userRole == 'admin' && projet.termine == 0"
