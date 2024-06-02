@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#062a74] py-[40px] h-max flex items-center">
+    <div class="bg-[#062a74] py-[4.5%] h-max flex items-center">
         <div class="relative w-full flex items-start justify-center m-auto px-[20px] ">
             <div class="text-[35px] w-[15%] h-full ">
                 <h2 class="text-white font-[700] tracking-[0.5px] pb-[10px] text-left w-full">Rester en contact</h2>

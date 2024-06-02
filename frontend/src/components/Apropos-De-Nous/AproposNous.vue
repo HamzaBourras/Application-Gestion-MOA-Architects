@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#062a74] h-[89vh] flex items-center ">
+    <div class="bg-[#062a74] h-max py-[2%] flex items-center ">
         <div class="row w-[82%] grid gap-[50px] overflow-x-hidden m-auto py-[5rem] px-0 text-white">
             <div class="overflow-hidden group">
                 <img class="w-full h-full object-cover duration-300 group-hover:scale-[1.25]" src="@/assets/pres1.png"

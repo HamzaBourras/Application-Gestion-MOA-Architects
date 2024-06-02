@@ -1,9 +1,13 @@
 <template>
     <!-- form -->
-    <div class=" pulse h-full connect w-[50%] mr-[30px] ml-[20px] py-[10px] ">
+    <div class=" pulse h-full overflow-hidden connect w-[50%] mr-[30px] ml-[20px] py-[10px] ">
         <div class="h-full w-full flex flex-col items-start pt-[5px] ">
             <div class="w-full">
                 <h1 class="text-2xl text-[#002D74] font-bold text-left ">Se connecter</h1>
+                <!-- affichage du message après la modification du mot de passe -->
+                <div v-if="messageRecu != false " class="text-left pt-3 text-[16px] text-green-500 font-[500] ">
+                    <p>{{ messageRecu }} </p>
+                </div>
                 <p v-if="message == null && errorAction == null" class="text-sm text-left mt-4 text-[#002D74]">Si vous
                     avez un
                     compte, veuillez vous
@@ -33,7 +37,7 @@
                 </div>
                 <div
                     class="flex justify-end mt-[40px] font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700 text-sm">
-                    <a href="#">Mot de passe oublié ?</a>
+                    <a href="http://127.0.0.1:8002/forgot-password">Mot de passe oublié ?</a>
                 </div>
                 <div class="mt-5">
                     <input
@@ -94,6 +98,7 @@ export default {
                 email: "",
                 password: ""
             },
+            messageRecu: false, // message renvoyé après la modification du mot de passe
         }
     },
 
@@ -113,11 +118,27 @@ export default {
                     this.$router.push('/espace/client');
                 }
             }
+        },
+        getMessageFromUrl() {
+            const hash = window.location.hash;
+            const params = new URLSearchParams(hash.substring(hash.indexOf('?'))); // Extract query parameters from the fragment
+            const message = params.get('message');
+            this.messageRecu = message ? decodeURIComponent(message) : null;
 
+            if(message !== null){
+                this.messageRecu = decodeURIComponent(message);
+            }
 
-
-
+            setTimeout(() => {
+                this.messageRecu = false;
+                // params.delete('message');
+                // const newHash = hash.substring(0, hash.indexOf('?')) + '?' + params.toString();
+                // history.replaceState(null, null, window.location.pathname + window.location.search + newHash);
+            }, 3000 );
         }
+    },
+    mounted() {
+        this.getMessageFromUrl()
     }
 
 }
