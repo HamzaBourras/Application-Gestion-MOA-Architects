@@ -330,4 +330,24 @@ class AdminController extends Controller
             ]);
         }
     }
+
+
+    // Pour le dashboard
+    public function indexStatiques(){
+        $Clients = User::where('role_id',2)->get();
+        $Contrats = Contrat::all();
+        $nbrDemandes = Demandes::all()->count();
+        $Rendezvous = RendezVous::all();
+        $nbrProjets = Projet::all()->count();
+
+        return response()->json([
+           "data" => [
+                "nbrDemandes" => $nbrDemandes,
+                "Clients" => $Clients,
+                "Contrats" => $Contrats,
+                "Rendezvous" => $Rendezvous,
+                "nbrProjets" => $nbrProjets,
+           ] 
+        ]);
+    }
 }

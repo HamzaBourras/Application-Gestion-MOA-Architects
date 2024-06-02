@@ -5,7 +5,7 @@
         </div>
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="contrat in mesContrats" :key="contrat.id"
-                class=" flex flex-col justify-between bg-slate-50 h-[260px]  m-3 py-[20px] px-[30px] w-[30%]">
+                class=" flex flex-col justify-between bg-white h-[260px]  m-3 py-[20px] px-[30px] w-[30%]">
                 <!-- div des informations -->
                 <div class="text-justify w-full space-y-[18px]">
                     <p class="font-bold text-xl text-center"> {{ `contrat N° ${contrat.id}`.toUpperCase() }} </p>
@@ -32,7 +32,6 @@
     </div>
 </template>
 
-
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 
@@ -45,15 +44,17 @@ export default {
         }
     },
     methods: {
-        recevoirMesContrats() {
-            
-            this.mesContrats = JSON.parse(localStorage.getItem("MesContrats"))
+        async recevoirMesContrats() {
+
+            JSON.parse(localStorage.getItem("mesDemandes")).forEach(demande => {
+                if (demande.contrat) this.mesContrats.push(demande.contrat)
+            });
 
             this.length = this.mesContrats?.length
         }
     },
-    mounted() {
-        this.recevoirMesContrats()
+    async mounted() {
+        await this.recevoirMesContrats()
     }
 }
 

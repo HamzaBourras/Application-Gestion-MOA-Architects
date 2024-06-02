@@ -13,8 +13,7 @@
                     <input type="text" class="bg-white text-black h-11 w-full px-4 pr-20 rounded-md focus:outline-none "
                         placeholder="votre addresse email...">
                     <button
-                        class="h-8 rounded bg-[#182444] absolute top-2 text-sm right-2 px-3 text-white hover:bg-gray-900 ">Subscribe
-                        Now</button>
+                        class="h-8 rounded bg-[#182444] absolute top-2 text-sm right-2 px-3 text-white hover:bg-gray-900 ">S'abonnez</button>
                 </div>
             </div>
 
@@ -47,10 +46,11 @@
                 <div>
                     <h2 class=" font-[600] mb-4 text-[17px]">Services</h2>
                     <ul class="flex flex-col items-start text-sm space-y-2 text-[#ffffffb3]">
-                        <li>Service 1</li>
-                        <li>Service 2</li>
-                        <li>Service 3</li>
-                        <li>Service 4</li>
+                        <li>Activité d’architecture</li>
+                        <li>Urbanisme</li>
+                        <li>Décoration</li>
+                        <li>Aménagement</li>
+                        <li>Rénovation</li>
                     </ul>
                 </div>
                 <div>
@@ -59,7 +59,8 @@
                         <li class="font-bold text-[15px] tracking-[0.2px]">Architecte Charafi Hamza </li>
                         <li>hamzacharafi@gmail.com</li>
                         <li>Tel- 05-24-43-77-61</li>
-                        <li class="text-justify" >27, Appt. 16 Imm. Nakhla, n° 91/89, 2ème étage,<br> Av. Zerktouni, Guéliz, Marrakech </li>
+                        <li class="text-justify">27, Appt. 16 Imm. Nakhla, n° 91/89, 2ème étage,<br> Av. Zerktouni,
+                            Guéliz, Marrakech </li>
                     </ul>
 
                 </div>

@@ -8,10 +8,10 @@
                     <div :class="`${i % 2 == 0 ? 'order-first' : 'order-last'} w-1/2`">
                         <img class="h-full w-full object-cover" :src="exper.image" alt="">
                     </div>
-                    <div class="w-1/2 h-full flex flex-col space-y-[40px] justify-around">
+                    <div class="w-1/2 h-full flex flex-col space-y-[10px] justify-around">
                         <div class="space-y-5 flex flex-col justify-around">
                             <h2 class="text-[32px] tracking-[1px] font-[500]">{{ exper.title }}</h2>
-                            <p class="text-justify w-2/3 m-auto tracking-[0.5px]">{{ exper.description }}</p>
+                            <p class="text-justify w-full px-5 m-auto tracking-[0.5px]">{{ exper.description }}</p>
                         </div>
                         <div>
                             <button

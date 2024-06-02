@@ -34,8 +34,8 @@
     </div>
 </template>
 
-
 <script>
+import { TOUS_PROJETS } from "@/api/api"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import InfosProjet from "@/components/Admin/Projets/InfosProjet"
 
@@ -44,27 +44,26 @@ export default {
     components: {
         InfosProjet
     },
-    data(){
+    data() {
         return {
             projets: [],
             length: null,
             afficheComInfosProjets: false,
-            projetSelectione: null , // le projet à afficher ces infos
+            projetSelectione: null, // le projet à afficher ces infos
         }
     },
     methods: {
-        recevoirProjets() {
-            this.projets = JSON.parse(localStorage.getItem("Projets"))
-            this.length = this.contratsDesClients?.length
+        async recevoirProjets() {
+            await this.envoyer(null, "get", TOUS_PROJETS, null, false)
+            this.projets = this.returnData
         }
     },
-    mounted() {
-         this.recevoirProjets()
+    async mounted() {
+        await this.recevoirProjets()
     }
 
 }
 </script>
-
 
 <style scoped>
 

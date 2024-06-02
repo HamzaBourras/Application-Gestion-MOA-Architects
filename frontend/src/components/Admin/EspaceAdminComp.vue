@@ -39,15 +39,7 @@ import RendezVous from "@/components/Admin/RendezVous"
 
 import InfosProfile from "@/components/InfosProfile"
 
-import EnvoyerForm from "@/mixins/EnvoyerForm"
-import { TOUS_CONTRATS } from '@/api/api'
-import { TOUS_RENDEZVOUS } from "@/api/api.js"
-import { TOUS_CLIENTS } from "@/api/api.js"
-import { TOUS_PROJETS } from "@/api/api"
-import { TOUS_DEMANDES } from "@/api/api"
-
 export default {
-    mixins:[EnvoyerForm],
     data() {
         return {
             lienActif: "",
@@ -78,7 +70,8 @@ export default {
         },
         changeAncienLienActif(ancienLien) {
             this.ancienlienActif = ancienLien
-        }
+        },
+        
     },
     async mounted() {
         const lienActifStocker = localStorage.getItem("lienActif");
@@ -88,33 +81,6 @@ export default {
             localStorage.setItem("lienActif", "Dashboard");
             this.lienActif = "Dashboard";
         }
-
-        // recevoir tous les demandes
-        await this.envoyer(null, "get", TOUS_DEMANDES, null, false)
-        const demandes = this.returnData
-        localStorage.setItem("Demandes", JSON.stringify(demandes))
-
-        // recevoir tous les clients
-        await this.envoyer(null, "get", TOUS_CLIENTS, null, false)
-        const clients = this.returnData
-        localStorage.setItem("Clients", JSON.stringify(clients))
-
-        // recevoir tous les contrats 
-        await this.envoyer(null, "get", TOUS_CONTRATS, null, false)
-        const contratsDesClients = this.returnData
-        localStorage.setItem("Contrats", JSON.stringify(contratsDesClients))
-
-        // recevoir tous les rendez-vous
-        await this.envoyer(null, "get", TOUS_RENDEZVOUS, null, false)
-        const rendezVousDesClients = this.returnData
-        localStorage.setItem("RendezVous", JSON.stringify(rendezVousDesClients))
-
-        // recevoir tous les projets
-        await this.envoyer(null, "get", TOUS_PROJETS, null, false)
-        const projetsDesClients = this.returnData
-        localStorage.setItem("Projets", JSON.stringify(projetsDesClients))
-
-
 
     },
     beforeUnmount() {
@@ -126,7 +92,7 @@ export default {
 
 <style scoped>
 .container3 {
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), url('@/assets/dash2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(247, 246, 246, 0.1)), url('@/assets/dash2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

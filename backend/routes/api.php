@@ -32,7 +32,7 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
 
 
 /***************** Admin *******************/
-Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function () {
+Route::prefix("admin")->controller(AdminController::class)->group(function () {
     Route::prefix("demandes")->group(function () {
         Route::get("index", "indexDemandes");
         Route::put("edit/{demande_id}", "changeDemandeStatut");
@@ -63,6 +63,9 @@ Route::prefix("admin")->controller(AdminController::class)->middleware("auth:san
     Route::prefix("rendez-vous")->group(function () {
         Route::get("index", "indexRendezVous");
     });
+
+    // pour dashboard
+    Route::get("statiques","indexStatiques");
     
 });
 

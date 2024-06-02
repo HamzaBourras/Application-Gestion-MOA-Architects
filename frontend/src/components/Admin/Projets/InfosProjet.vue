@@ -2,7 +2,8 @@
     <div class="relative h-max pb-[40px] ">
         <div class="py-[10px] flex items-center justify-between pr-[20px] ">
             <div class=" flex justify-start items-end pl-[15px] mb-[5px] ">
-                <h1 class="text-[30px] font-[900] text-white"> {{ projet.nom_projet.toUpperCase() }} </h1>
+                <h1 class="text-[30px] font-[900] " :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`">
+                    {{ projet.nom_projet.toUpperCase() }} </h1>
                 <span v-if="projet.termine == 0" class="inline text-blue-500 font-[600] ml-1 italic ">En cours
                     d'exécution ...</span>
                 <span v-if="projet.termine == 1" class="inline text-green-400 font-[700] ml-1 italic "> Projet
@@ -83,7 +84,8 @@
 
                 <div class="flex w-full mt-2 mb-3 items-center">
                     <div class="w-1/4">
-                        <h1 class="font-[800] text-2xl text-left text-white">Images</h1>
+                        <h1 class="font-[800] text-2xl text-left "
+                            :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`">Images</h1>
                     </div>
 
                     <div v-if="userRole == 'admin' && projet.termine == 0"
@@ -107,10 +109,11 @@
                 </div>
                 <div class="mt-2">
                     <div v-if="length != null && length == 0" class="pl-8 text-left">
-                        <p class="text-lg font-[500]">Vous n'avez pas des images à afficher</p>
+                        <p :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`" class=" text-lg font-[500] ">
+                            Vous n'avez pas des images à afficher</p>
                     </div>
                     <div v-else>
-                        <div v-if="userRole == 'client'" class="my-2">
+                        <div v-if=" userRole=='client'" class=" my-2">
                             <p class="text-md font-[500] text-left">Voici l'état arrivé de votre projet</p>
                         </div>
                         <div class="w-full flex justify-between">

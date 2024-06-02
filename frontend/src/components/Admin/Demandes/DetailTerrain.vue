@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[45%] h-max ">
+    <div class="absolute left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 w-[45%] h-max ">
 
         <!-- Component pour la confirmation de accepter ou refuser la demande -->
         <ConfirmationComp v-if="afficheConfirmationComp == true"

@@ -57,7 +57,7 @@
                         <span class="font-semibold">statut du contrat : </span>
                         <p class="inline text-gray-500 font-[500]" v-if="demande.contrat_ajoute == 0">Non ajouté</p>
                         <div class="inline" v-if="demande.contrat_ajoute == 1">
-                            <p class="inline text-gray-500 font-[500]" v-if="demande.contrat.vu == 0">Non vu</p>
+                            <p class="inline text-gray-500 font-[500]" v-if="demande.contrat?.vu == 0">Non vu</p>
                             <p class="inline text-blue-500 font-[500]"
                                 v-if="demande.contrat.vu == 1 && demande.contrat?.segne == 0">Non segné</p>
                             <p class="inline text-green-500 font-[500]" v-if="demande.contrat?.segne == 1">Segné <i

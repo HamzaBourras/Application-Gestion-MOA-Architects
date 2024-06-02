@@ -21,13 +21,13 @@
 
         <div class="flex flex-wrap items-center justify-around ">
             <div v-for="rendezVous in mesRendezVous" :key="rendezVous.id"
-                class="flex flex-col justify-between bg-slate-50 h-[300px] m-3 py-[20px] px-[30px]  w-[30%] text-left">
+                class="flex flex-col justify-between bg-white h-[300px] m-3 py-[20px] px-[30px]  w-[30%] text-left">
                 <div class="space-y-[20px] w-full">
                     <p class="font-bold text-xl text-center"> {{ `Rendez-vous N° : ${rendezVous.id}`.toUpperCase() }}
                     </p>
                     <div>
                         <span class="font-semibold">Date de rendez-vous : </span>
-                        <p class="inline font-[500]">{{rendezVous.date.split(' ')[0]}}</p>
+                        <p class="inline font-[500]">{{ rendezVous.date.split(' ')[0] }}</p>
                     </div>
                     <div>
                         <span class="font-semibold">Temps de rendez-vous : </span>
@@ -37,17 +37,18 @@
                 <!-- buttons de modification ou de suppression de rendez-vous -->
                 <div class=" space-x-3 flex items-center justify-center">
                     <button @click="rendezVousSupprimerId = rendezVous.id; afficheCompSupprimer = true"
-                        class="border-2 border-red-500 text-black w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-red-600 hover:text-white duration-300 ">supprimer</button>
+                        class="w-[120px] duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">supprimer</button>
                     <button @click="selectionnerRendezVous(rendezVous.id)"
-                        class="border-2 border-green-600 bg-green-600 text-white w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-inherit hover:text-black  duration-300 ">modifier</button>
+                        class="w-[120px] duration-200 focus:outline-none text-white border-green-700 border bg-green-700 hover:bg-white hover:text-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">modifier</button>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
 
-
 <script>
+import { TOUS_MES_RENDEZVOUS } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterModifierRendez from './AjouterModifierRendez.vue'
 import SupprimerRendezVous from "@/components/Client/MesRendezVous/SupprimerRendezVous"
@@ -72,8 +73,12 @@ export default {
     },
     methods: {
         async recevoirRendezVous() {
-            this.mesRendezVous = JSON.parse(localStorage.getItem("MesRendezVous"))
+            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
+            await this.envoyer(null, "get", TOUS_MES_RENDEZVOUS, user_id, false)
+            this.mesRendezVous = this.returnData
             this.length = this.mesRendezVous?.length
+            // enregistrer les rendez-vous dans localStorage
+            localStorage.setItem("mesRendezVous", JSON.stringify(this.mesRendezVous))
         },
 
         // lorsque je clique sur le button "modifier"

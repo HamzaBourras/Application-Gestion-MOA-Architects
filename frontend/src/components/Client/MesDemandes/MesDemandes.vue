@@ -8,9 +8,9 @@
             </button>
         </div>
         <!-- Component pour ajouter une demande  -->
-        <AjouterModifierDemande v-if="afficheCompAjouterModifier" @changerVisibilite="afficheCompAjouterModifier = false"
-            @mettreAjourDemandes="recevoirDemandes" @effacerDonnees="demandeSelectione = {}"
-            :demandeSelectione="demandeSelectione" :action="action" />
+        <AjouterModifierDemande v-if="afficheCompAjouterModifier"
+            @changerVisibilite="afficheCompAjouterModifier = false" @mettreAjourDemandes="recevoirDemandes"
+            @effacerDonnees="demandeSelectione = {}" :demandeSelectione="demandeSelectione" :action="action" />
         <!-- Component pour supprimer une demande -->
         <SupprimerDemande v-if="afficheCompSupprimer" @changerVisibilite="afficheCompSupprimer = false"
             @mettreAjourDemandes="recevoirDemandes" :demandeSupprimerId="demandeSupprimerId" />
@@ -27,7 +27,7 @@
 
         <div class="flex flex-wrap items-center justify-around ">
             <div v-for="demande in mesDemandes" :key="demande.id"
-                class="flex flex-col justify-between bg-slate-50 h-[300px] m-3 py-[20px] px-[30px]  w-[30%] text-left">
+                class="flex flex-col justify-between bg-white h-[300px] m-3 py-[20px] px-[30px]  w-[30%] text-left">
                 <div class="space-y-[20px] w-full">
                     <p class="font-bold text-xl text-center"> {{ demande.nom_projet.toUpperCase() }} </p>
                     <!-- Affichage de statut de la demande -->
@@ -62,15 +62,16 @@
                 </div>
                 <div>
                     <!-- buttons de modification ou de suppression de la demande si ni accepte ni refusé -->
-                    <div v-if="demande.accepte == null" class=" space-x-3">
+                    <div v-if="demande.accepte == null" class=" flex justify-center space-x-3">
                         <button @click="demandeSupprimerId = demande.id; afficheCompSupprimer = true"
-                            class="border-2 border-red-500 text-black w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-red-600 hover:text-white duration-300 ">supprimer</button>
+                            class="w-[120px] duration-200 text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">supprimer</button>
                         <button @click="selectionnerDemande(demande.id)"
-                            class="border-2 border-green-600 bg-green-600 text-white w-[120px] py-2 px-3 rounded-[5px] font-[400] tracking-[0.5px] hover:bg-inherit hover:text-black  duration-300 ">modifier</button>
+                            class="w-[120px] duration-200 focus:outline-none text-white border-green-700 border bg-green-700 hover:bg-white hover:text-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">modifier</button>
                     </div>
                     <div v-else-if="demande.accepte == 1">
                         <!-- button pour ajouter le terrain -->
-                        <button v-if="demande.terain_ajoute == 0" type="button" @click="buttonAjouterTerrainClick(true, demande.id)"
+                        <button v-if="demande.terain_ajoute == 0" type="button"
+                            @click="buttonAjouterTerrainClick(true, demande.id)"
                             class="focus:outline-none text-white border-2 border-blue-500 bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ajouter
                             Terrain</button>
                         <!-- button pour voir les details du contrat -->
@@ -86,8 +87,8 @@
     </div>
 </template>
 
-
 <script>
+import { TOUS_MES_DEMANDES } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import AjouterModifierDemande from "@/components/Client/MesDemandes/AjouterModifierDemande"
 import SupprimerDemande from "@/components/Client/MesDemandes/SupprimerDemande"
@@ -119,9 +120,13 @@ export default {
         }
     },
     methods: {
-        recevoirDemandes() {
-            this.mesDemandes = JSON.parse(localStorage.getItem("Projets"))
+        async recevoirDemandes() {
+            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
+            await this.envoyer(null, "get", TOUS_MES_DEMANDES, user_id, false)
+            this.mesDemandes = this.returnData
             this.length = this.mesDemandes?.length
+            // enregistrer les demandes dans localStorage
+            localStorage.setItem("mesDemandes", JSON.stringify(this.mesDemandes))
         },
 
         // lorsque je clique sur le button "modifier"
@@ -148,8 +153,8 @@ export default {
         }
 
     },
-    mounted() {
-        this.recevoirDemandes()
+    async mounted() {
+        await this.recevoirDemandes()
     }
 }
 </script>

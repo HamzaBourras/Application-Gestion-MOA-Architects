@@ -29,8 +29,8 @@
     </div>
 </template>
 
-
 <script>
+import { TOUS_RENDEZVOUS } from "@/api/api.js"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 
 export default {
@@ -42,14 +42,15 @@ export default {
         }
     },
     methods: {
-        recevoirRendezVous() {
-            this.tousRendezVous = JSON.parse(localStorage.getItem("RendezVous"))
+        async recevoirRendezVous() {
+            await this.envoyer(null, "get", TOUS_RENDEZVOUS, null, false)
+            this.tousRendezVous = this.returnData
             this.length = this.tousRendezVous?.length
         },
 
     },
-    mounted() {
-        this.recevoirRendezVous()
+    async mounted() {
+        await this.recevoirRendezVous()
     }
 }
 </script>

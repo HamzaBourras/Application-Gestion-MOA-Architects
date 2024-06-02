@@ -3,25 +3,25 @@ const Experiences = [
     title: "Concours",
     image: require("@/assets/concours.jpg"),
     description:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea perferendis temporibus repellendus, rerum eum sit rem, aliquam laborum repellat ab quasi labore enim quia culpa Natus ratione libero accusamus ",
+      "Il a pour objectif de sélectionner la meilleure proposition architecturale, réalisable dans les conditions économiques et de site définis par le programme, et de confier par la suite à son auteur les études, le suivi et le contrôle de son exécution.",
   },
   {
     title: "Consultations",
     image: require("@/assets/consultation.png"),
     description:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea perferendis temporibus repellendus, rerum eum sit rem, aliquam laborum repellat ab quasi labore enim quia culpa Natus ratione libero accusamus ",
+      "La consultation permet au maître de l'ouvrage de communiquer sur son projet architectural et de sélectionner le ou les maîtres d'œuvre qui le conseilleront lors du recrutement des entreprises chargées de la construction.",
   },
   {
     title: "Villas",
     image: require("@/assets/villa.png"),
     description:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea perferendis temporibus repellendus, rerum eum sit rem, aliquam laborum repellat ab quasi labore enim quia culpa Natus ratione libero accusamus ",
+      "Une villa d'architecte est une maison moderne construite par un architecte sur la base d'un concept innovant en matière de design, de matériaux et d'équipements. Elle se démarque par son architecture singulière et son caractère très personnalisé qui répond à tous les besoins de son propriétaire.",
   },
   {
     title: "Projet-divers",
     image: require("@/assets/projet-divers.png"),
     description:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea perferendis temporibus repellendus, rerum eum sit rem, aliquam laborum repellat ab quasi labore enim quia culpa Natus ratione libero accusamus ",
+      "Les projets-divers architecturaux englobent une variété de travaux dans le domaine de l'architecture qui ne se limitent pas aux types traditionnels comme les résidences ou les bureaux. Ils incluent des installations temporaires pour des événements, la rénovation et la réhabilitation de bâtiments historiques, la création de parcs et d'espaces publics innovants"
   },
 ];
 

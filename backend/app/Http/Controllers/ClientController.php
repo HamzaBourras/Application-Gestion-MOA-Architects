@@ -25,7 +25,7 @@ class ClientController extends Controller
     
     /***** retourner tous les demandes du client *******/
     public function indexMesDemandes( int $user_id) {
-        $demaClient = Demandes::with("user", "terrain.images_terrain","contrat")->where("user_id",$user_id)->get();
+        $demaClient = Demandes::with("user", "terrain.images_terrain","contrat")->where("user_id",$user_id)->orderBy("id","desc")->get();
 
         $demandesClient = [];
 

@@ -58,8 +58,8 @@
     </div>
 </template>
 
-
 <script>
+import { TOUS_CLIENTS } from "@/api/api"
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 
 
@@ -72,13 +72,15 @@ export default {
         }
     },
     methods: {
-        recevoirClients() {
-            this.tousClients = JSON.parse(localStorage.getItem("Clients"))
+        async recevoirClients() {
+            await this.envoyer(null, "get", TOUS_CLIENTS, null, false)
+            this.tousClients = this.returnData
             this.length = this.tousClients?.length
         }
     },
-    mounted() {
-        this.recevoirClients()
+    async mounted() {
+        await this.recevoirClients()
+        console.log(this.tousClients);
     }
 }
 </script>

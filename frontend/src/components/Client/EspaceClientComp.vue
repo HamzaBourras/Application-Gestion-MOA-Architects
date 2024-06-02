@@ -8,12 +8,12 @@
                 <HeaDer :titre="lienActif" @changeLienEmit="changeLienActif" />
             </div>
             <div class="container3 h-[89.8vh] ">
-                <div class="content">
+                <div class="">
                     <div>
                         <InfosProfile v-if="lienActif == 'Profile'" @changeLienEmit="changeLienActif" />
                     </div>
                     <div>
-                        <DashBoard v-if="lienActif == 'Dashboard'" />
+                        <DashBoard v-if="lienActif == 'Dashboard'" @changeLienEmit="changeLienActif" />
                         <MesDemandes v-if="lienActif == 'Mes demandes'" />
                         <MesContrats v-if="lienActif == 'Mes contrats'" />
                         <MesProjets v-if="lienActif == 'Mes projets'" />
@@ -37,24 +37,21 @@ import MesRendezVous from "@/components/Client/MesRendezVous/MesRendezVous"
 
 import InfosProfile from "@/components/InfosProfile"
 
-import EnvoyerForm from "@/mixins/EnvoyerForm"
-
-import { TOUS_MES_RENDEZVOUS } from "@/api/api.js"
-import { TOUS_MES_DEMANDES } from "@/api/api.js"
-import { TOUS_MES_PROJETS } from "@/api/api.js"
-
 export default {
-    mixins: [EnvoyerForm],
     data() {
         return {
-            lienActif: "Dashboard",
+            lienActif: "",
             liens: [
                 { lien: 'Dashboard', span: 'fa-solid fa-house' },
                 { lien: 'Mes demandes', span: 'fa-solid fa-code-pull-request' },
                 { lien: 'Mes contrats', span: 'fa-solid fa-file-signature' },
                 { lien: 'Mes projets', span: 'fa-solid fa-diagram-project' },
                 { lien: 'Mes rendez-vous', span: 'fa-solid fa-calendar-check' }
-            ]
+            ],
+            mesDemandes: null,
+            mesRendezVous: null,
+            mesContrats: null,
+            mesProjets: null
         }
     },
 
@@ -72,39 +69,10 @@ export default {
         changeLienActif(lien) {
             this.lienActif = lien
         },
-        async recevoirMesDemandes() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_DEMANDES, user_id, false)
-            const mesDemandes = this.returnData
-            localStorage.setItem("MesDemandes", JSON.stringify(mesDemandes))
-        },
-        async recevoirMesRendezVous() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_RENDEZVOUS, user_id, false)
-            const mesRendezVous = this.returnData
-            localStorage.setItem("MesRendezVous", JSON.stringify(mesRendezVous))
-        },
-        async recevoirMesProjets() {
-            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
-            await this.envoyer(null, "get", TOUS_MES_PROJETS, user_id, false)
-            const mesProjets = this.returnData
-            localStorage.setItem("MesProjets", JSON.stringify(mesProjets))
-        },
-        async recevoirMesContrats() {
-            let mesContrats = []
-            JSON.parse(localStorage.getItem("MesDemandes"))?.forEach(demande => {
-                if (demande.contrat) mesContrats.push(demande.contrat)
-            });
-            localStorage.setItem("MesContrats", JSON.stringify(mesContrats))
-        }
     },
-    async mounted() {
-        await this.recevoirMesDemandes()
-        await this.recevoirMesRendezVous()
-        await this.recevoirMesProjets()
-        await this.recevoirMesContrats()
 
-        // choisi le lien actif est Dashboard
+    mounted() {
+        // choisi le lien actif est Dashboard en vérifiant si les données on était insérer
         const lienActifStocker = localStorage.getItem("lienActif");
         if (lienActifStocker) {
             this.lienActif = lienActifStocker;
@@ -112,9 +80,12 @@ export default {
             localStorage.setItem("lienActif", "Dashboard");
             this.lienActif = "Dashboard";
         }
+
     },
-    beforeUnmount() {
+    async beforeUnmount() {
         localStorage.removeItem("lienActif")
+
+
     },
 
 }
@@ -124,7 +95,7 @@ export default {
 
 <style scoped>
 .container3 {
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), url('@/assets/dash2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(247, 246, 246, 0.3)), url('@/assets/dash1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

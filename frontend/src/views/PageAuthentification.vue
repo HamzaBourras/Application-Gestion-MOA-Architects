@@ -24,10 +24,10 @@
             </div>
 
             <div
-                class="bg-[#f3f4f6] flex items-center justify-between w-[57%] h-max rounded-b-2xl p-[15px]  px-[10px] ">
+                class="bg-[#f3f4f6] flex justify-between w-[57%] h-max rounded-b-2xl p-[15px]  px-[10px] ">
                 <SeConnecter class="" v-if="authentifier === 'seconnecter'" />
                 <!-- Image -->
-                <div class="w-[50%] h-full mx-[10px] " v-if="authentifier === 'seconnecter'">
+                <div class="w-[50%] h-[200px]] mx-[10px] " v-if="authentifier === 'seconnecter'">
                     <img class=" h-full rounded-2xl object-cover" src="@/assets/authentifier-image.jpg" alt="">
                 </div>
                 <SinscRire v-if="authentifier === 'sinscrire'" />

@@ -11,13 +11,14 @@
                         <span class="inline-block bg-blue-300 w-[70px] h-[5px]"></span>Charafi Hamza
                     </span>
                     <h2 class="text-[40px] font-[700]  pb-[20px]">Moroccan Office of Architecture</h2>
-                    <p class="text-[16px] leading-[25px] pb-[25px]">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Esse, consequuntur nesciunt at
-                        laboriosam
-                        soluta architecto cum vero, sapiente omnis quos dolores ad id, quam non placeat labore minus
-                        molestiae veniam.</p>
-                    <router-link to="/authentifier" class="inline-block uppercase bg-blue-400 text-white py-[15px] px-[40px] tracking-[1px] select-none"
-                        >Décorer votre maison</router-link>
+                    <p class="text-[16px] leading-[25px] pb-[25px]">Le Moroccan Office of Architecture (MOA) est une
+                        société d'architecture basé à Marrakech, Maroc. Il se spécialise dans divers types de projets
+                        architecturaux, en combinant des éléments de design traditionnels marocains avec des styles
+                        modernes. Grâce à une équipe de professionnels talentueux, la société est reconnu pour son
+                        innovation et son engagement envers la qualité et l'esthétique.</p>
+                    <router-link to="/authentifier"
+                        class="inline-block uppercase bg-blue-400 text-white py-[15px] px-[40px] tracking-[1px] select-none">Décorer
+                        votre maison</router-link>
                 </div>
             </div>
         </div>

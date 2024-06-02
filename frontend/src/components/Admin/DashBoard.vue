@@ -76,7 +76,7 @@
                 <div class="w-1/3 pr-3 ">
                     <div class=" w-full px-[10px] bg-white rounded-md  py-[25px]  ">
                         <div>
-                            <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Ancien Clients : </h1>
+                            <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Les Clients récents : </h1>
                         </div>
                         <div class=" flex items-center justify-start pb-2 border-b-[1px]  px-[10px] py-[15px] "
                             v-for="client in clients" :key="client.id">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="text-start ml-2">
                                 <p class="text-md text-gray-800 font-[600]">{{ client?.nom?.toUpperCase() + " " +
-                                    client?.prenom?.toUpperCase() }}</p>
+                                    client?.prenom?.toUpperCase()   }}</p>
                                 <p class="text-sm text-blue-400">{{ client?.email }}</p>
                             </div>
                         </div>
@@ -102,8 +102,11 @@
 </template>
 
 <script>
+import { DASHBOARD_DATA } from "@/api/api"
+import EnvoyerForm from "@/mixins/EnvoyerForm";
 export default {
     emits: ["changeLienEmit"],
+    mixins: [EnvoyerForm],
     data() {
         return {
             demandes: [],
@@ -135,7 +138,7 @@ export default {
             }
         
     },
-    mounted() {
+    async mounted() {
         // construire la date d'aujourd'hui 
         const today = new Date();
 
@@ -144,17 +147,22 @@ export default {
         const day = String(today.getDate()).padStart(2, '0');
         const formattedDate = `${year}-${month}-${day}`;
 
-        this.demandes = JSON.parse(localStorage.getItem("Demandes"))
-        this.clients = JSON.parse(localStorage.getItem("Clients"))?.slice(0, 5);
-        const tousContrats = JSON.parse(localStorage.getItem("Contrats"))
-        this.contrats = tousContrats.filter(it => it.date.split(' ')[0] == formattedDate);
-        this.rendezVous = JSON.parse(localStorage.getItem("RendezVous"))?.filter(it => it.date.split(' ')[0] == formattedDate);
-        this.projets = JSON.parse(localStorage.getItem("Projets"))
+        // recevoir les données de dashboard
+        await this.envoyer(null, "get", DASHBOARD_DATA, null, false)
 
-        this.statiques = [{ titre: 'Clients', logo: 'fa-solid fa-user-secret', number: this.clients?.length },
-            { titre: 'Demandes', logo: 'fa-solid fa-code-pull-request', number: this.demandes?.length },
+        if (this.returnData) {
+            this.demandes = this.returnData.nbrDemandes
+            this.clients = this.returnData.Clients?.slice(0, 5);
+            const tousContrats = this.returnData.Contrats
+            this.contrats = tousContrats.filter(it => it.date.split(' ')[0] == formattedDate);
+            this.rendezVous = this.returnData.Rendezvous?.filter(it => it.date.split(' ')[0] == formattedDate);
+            this.projets = this.returnData.nbrProjets
+
+            this.statiques = [{ titre: 'Clients', logo: 'fa-solid fa-user-secret', number: this.clients?.length },
+            { titre: 'Demandes', logo: 'fa-solid fa-code-pull-request', number: this.demandes },
             { titre: 'Contrats', logo: 'fa-solid fa-file-signature', number: tousContrats?.length },
-            { titre: 'Projets', logo: 'fa-solid fa-diagram-project', number: this.projets?.length },]
+            { titre: 'Projets', logo: 'fa-solid fa-diagram-project', number: this.projets },] 
+        }
     },
 }
 </script>

@@ -30,6 +30,9 @@ export const TOUS_CLIENTS = `${baseUrl}api/admin/clients/index/`;
 /**** Rendez-vous ****/
 export const TOUS_RENDEZVOUS = `${baseUrl}api/admin/rendez-vous/index/`;
 
+/**** Statiques *****/
+export const DASHBOARD_DATA = `${baseUrl}api/admin/statiques`;
+
 
 
 /*************** Client ***************/
