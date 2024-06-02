@@ -30,7 +30,7 @@ export const TOUS_CLIENTS = `${baseUrl}api/admin/clients/index/`;
 /**** Rendez-vous ****/
 export const TOUS_RENDEZVOUS = `${baseUrl}api/admin/rendez-vous/index/`;
 
-/**** Statiques *****/
+/**** Dashboard *****/
 export const DASHBOARD_DATA = `${baseUrl}api/admin/statiques`;
 
 
@@ -55,6 +55,9 @@ export const SUPPRIMER_RENDEZVOUS = `${baseUrl}api/client/rendez-vous/destroy/`;
 /**** Mes projets ****/
 export const TOUS_MES_PROJETS = `${baseUrl}api/client/mesProjets/index/`;
 export const INSERER_COMMENTAIRE = `${baseUrl}api/client/mesProjets/commentaire/store/`;
+
+/**** Dashboard *****/
+export const CLIENT_DASHBOARD_DATA = `${baseUrl}api/client/statiques/`;
 
 /************************ Public ******/
 export const TOUS_COMMENTAIRES = `${baseUrl}api/public/commentaires/index/`;

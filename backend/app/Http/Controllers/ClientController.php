@@ -343,6 +343,30 @@ class ClientController extends Controller
             ]);
         }
     }
+
+
+    //Pour dashboard
+    public function indexStatiques(int $user_id)
+    {
+        $Contrats = Contrat::with('demandes')->whereHas('demandes', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+
+        $nbrDemandes = Demandes::where("user_id",$user_id)->get()->count();
+        $Rendezvous = RendezVous::where("user_id", $user_id)->get();
+        $Projets = Projet::with('demandes')->whereHas('demandes', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+
+        return response()->json([
+            "data" => [
+                "nbrDemandes" => $nbrDemandes,
+                "Contrats" => $Contrats,
+                "Rendezvous" => $Rendezvous,
+                "Projets" => $Projets,
+            ]
+        ]);
+    }
         
     
 }

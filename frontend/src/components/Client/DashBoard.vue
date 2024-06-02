@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="global text-white h-[88.4vh]">
+        <div class="global text-white h-max py-[25px] ">
             <!-- Statistiques -->
-            <div class=" w-full flex h-max py-[30px] ">
+            <div class=" w-full flex h-max pb-[20px] ">
                 <div class="w-[25%] flex text-left  " v-for="(statique, i) in statiques " :key="i"
                     :class="`${i % 2 == 1 ? 'justify-end' : 'justify-start'}`">
                     <div
@@ -23,9 +23,9 @@
                     </div>
                 </div>
             </div>
-            <div class=" w-full h-max py-[5px] flex  ">
+            <div class=" w-full h-max flex ">
                 <div class="w-full pl-1 ">
-                    <div class="w-[98%] rounded-md bg-white text-black ml-2 py-[25px] flex flex-col justify-between ">
+                    <div class="w-[98%] rounded-lg bg-white text-black ml-2 py-[17px] flex flex-col justify-between ">
                         <!-- Contrats et rendez-vous -->
                         <div class="flex justify-between">
                             <div class="w-1/2">
@@ -34,7 +34,8 @@
                                 <p v-if="contrats.length == 0"
                                     class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                     Pas de contrats à signer aujourd'hui ! </p>
-                                <div v-else class="flex flex-wrap my-[10px] px-[15px] justify-between">
+                                <div v-else
+                                    class="flex flex-wrap mt-[10px] px-[15px] justify-between max-h-[170px] overflow-y-auto ">
                                     <div class=" w-[48%] border-l-[1.5px] pl-2 py-2  border-black "
                                         v-for="contrat in contrats" :key="contrat.id">
                                         <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `contrat N°
@@ -53,7 +54,8 @@
                                 <p v-if="rendezVous.length == 0"
                                     class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                     Pas de rendez-vous aujourd'hui ! </p>
-                                <div v-else class="flex flex-wrap my-[10px] px-[15px] justify-between mt-3 ">
+                                <div v-else
+                                    class="w-[98.5%]  flex flex-wrap px-[15px] justify-between mt-3 max-h-[170px] overflow-y-auto">
                                     <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2 border-black "
                                         v-for="rendez in rendezVous" :key="rendez.id">
                                         <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `rendez-vous N°
@@ -68,11 +70,10 @@
                             </div>
                         </div>
                         <!-- Projets -->
-                        <div class="mt-[30px]">
+                        <div class="mt-[0px]">
                             <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Etat de vos projets</h1>
                             <div>
-                                <div class="relative shadow-md rounded-lg mx-2"
-                                    style="max-height: 400px; overflow-y: auto;">
+                                <div class="relative shadow-md rounded-lg mx-2 max-h-[200px] overflow-y-auto">
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         <thead
@@ -90,11 +91,48 @@
                                                 class="bg-white dark:bg-gray-800">
                                                 <th scope="row"
                                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">
-                                                    {{ projet.nom_projet }}
+                                                    {{ projet.demandes.nom_projet }}
                                                 </th>
                                                 <td class="px-6 py-4">{{ projet.date_termination?.split(' ')[0] }}</td>
                                                 <td class="px-6 py-4">{{ projet.prix }} DH</td>
-                                                <td class="px-6 py-4">{{ projet.termine == 1 ? "terminé" : "En exécution" }}</td>
+                                                <td class="px-6 py-4">
+                                                    {{ projet.termine == 1 ? "terminé" : "Enexécution" }}</td>
+                                                <td class="py-4">
+                                                    <button @click="changeLien('Mes projets')"
+                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Plus de detail
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr v-for="projet in projets" :key="projet.id"
+                                                class="bg-white dark:bg-gray-800">
+                                                <th scope="row"
+                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">
+                                                    {{ projet.demandes.nom_projet }}
+                                                </th>
+                                                <td class="px-6 py-4">{{ projet.date_termination?.split(' ')[0] }}</td>
+                                                <td class="px-6 py-4">{{ projet.prix }} DH</td>
+                                                <td class="px-6 py-4">
+                                                    {{ projet.termine == 1 ? "terminé" : "En exécution" }}</td>
+                                                <td class="py-4">
+                                                    <button @click="changeLien('Mes projets')"
+                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                        Plus de detail
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr v-for="projet in projets" :key="projet.id"
+                                                class="bg-white dark:bg-gray-800">
+                                                <th scope="row"
+                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">
+                                                    {{ projet.demandes.nom_projet }}
+                                                </th>
+                                                <td class="px-6 py-4">{{ projet.date_termination?.split(' ')[0] }}</td>
+                                                <td class="px-6 py-4">{{ projet.prix }} DH</td>
+                                                <td class="px-6 py-4">
+                                                    {{ projet.termine == 1 ? "terminé" : "En exécution"}}</td>
                                                 <td class="py-4">
                                                     <button @click="changeLien('Mes projets')"
                                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -116,11 +154,14 @@
 </template>
 
 <script>
+import EnvoyerForm from "@/mixins/EnvoyerForm";
+import { CLIENT_DASHBOARD_DATA } from "@/api/api"
 export default {
+    mixins: [EnvoyerForm],
     emits: ["changeLienEmit"],
     data() {
         return {
-            demandes: [],
+            demandes: 0,
             contrats: [],
             rendezVous: [],
             projets: [],
@@ -148,7 +189,7 @@ export default {
         }
 
     },
-     mounted() {
+    async mounted() {
         // construire la date d'aujourd'hui 
         const today = new Date();
 
@@ -157,21 +198,27 @@ export default {
         const day = String(today.getDate()).padStart(2, '0');
         const formattedDate = `${year}-${month}-${day}`;
 
-        this.demandes = JSON.parse(localStorage.getItem("mesDemandes"))
-         const tousContrats = JSON.parse(localStorage.getItem("mesContrats"))
-        this.contrats = tousContrats?.filter(it => it.date.split(' ')[0] == formattedDate);
-         const tousRendezVous = JSON.parse(localStorage.getItem("mesRendezVous"))
-        this.rendezVous = tousRendezVous?.filter(it => it.date.split(' ')[0] == formattedDate);
-         this.projets = JSON.parse(localStorage.getItem("mesProjets"))
+        // recevoir les données de dashboard
+        const user_id = JSON.parse(localStorage.getItem("userAuth")).id
+        await this.envoyer(null, "get", CLIENT_DASHBOARD_DATA, user_id, false)
 
-         
+        if (this.returnData) {
+            this.demandes = this.returnData.nbrDemandes
+            const tousContrats = this.returnData.Contrats
+            this.contrats = tousContrats?.filter(it => it.date.split(' ')[0] == formattedDate);
+            const tousRendezVous = this.returnData.Rendezvous
+            this.rendezVous = tousRendezVous?.filter(it => it.date.split(' ')[0] == formattedDate);
+            this.projets = this.returnData.Projets
 
-        this.statiques = [
-            { titre: 'Demandes', logo: 'fa-solid fa-code-pull-request', number: this.demandes?.length },
-            { titre: 'Contrats', logo: 'fa-solid fa-file-signature', number: tousContrats?.length },
-            { titre: 'Projets', logo: 'fa-solid fa-diagram-project', number: this.projets?.length },
-            { titre: 'Rendez-vous', logo: 'fa-solid fa-calendar-check', number: tousRendezVous?.length }
-        ]
+
+
+            this.statiques = [
+                { titre: 'Demandes', logo: 'fa-solid fa-code-pull-request', number: this.demandes },
+                { titre: 'Contrats', logo: 'fa-solid fa-file-signature', number: tousContrats?.length },
+                { titre: 'Projets', logo: 'fa-solid fa-diagram-project', number: this.projets?.length },
+                { titre: 'Rendez-vous', logo: 'fa-solid fa-calendar-check', number: tousRendezVous?.length }
+            ]
+        }
     },
 }
 </script>

@@ -31,41 +31,49 @@
                         <div>
                             <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Contrats à signer
                                 aujourd'hui</h1>
-                            <p v-if="contrats.length == 0" class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
+                            <p v-if="contrats.length == 0"
+                                class="text-left pl-[20px] mt-1 font-[400] text-gray-500 mb-[45px] ">
                                 Pas de contrats à signer aujourd'hui ! </p>
-                            <div v-else class="flex flex-wrap my-[10px] px-[15px] justify-between">
+                            <div class="flex flex-wrap my-[10px] px-[15px] justify-between overflow-y-auto"
+                                :class="`${rendezVous.length == 0 ? 'max-h-[203px]' : 'max-h-[103px]'}`">
                                 <div class=" w-[48%] border-l-[1.5px] pl-2 py-2  border-black "
                                     v-for="contrat in contrats" :key="contrat.id">
                                     <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `contrat N°
                                         ${contrat.id}`.toUpperCase() }} </p>
                                     <div class="w-full flex items-center justify-between">
-                                        <p class=" w-1/2 text-left"> <span class="font-[500]">Temps : </span> <span
+                                        <p class=" w-[40%]  text-left"> <span class="font-[500]">Temps : </span> <span
                                                 class="text-blue-500">{{ formattedDate(contrat.date) }}
                                             </span> </p>
-                                        <p class="w-1/2 text-left"> <span class="font-[500]">Avec : </span> <span
+                                        <p class="w-[60%]  text-left"> <span class="font-[500]">Avec : </span> <span
                                                 class="text-blue-500">{{
-                                                contrat.user.toUpperCase() }}</span> </p>
+                                                contrat.demandes.user.nom.toUpperCase() + " " +
+                                                contrat.demandes.user.prenom.toUpperCase() }}</span> </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
+
+                        <div :class="`${rendezVous.length == 0 ? 'mt-[30px] mb-[26px] ' : ''}`">
                             <h1 class="text-black text-left pb-1 pt-4 pl-2 text-lg font-[700] ">Rendez-vous
                                 d'aujourd'hui </h1>
                             <p v-if="rendezVous.length == 0" class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                 Pas de rendez-vous aujourd'hui ! </p>
-                            <div v-else class="flex flex-wrap my-[10px] px-[15px] justify-between mt-3 ">
+                            <div v-else
+                                class="flex flex-wrap my-[10px] px-[15px] justify-between mt-3  overflow-y-auto "
+                                :class="`${contrats.length == 0 ? 'max-h-[203px]' : 'max-h-[103px]' }`">
                                 <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2 border-black "
                                     v-for="rendezVous in rendezVous" :key="rendezVous.id">
                                     <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `rendez-vous N°
                                         ${rendezVous.id}`.toUpperCase() }} </p>
                                     <div class="w-full flex items-center justify-between">
-                                        <p class=" w-1/2 text-left"> <span class="font-[500]">Temps : </span> <span
+                                        <p class=" w-[40%] text-left"> <span class="font-[500]">Temps : </span> <span
                                                 class="text-blue-500">{{ formattedDate(rendezVous.date) }}
                                             </span> </p>
-                                        <p class="w-1/2 text-left"> <span class="font-[500]">Avec : </span> <span
-                                                class="text-blue-500">{{
-                                                rendezVous.user.toUpperCase() }}</span> </p>
+                                        <p class="w-[60%] text-left"> <span class="font-[500]">Avec : </span>
+                                            <span class="text-blue-500">{{
+                                                rendezVous.user.nom.toUpperCase() + " " +
+                                                rendezVous.user.prenom.toUpperCase() }}</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +98,7 @@
                             </div>
                             <div class="text-start ml-2">
                                 <p class="text-md text-gray-800 font-[600]">{{ client?.nom?.toUpperCase() + " " +
-                                    client?.prenom?.toUpperCase()   }}</p>
+                                    client?.prenom?.toUpperCase() }}</p>
                                 <p class="text-sm text-blue-400">{{ client?.email }}</p>
                             </div>
                         </div>
@@ -109,11 +117,11 @@ export default {
     mixins: [EnvoyerForm],
     data() {
         return {
-            demandes: [],
+            demandes: null,
             clients: [],
             contrats: [],
             rendezVous: [],
-            projets: [],
+            projets: null,
             
             statiques: [],
         }
@@ -149,10 +157,10 @@ export default {
 
         // recevoir les données de dashboard
         await this.envoyer(null, "get", DASHBOARD_DATA, null, false)
-
+        
         if (this.returnData) {
             this.demandes = this.returnData.nbrDemandes
-            this.clients = this.returnData.Clients?.slice(0, 5);
+            this.clients = this.returnData.Clients?.slice(0, 4);
             const tousContrats = this.returnData.Contrats
             this.contrats = tousContrats.filter(it => it.date.split(' ')[0] == formattedDate);
             this.rendezVous = this.returnData.Rendezvous?.filter(it => it.date.split(' ')[0] == formattedDate);

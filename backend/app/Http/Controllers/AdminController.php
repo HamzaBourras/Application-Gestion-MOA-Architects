@@ -335,9 +335,9 @@ class AdminController extends Controller
     // Pour le dashboard
     public function indexStatiques(){
         $Clients = User::where('role_id',2)->get();
-        $Contrats = Contrat::all();
+        $Contrats = Contrat::with("demandes.user")->get();
         $nbrDemandes = Demandes::all()->count();
-        $Rendezvous = RendezVous::all();
+        $Rendezvous = RendezVous::with("user")->get();
         $nbrProjets = Projet::all()->count();
 
         return response()->json([

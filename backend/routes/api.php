@@ -71,7 +71,7 @@ Route::prefix("admin")->controller(AdminController::class)->group(function () {
 
 
 /***************** Client ******************/
-Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function () {
+Route::prefix("client")->controller(ClientController::class)->group(function () {
     Route::prefix("mesDemandes")->group(function () {
         Route::get("index/{user_id}", "indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");
@@ -95,6 +95,10 @@ Route::prefix("client")->controller(ClientController::class)->middleware("auth:s
        Route::get("index/{user_id}","indexMesProjets");
        Route::post("commentaire/store/{user_id}","storeCommentaire");
     });
+
+    // pour dashboard
+    Route::get("statiques/{user_id}", "indexStatiques");
+    
 });
 
 
