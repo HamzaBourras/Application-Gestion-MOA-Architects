@@ -7,22 +7,27 @@
             <div class="box relative grid w-[80%]">
                 <!-- Form Box -->
                 <div class=" form p-[15px] bg-[#fff] shadow-[0 5px 35px ] ">
-                    <h3 class="text-blue-400 font-[500] text-[1.3em] mb-[10px] text-left ">Envoyer un message</h3>
-                    <form action="">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-blue-400 font-[500] text-[1.3em] mb-[10px] text-left ">Envoyer un message</h3>
+                        <div class="w-[50%] mx-auto " v-if="message != null || errorAction != null">
+                            <MessAgeComponent :message="message" :errorAction="errorAction" />
+                        </div>
+                    </div>
+                    <form @submit.prevent="envoyerMessage()" >
                         <div class="formBox relative w-full  ">
                             <div class="row50 flex gap-[20px]">
                                 <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
                                     <span
                                         class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Prénom</span>
-                                    <input
-                                        class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
-                                        type="text" placeholder="votre prénom ...">
+                                    <input v-model="data.prenom"
+                                        class="p-[10px] text-[1em] focus:outline-none focus:border-none border-[1px] border-solid border-[#333]  "
+                                        type="text" placeholder="votre prénom ..." required>
                                 </div>
                                 <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
                                     <span class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Nom</span>
-                                    <input
+                                    <input v-model="data.nom"
                                         class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
-                                        type="text" placeholder="votre nom ...">
+                                        type="text" placeholder="votre nom ..." required>
                                 </div>
                             </div>
 
@@ -30,16 +35,16 @@
                                 <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
                                     <span
                                         class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Telephone</span>
-                                    <input
+                                    <input v-model="data.telephone"
                                         class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
-                                        type="text" placeholder="06 12 34 56 78 ...">
+                                        type="text" placeholder="06 12 34 56 78 ..." required>
                                 </div>
                                 <div class="inputBox flex flex-col mb-[10px] w-1/2 ">
                                     <span
                                         class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Email</span>
-                                    <input
+                                    <input v-model="data.email"
                                         class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333]  "
-                                        type="email" placeholder="example@gmail.com ...">
+                                        type="email" placeholder="example@gmail.com ..." required>
                                 </div>
                             </div>
 
@@ -47,16 +52,16 @@
                                 <div class="inputBox flex flex-col mb-[10px] w-full ">
                                     <span
                                         class="text-blue-400 pl-2 text-left mt-[10px] mb-[5px] font-[500] ">Message</span>
-                                    <textarea
+                                    <textarea v-model="data.message"
                                         class="p-[10px] text-[1em] outline-none border-[1px] border-solid border-[#333] resize-none min-h-[120px] mb-[10px]"
-                                        name="" placeholder="votre message ici ..." id=""></textarea>
+                                        name="" placeholder="votre message ici ..." id="" required></textarea>
                                 </div>
                             </div>
 
                             <div class="row100">
                                 <div class="inputBox flex flex-col mb-[10px] w-full ">
                                     <input
-                                        class="bg-blue-400 hover:rounded-lg duration-200 text-white border-none text-[1em] max-w-[120px] font-[500] cursor-pointer py-[14px] px-[15px]"
+                                        class="bg-blue-400 hover:bg-blue-500 duration-200 text-white border-none text-[1em] max-w-[120px] font-[500] cursor-pointer py-[14px] px-[15px]"
                                         type="submit" value="envoyer">
                                 </div>
                             </div>
@@ -93,15 +98,49 @@
 
                 <!-- Map Box -->
                 <div class=" map bg-[#fff] shadow-[0 5px 35px ] ">
-                    <iframe class="w-full h-full"  src="https://www.google.com/maps?q=(Moroccan Office of Architecture)&output=embed"
+                    <iframe class="w-full h-full"
+                        src="https://www.google.com/maps?q=(Moroccan Office of Architecture)&output=embed"
                         frameborder="0"></iframe>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+
+<script>
+import { CONTACTEZ_NOUS } from "@/api/api"
+import EnvoyerForm from "@/mixins/EnvoyerForm"
+import MessAgeComponent from "@/components/MessAge.vue"
+
+export default {
+    mixins: [EnvoyerForm],
+    components: {
+        MessAgeComponent
+    },
+    data() {
+        return {
+            data: {
+                prenom: "",
+                nom: "",
+                telephone: "",
+                email: "",
+                message:""
+            }
+        }
+    },
+    methods: {
+        async envoyerMessage(){
+            await this.envoyer(this.data, "post", CONTACTEZ_NOUS, null, false)
+        }
+    }
+
+}
+
+</script>
+
+
 <!--  -->
-"https://www.google.com/maps?q=encodeURIComponent("marrakech")&output=embed"
 <style scoped>
 .box {
     grid-template-columns: 2fr 1fr;

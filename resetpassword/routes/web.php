@@ -1,8 +1,10 @@
 <?php
 
+use App\Mail\ContactezNousMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\resetPasswordController;
+use App\Http\Controllers\AuthentificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,9 @@ Route::middleware([
 });
 // mon route pour changer le mot de passe
 Route::post("/resetPasswordMy", [resetPasswordController::class, 'reset'])->name("resetPasswordMy");
+
+
+
+Route::get('/test-envoi-email', function () {
+    return view("contactezNous.contactezNous");
+});

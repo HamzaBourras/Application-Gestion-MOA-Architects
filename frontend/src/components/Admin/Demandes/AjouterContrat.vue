@@ -1,7 +1,7 @@
 <template>
     <div class="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[45%] h-max ">
         <div class="w-full h-full bg-slate-100 text-left rounded-xl py-[20px]">
-            <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
+            <div class="w-[85%] mx-auto " v-if="message != null || errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
             </div>
             <form class="w-[85%] mt-[10px] mx-auto" @submit.prevent="ajouterContrat">

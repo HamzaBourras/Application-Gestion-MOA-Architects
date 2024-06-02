@@ -62,3 +62,7 @@ export const CLIENT_DASHBOARD_DATA = `${baseUrl}api/client/statiques/`;
 /************************ Public ******/
 export const TOUS_COMMENTAIRES = `${baseUrl}api/public/commentaires/index/`;
 export const TOUS_PROJETS_DU_TYPE = `${baseUrl}api/public/projets-du-type/index/`;
+
+
+/************************* contactez nous ********************/
+export const CONTACTEZ_NOUS = "http://localhost:8002/api/contactez-nous";
