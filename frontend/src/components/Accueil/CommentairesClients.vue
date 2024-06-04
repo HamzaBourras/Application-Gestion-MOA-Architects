@@ -5,7 +5,7 @@
             <div class="flex justify-around w-[80%] mx-4 " ref="comments" >
                 <div class="w-[48%] flex flex-col bg-gray-50 m-3 p-[15px] shadow-md shadow-slate-300 ">
                     <div class=" flex items-center justify-start py-[5px] ">
-                        <img v-if="commentaireAafficher1?.userImage != null" class="rounded-[50%] w-[30px] h-[30px] "
+                        <img v-if="commentaireAafficher1?.userImage != null" class="rounded-[50%] w-[70px] h-[70px] "
                             :src="`http://localhost:8000/storage/${commentaireAafficher1?.userImage}`" alt="">
                         <p v-else
                             class="bg-slate-200 flex justify-center items-center h-[70px] w-[70px] p-2 rounded-[50%] cursor-pointer ">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="w-[48%] flex flex-col bg-gray-50 m-3 p-[15px] shadow-md shadow-slate-300 ">
                     <div class=" flex items-center justify-start py-[5px] ">
-                        <img v-if="commentaireAafficher2?.userImage != null" class="rounded-[50%] w-[30px] h-[30px] "
+                        <img v-if="commentaireAafficher2?.userImage != null" class="rounded-[50%] w-[70px] h-[70px] "
                             :src="`http://localhost:8000/storage/${commentaireAafficher2?.userImage}`" alt="">
                         <p v-else
                             class="bg-slate-200 flex justify-center items-center h-[70px] w-[70px] p-2 rounded-[50%] cursor-pointer "

@@ -6,7 +6,7 @@
                     <img v-if="user.image != null" class="rounded-[50%] w-[55px] h-[55px] object-cover "
                         :src="`http://localhost:8000/storage/${user.image}`" alt="">
                     <p v-else
-                        class="bg-slate-200 flex justify-center items-center h-[55px] w-[55px] p-2 rounded-[50%] cursor-pointer ">
+                        class="bg-slate-200 flex justify-center items-center h-[55px] w-[55px] p-2 rounded-[50%] ">
                         <i class="fa-solid fa-user text-xl"></i>
                     </p>
                     <div class="text-start ml-2">

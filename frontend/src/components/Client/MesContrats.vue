@@ -34,6 +34,7 @@
 
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
+import { TOUS_MES_DEMANDES } from "@/api/api.js"
 
 export default {
     mixins: [EnvoyerForm],
@@ -46,7 +47,10 @@ export default {
     methods: {
         async recevoirMesContrats() {
 
-            JSON.parse(localStorage.getItem("mesDemandes")).forEach(demande => {
+            const user_id = JSON.parse(localStorage.getItem("userAuth")).id
+            await this.envoyer(null, "get", TOUS_MES_DEMANDES, user_id, false)
+            const mesDemandes = this.returnData
+            mesDemandes.forEach(demande => {
                 if (demande.contrat) this.mesContrats.push(demande.contrat)
             });
 

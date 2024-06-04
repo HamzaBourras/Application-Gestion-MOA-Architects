@@ -27,8 +27,8 @@ class TerrainRequest extends FormRequest
         if (strpos($url, "api/client/mesDemandes/storeTerrain") !== false) {
             return [
                 "adresse" => "required",
-                "longeur" => "required",
-                "largeur" => "required",
+                "longeur" => "required|number",
+                "largeur" => "required|number",
                 "images" => "required|min:3",
                 "images.*" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             ];
@@ -41,7 +41,9 @@ class TerrainRequest extends FormRequest
         return [
             "adresse.required" => "L'adresse est obligatoire.",
             "longeur.required" => "La longueur est obligatoire.",
+            "longeur.number" => "La longeur doit etre un nombre.",
             "largeur.required" => "La largeur est obligatoire.",
+            "largeur.number" => "La largeur doit etre un nombre.",
             "images.required" => "Les images sont obligatoires.",
             "images.min" => "Le nombre des images doit être au minimum de 3.",
             "images.*.image" => "le fichier doit être une image.",
