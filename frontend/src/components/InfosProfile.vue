@@ -16,7 +16,8 @@
                     <!-- modifier l'image -->
                     <div>
                         <div class="relative h-[150px] w-[150px] mx-auto rounded-[50%] ">
-                            <img v-if="user.image != null" class="w-full h-full cursor-pointer rounded-[50%] object-cover "
+                            <img v-if="user.image != null"
+                                class="w-full h-full cursor-pointer rounded-[50%] object-cover "
                                 :src="`http://localhost:8000/storage/${user.image}`" alt="">
                             <p v-else
                                 class="bg-slate-200 flex justify-center items-center rounded-[50%] w-full h-full p-2 cursor-pointer ">
@@ -81,9 +82,20 @@
                 </div>
                 <div class="flex items-center justify-between mt-[20px]">
                     <div class="w-1/2 mx-[10px] relative z-0 mb-5 group  text-left">
-                        <input type="password" id="motpasse"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required v-model="password" />
+                        <div class="relative w-full ">
+                            <input id="motpasse"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required v-model="password"
+                                :type="`${affichePasse ? 'text' : 'password'}`">
+                            <p class="absolute right-4 top-1/3">
+                                <button @click="affichePasse = !affichePasse" v-if="!affichePasse"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye text-gray-800 hover:text-gray-500 duration-100 text-[17px] "></i></button>
+                                <button @click="affichePasse = !affichePasse" v-if="affichePasse"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye-slash text-gray-800 hover:text-gray-500 duration-100 "></i></button>
+                            </p>
+                        </div>
                         <p class="text-sm text-red-500 mt-1" v-if="errors?.password"><span
                                 v-for="(error, i) in errors?.password" :key="i">{{ error }} </span></p>
                         <label for="motpasse"
@@ -91,9 +103,20 @@
                             Nouveau mot de passe</label>
                     </div>
                     <div class="w-1/2 mx-[10px] relative z-0 mb-5 group  text-left">
-                        <input type="password" id="motpasseverif"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required v-model="motpasseverif" />
+                        <div class="relative w-full ">
+                            <input id="motpasseverif"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required v-model="motpasseverif"
+                                :type="`${affichePasse2 ? 'text' : 'password'}`">
+                            <p class="absolute right-4 top-1/3">
+                                <button @click="affichePasse2 = !affichePasse2" v-if="!affichePasse2"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye text-gray-800 hover:text-gray-500 duration-100 text-[17px] "></i></button>
+                                <button @click="affichePasse2 = !affichePasse2" v-if="affichePasse2"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye-slash text-gray-800 hover:text-gray-500 duration-100 "></i></button>
+                            </p>
+                        </div>
                         <p class="text-sm text-red-500 mt-1" v-if="errors?.motpasseverif"><span
                                 v-for="(error, i) in errors?.motpasseverif" :key="i">{{ error }} </span></p>
                         <label for="motpasseverif"
@@ -127,6 +150,8 @@ export default {
             image: null,
             password: null,
             motpasseverif: null,
+            affichePasse: false, // pour controler l'affichage du mot de passe
+            affichePasse2: false, // pour controler l'affichage du mot de passe de vérification
         }
     },
     methods: {

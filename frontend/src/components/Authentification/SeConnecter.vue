@@ -28,9 +28,19 @@
                     </div>
                     <div class="flex flex-col items-start w-full mt-[30px]">
                         <label class="font-[450] block  text-gray-700" for="password">Mot de passe</label>
-                        <input v-model="client.password"
-                            class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
-                            type="password" id="password">
+                        <div class="relative w-full ">
+                            <input v-model="client.password"
+                                class="border-none mt-1 w-full px-4 py-2.5 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none "
+                                :type="`${affichePasse ? 'text' : 'password' }`" id="password">
+                            <p class="absolute right-4 top-1/3">
+                                <button @click="affichePasse = !affichePasse" v-if="!affichePasse"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye text-gray-800 hover:text-gray-500 duration-100 text-[17px] "></i></button>
+                                <button @click="affichePasse = !affichePasse" v-if="affichePasse"
+                                    class="cursor-pointer"><i
+                                        class="fa-solid fa-eye-slash text-gray-800 hover:text-gray-500 duration-100 text-[17px] "></i></button>
+                            </p>
+                        </div>
                         <p class="text-sm text-red-500 mt-1" v-if="errors?.password"><span
                                 v-for="(error, i) in errors?.password" :key="i">{{ error }} </span></p>
                     </div>
@@ -99,6 +109,7 @@ export default {
                 password: ""
             },
             messageRecu: false, // message renvoyé après la modification du mot de passe
+            affichePasse: false, // pour controler l'affichage du mot de passe
         }
     },
 

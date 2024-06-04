@@ -3,7 +3,7 @@
         <div class="py-[15px] pr-[20px] flex justify-end h-[12vh] ">
             <button @click="afficheCompAjouterModifier = true; action = 'ajouter'"
                 :class="afficheCompAjouterModifier ? 'hidden' : 'block'"
-                class="bg-blue-600 h-max text-white w-[150px] py-2.5 px-3 rounded-[10px] font-[600] tracking-[0.5px] hover:bg-blue-500 duration-300">Ajouter
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-8 py-2.5 me-2 mb-2">Ajouter
                 <i class="fa-solid fa-plus ml-2"></i>
             </button>
         </div>
