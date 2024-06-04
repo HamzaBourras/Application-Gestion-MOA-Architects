@@ -2,7 +2,7 @@
     <div class="relative h-[86.7vh]">
 
         <div v-if="length != null && length == 0" class="text-white py-4 pl-8 text-left">
-            <p class="text-lg">Pas de rendez-vous à afficher !</p>
+            <p class="text-lg text-white ">Pas de rendez-vous à afficher !</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-around mt-[30px] ">

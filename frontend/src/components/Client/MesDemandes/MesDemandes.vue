@@ -1,6 +1,10 @@
 <template>
     <div class="relative h-[86.7vh]">
-        <div class="py-[15px] pr-[20px] flex justify-end h-[12vh] ">
+        <div class="py-[15px] px-[20px] flex justify-between items-center h-[12vh] ">
+            <button @click="recevoirDemandes"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 me-2 mb-2">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
             <button @click="afficheCompAjouterModifier = true; action = 'ajouter'"
                 :class="afficheCompAjouterModifier ? 'hidden' : 'block'"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-8 py-2.5 me-2 mb-2">Ajouter

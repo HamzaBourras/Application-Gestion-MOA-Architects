@@ -38,7 +38,7 @@
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
-import {AJOUTER_AUX_PROJETS} from "@/api/api"
+import { AJOUTER_AUX_PROJETS } from "@/api/api"
 
 export default {
     props: {
@@ -57,7 +57,7 @@ export default {
                 prix: "",
                 date_termination: ""
             },
-            
+
         }
     },
     methods: {
@@ -67,13 +67,13 @@ export default {
         },
         async ajouterAuxProjets() {
             await this.envoyer(this.projet, "post", AJOUTER_AUX_PROJETS, this.demandeId, false)
-            
+
 
             if (this.message != null) {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourTousDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
-                }, 3002);
+                }, 1502);
             }
 
         }

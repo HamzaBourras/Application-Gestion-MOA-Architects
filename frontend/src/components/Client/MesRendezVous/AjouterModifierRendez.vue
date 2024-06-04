@@ -74,7 +74,7 @@ export default {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourRendezVous'); // pour recharger tous les demandes lorsque une nouveau est ajouté
-                }, 3002);
+                }, 1502);
             }
 
             console.log(this.returnData);

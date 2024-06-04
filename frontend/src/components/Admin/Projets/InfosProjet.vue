@@ -66,7 +66,7 @@
                         </p>
                     </div>
                     <div class="flex items-center justify-around w-full mt-3">
-                        <img class="hover:w-[32%] hover:h-[250px]  w-[22%] h-[150px] rounded-md "
+                        <img class="w-[22%] h-[150px] rounded-md "
                             v-for="(image, i) in projet.terrain.images_terrain " :key="i"
                             :src="`http://localhost:8000/storage/${image}`" alt="">
                     </div>
@@ -114,11 +114,11 @@
                             Vous n'avez pas encore des images à afficher</p>
                     </div>
                     <div v-if="length != null && length != 0">
-                        <div v-if=" userRole=='client'" class=" my-2">
+                        <div v-if=" userRole=='client' && projet.termine == 0 " class=" my-2">
                             <p class="text-md font-[600] text-left pl-[15px] ">Voici l'état arrivé de votre projet</p>
                         </div>
-                        <div class="w-full flex justify-between px-[10px] py-[30px]  ">
-                            <img class="w-[32%] h-[250px] object-cover " v-for="(image, i) in imagesProjet " :key="i"
+                        <div class="w-full flex flex-wrap justify-between px-[10px] py-[20px]  ">
+                            <img class="w-[32%] my-3 h-[250px] object-cover " v-for="(image, i) in imagesProjet " :key="i"
                                 :src="`http://localhost:8000/storage/${image.chemin}`" alt="">
                         </div>
                     </div>

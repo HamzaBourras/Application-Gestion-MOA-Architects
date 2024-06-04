@@ -45,11 +45,11 @@ export default {
         },
 
         async marquerContratVu() {
-            await this.envoyer({ vu: this.vu }, "put", EDIT_VU_CONTRAT , this.contratId, false)
+            await this.envoyer({ vu: this.vu }, "put", EDIT_VU_CONTRAT, this.contratId, false)
 
             setTimeout(() => {
                 this.emitsButtonNon()  // pour cacher ce component
-            }, 3002);
+            }, 1502);
         }
     },
 }

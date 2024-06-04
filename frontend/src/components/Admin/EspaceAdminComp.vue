@@ -92,7 +92,7 @@ export default {
 
 <style scoped>
 .container3 {
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(247, 246, 246, 0.1)), url('@/assets/dash2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(247, 246, 246, 0.1)), url('@/assets/dash2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

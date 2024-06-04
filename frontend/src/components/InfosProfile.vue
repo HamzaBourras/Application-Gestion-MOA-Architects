@@ -175,7 +175,6 @@ export default {
         },
         async modifierProfile() {
             if (this.image) {
-                console.log("image");
                 const formData = new FormData();
 
                 formData.append('nom', this.user.nom);
@@ -189,7 +188,7 @@ export default {
 
                 await this.envoyer(formData, "post", MODIFIER_PROFILE_API, this.user.id, true);
 
-                // this.image = null
+                this.image = null
             }
 
             else {

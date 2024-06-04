@@ -23,7 +23,7 @@ class ImagesProjetRequest extends FormRequest
     {
         return [
             "images" => "required|max:4",
-            "images.*" => "image|mimes:jpeg,png,jpg,gif,svg|max:3072",
+            "images.*" => "image|mimes:jpeg,png,jpg,gif,svg|max:5120",
         ];
     }
 
@@ -34,7 +34,7 @@ class ImagesProjetRequest extends FormRequest
             "images.max" => "Vous pouvez ajouter seulement 4 images à chaque fois",
             "images.*.image" => "le fichier doit être une image.",
             "images.*.mimes" => "l' image doit être de type jpeg, png, jpg, gif ou svg.",
-            "images.*.max" => "l' image ne peut pas dépasser 3 Mo",
+            "images.*.max" => "l' image ne peut pas dépasser 5 Mo",
         ];
     }
 }

@@ -115,6 +115,8 @@ export default {
                 formData.append('images[]', image)
             });
 
+
+
             await this.envoyer(formData, "post", INSERER_TERRAIN, this.demandeId, true)
             this.imagesError = []
             // enregistrer les images qui ont des erreurs
@@ -128,7 +130,7 @@ export default {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque un nouveau terrain est ajouté
-                }, 3002);
+                }, 1502);
             }
 
         }

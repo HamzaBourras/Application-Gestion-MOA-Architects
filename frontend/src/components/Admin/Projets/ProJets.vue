@@ -7,7 +7,7 @@
 
         <div v-if="afficheComInfosProjets == false">
             <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
-                <p class="text-lg">Vous n'avez pas des demandes à afficher</p>
+                <p class="text-lg text-white ">Vous n'avez pas des demandes à afficher</p>
             </div>
 
             <div class="flex flex-wrap items-center justify-around mt-[30px] ">
@@ -56,6 +56,7 @@ export default {
         async recevoirProjets() {
             await this.envoyer(null, "get", TOUS_PROJETS, null, false)
             this.projets = this.returnData
+            this.length = this.projets.length
         }
     },
     async mounted() {

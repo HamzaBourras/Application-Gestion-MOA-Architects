@@ -25,7 +25,7 @@
             </div>
             <div class=" w-full h-max flex ">
                 <div class="w-full pl-1 ">
-                    <div class="w-[98%] rounded-lg bg-white text-black ml-2 py-[17px] flex flex-col justify-between ">
+                    <div class="w-[98%] rounded-lg bg-white text-black ml-2 py-[15px] flex flex-col justify-between ">
                         <!-- Contrats et rendez-vous -->
                         <div class="flex justify-between h-[200px] ">
                             <div class="w-1/2">
@@ -35,8 +35,8 @@
                                     class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                     Pas de contrats à signer aujourd'hui ! </p>
                                 <div v-else
-                                    class="flex flex-wrap mt-[10px] px-[15px] justify-between max-h-[170px] overflow-y-auto ">
-                                    <div class=" w-[48%] border-l-[1.5px] pl-2 py-2  border-black "
+                                    class="flex flex-wrap mt-[10px] mx-1 px-[15px] justify-between max-h-[170px] overflow-y-auto ">
+                                    <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2  border-black "
                                         v-for="contrat in contrats" :key="contrat.id">
                                         <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `contrat N°
                                             ${contrat.id}`.toUpperCase() }} </p>
@@ -55,7 +55,7 @@
                                     class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                     Pas de rendez-vous aujourd'hui ! </p>
                                 <div v-else
-                                    class="w-[98.5%]  flex flex-wrap px-[15px] justify-between mt-3 max-h-[170px] overflow-y-auto">
+                                    class="w-[98.5%]  flex flex-wrap px-[15px] justify-between mt-3 mx-1 max-h-[170px] overflow-y-auto">
                                     <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2 border-black "
                                         v-for="rendez in rendezVous" :key="rendez.id">
                                         <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `rendez-vous N°
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <!-- Projets -->
-                        <div class="h-[250px]">
+                        <div class="h-[250px] mt-4 ">
                             <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Etat de vos projets</h1>
                             <div>
                                 <div class="relative shadow-md rounded-lg mx-2 max-h-[200px] overflow-y-auto">

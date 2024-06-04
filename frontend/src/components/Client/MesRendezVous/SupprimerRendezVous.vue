@@ -41,7 +41,7 @@ export default {
 
             setTimeout(() => {
                 this.emitsButtonAnnuler()
-            }, 3002);
+            }, 1502);
         },
 
         emitsButtonAnnuler() {

@@ -142,7 +142,7 @@ class AdminController extends Controller
 
 
     /***** changer le statut du contrat c-à-d marquer qui est segné *****/
-    public function storeProjet(ProjetRequest $request, int $demande_id)
+    public function storeProjet(Request $request, int $demande_id)
     {
         try {
 

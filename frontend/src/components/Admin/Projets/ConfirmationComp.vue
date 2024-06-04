@@ -21,11 +21,11 @@
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
 import MessAgeComponent from "@/components/MessAge.vue"
-import {EDIT_PROJET_TERMINE} from "@/api/api"
+import { EDIT_PROJET_TERMINE } from "@/api/api"
 
 export default {
     mixins: [EnvoyerForm],
-    emits: ["changerVisibilite","mettreAjourProjet"],
+    emits: ["changerVisibilite", "mettreAjourProjet"],
     components: {
         MessAgeComponent
     },
@@ -45,7 +45,7 @@ export default {
             setTimeout(() => {
                 this.$emit("mettreAjourProjet")
                 this.emitsButtonNon()  // pour cacher ce component
-            }, 3002);
+            }, 1502);
         }
     },
 }

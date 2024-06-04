@@ -1,7 +1,14 @@
 <template>
     <div class="relative h-[86.7vh]">
         <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
-            <p class="text-lg">Ils n'y a pas des demandes à afficher</p>
+            <p class="text-lg text-white ">Ils n'y a pas des demandes à afficher</p>
+        </div>
+
+        <div v-else class="pt-4 pl-4 flex justify-start ">
+            <button @click="recevoirDemandes"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 me-2 mb-2">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
         </div>
 
         <!-- Component pour les details de la demande -->

@@ -9,8 +9,8 @@
                     <label for="commentaire" class="block mb-2 text-md font-medium text-gray-900 ">Commentaire</label>
                     <textarea rows="5" type="text" id="commentaire" v-model="commentaire.text"
                         class="bg-gray-50 border resize-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "></textarea>
-                    <p class="text-sm text-red-500 mt-1" v-if="errors?.text"><span
-                            v-for="(error, i) in errors?.text" :key="i">{{ error }} </span></p>
+                    <p class="text-sm text-red-500 mt-1" v-if="errors?.text"><span v-for="(error, i) in errors?.text"
+                            :key="i">{{ error }} </span></p>
                 </div>
                 <div class="mt-5 flex justify-end">
                     <input type="submit" value="Ajouter" class=" cursor-pointer text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
@@ -55,7 +55,7 @@ export default {
             if (this.message != null) {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
-                }, 3002);
+                }, 1502);
             }
         }
     },

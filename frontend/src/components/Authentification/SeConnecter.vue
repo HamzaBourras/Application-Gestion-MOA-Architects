@@ -142,10 +142,7 @@ export default {
 
             setTimeout(() => {
                 this.messageRecu = false;
-                // params.delete('message');
-                // const newHash = hash.substring(0, hash.indexOf('?')) + '?' + params.toString();
-                // history.replaceState(null, null, window.location.pathname + window.location.search + newHash);
-            }, 3000 );
+            }, 1500 );
         }
     },
     mounted() {

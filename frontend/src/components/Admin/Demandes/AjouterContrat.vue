@@ -61,7 +61,7 @@ export default {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourTousDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
-                }, 3002);
+                }, 1502);
             }
         }
     },

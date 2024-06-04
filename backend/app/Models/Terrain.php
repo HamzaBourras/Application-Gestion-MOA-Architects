@@ -14,7 +14,7 @@ class Terrain extends Model
         "largeur",
         "longeur",
         "demandes_id",
-        "acepte"
+        "accepte"
     ];
 
 

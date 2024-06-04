@@ -121,7 +121,7 @@ class ClientController extends Controller
                 "adresse" => $request->adresse,
                 "largeur"=> $request->largeur,
                 "longeur"=> $request->longeur,
-                "demandes_id" => $demande_id 
+                "demandes_id" => $demande_id, 
             ]);
 
             $imagesRecu = $request->file("images");

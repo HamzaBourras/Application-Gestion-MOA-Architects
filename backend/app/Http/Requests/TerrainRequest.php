@@ -27,10 +27,10 @@ class TerrainRequest extends FormRequest
         if (strpos($url, "api/client/mesDemandes/storeTerrain") !== false) {
             return [
                 "adresse" => "required",
-                "longeur" => "required|number",
-                "largeur" => "required|number",
+                "longeur" => "required",
+                "largeur" => "required",
                 "images" => "required|min:3",
-                "images.*" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+                "images.*" => "image|mimes:jpeg,png,jpg,gif,svg|max:4096",
             ];
         }
     }
@@ -48,7 +48,7 @@ class TerrainRequest extends FormRequest
             "images.min" => "Le nombre des images doit être au minimum de 3.",
             "images.*.image" => "le fichier doit être une image.",
             "images.*.mimes" => "l' image doit être de type jpeg, png, jpg, gif ou svg.",
-            "images.*.max" => "l' image ne peut pas dépasser 2048 kilooctets.",
+            "images.*.max" => "l' image ne peut pas dépasser 4 Mo",
         ];
     }
 

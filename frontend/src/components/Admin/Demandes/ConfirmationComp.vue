@@ -63,7 +63,7 @@ export default {
 
             setTimeout(() => {
                 this.emitsButtonNon()  // pour cacher ce component
-            }, 3002);
+            }, 1502);
         }
     },
 }

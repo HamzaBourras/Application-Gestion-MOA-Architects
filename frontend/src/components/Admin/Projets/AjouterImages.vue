@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute left-1/2 bottom-[40%] -translate-x-1/2 -translate-y-1/2 w-[45%] h-max ">
+    <div class="absolute z-50 left-1/2 bottom-[40%] -translate-x-1/2 -translate-y-1/2 w-[45%] h-max ">
         <div class="w-full h-full bg-slate-100 text-left rounded-xl py-[20px]">
             <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
@@ -34,7 +34,7 @@
 
 <script>
 import EnvoyerForm from "@/mixins/EnvoyerForm"
-import {INSERER_IMAGES_PROJET} from "@/api/api" 
+import { INSERER_IMAGES_PROJET } from "@/api/api"
 import MessAgeComponent from "@/components/MessAge.vue"
 
 export default {
@@ -45,8 +45,8 @@ export default {
     emits: ["changerVisibilite", "mettreAjourImages"],
     props: {
         projetId: {
-            type:Number
-        }  
+            type: Number
+        }
     },
     data() {
         return {
@@ -61,7 +61,7 @@ export default {
         },
         emitsButtonAnnuler() {
             this.$emit("changerVisibilite")  // pour cacher le component contient le form (ce component)
-            this.images= []
+            this.images = []
             this.imageError = null
         },
 
@@ -75,7 +75,7 @@ export default {
             await this.envoyer(formData, "post", INSERER_IMAGES_PROJET, this.projetId, true)
             this.imagesError = []
             // enregistrer les images qui ont des erreurs
-            if (this.errors?.['images.0'] || this.errors?.['images.1'] || this.errors?.['images.2'] || this.errors?.['images.3'] ) {
+            if (this.errors?.['images.0'] || this.errors?.['images.1'] || this.errors?.['images.2'] || this.errors?.['images.3']) {
                 if (this.errors['images.0']) this.imagesError.push(this.errors['images.0'])
                 if (this.errors['images.1']) this.imagesError.push(this.errors['images.1'])
                 if (this.errors['images.2']) this.imagesError.push(this.errors['images.2'])
@@ -86,7 +86,7 @@ export default {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourImages'); // pour recharger tous les demandes lorsque un nouveau terrain est ajouté
-                }, 3002);
+                }, 1502);
             }
 
         }

@@ -61,7 +61,7 @@ export default {
             await this.envoyer(null, "get", TOUS_PROJETS_DU_TYPE, this.typeExperienceChoisi, false)
 
             this.projets = this.returnData
-            this.length = this.projets.length
+            this.length = this.projets?.length
         },
         filtreProjets() {
             if (this.chercher && this.chercher.trim() !== '') {

@@ -1,7 +1,7 @@
 <template>
-    <div :class="`${message != null ? 'border-2 border-green-600' : 'border-2 border-red-600'}`"
+    <div :class="`${message != null ? 'text-green-600' : 'text-red-600'}`"
         class="divMessage bg-white rounded-lg py-[15px] px-[5px] mt-[15px] flex items-center justify-center w-full">
-        <p class="tracking-[1px]">{{ message != null ? message : errorAction }}</p>
+        <p class="tracking-[1px] text-center ">{{ message != null ? message : errorAction }}</p>
     </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 <style scoped>
 .divMessage{
     animation: bounce 1s infinite;
-    animation-iteration-count: 3;
+    animation-iteration-count: 1.5;
 }
 
 @keyframes bounce {

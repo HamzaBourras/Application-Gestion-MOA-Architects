@@ -1,7 +1,7 @@
 <template>
     <div class="relative h-[86.7vh]">
         <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
-            <p class="text-lg">Ils n'y a pas des contrats à afficher</p>
+            <p class="text-lg text-white ">Ils n'y a pas des contrats à afficher</p>
         </div>
         <div class="flex flex-wrap items-center justify-around pt-[30px] px-[10px] ">
             <div v-for="contrat in contratsDesClients" :key="contrat.id"

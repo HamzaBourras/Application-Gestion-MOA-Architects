@@ -16,7 +16,7 @@ const envoyerForm = {
         this.message != null
           ? (this.message = null)
           : (this.errorAction = null);
-      }, 3000);
+      }, 1500);
     },
 
     async envoyer(

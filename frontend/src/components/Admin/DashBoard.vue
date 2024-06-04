@@ -34,8 +34,8 @@
                             <p v-if="contrats.length == 0"
                                 class="text-left pl-[20px] mt-1 font-[400] text-gray-500 mb-[45px] ">
                                 Pas de contrats à signer aujourd'hui ! </p>
-                            <div
-                                class="flex flex-wrap my-[10px] px-[15px] justify-between overflow-y-auto  max-h-[103px] ">
+                            <div v-else
+                                class="flex flex-wrap my-[10px] mx-1 px-[15px] justify-between overflow-y-auto  max-h-[103px] ">
                                 <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2  border-black "
                                     v-for="contrat in contrats" :key="contrat.id">
                                     <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `contrat N°
@@ -46,8 +46,8 @@
                                             </span> </p>
                                         <p class="w-[60%]  text-left"> <span class="font-[500]">Avec : </span> <span
                                                 class="text-blue-500">{{
-                                                    contrat.demandes.user.nom.toUpperCase() + " " +
-                                                    contrat.demandes.user.prenom.toUpperCase() }}</span> </p>
+                                                contrat.demandes.user.nom.toUpperCase() + " " +
+                                                contrat.demandes.user.prenom.toUpperCase() }}</span> </p>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             <p v-if="rendezVous.length == 0" class="text-left pl-[20px] mt-1 font-[400] text-gray-500 ">
                                 Pas de rendez-vous aujourd'hui ! </p>
                             <div v-else
-                                class="flex flex-wrap my-[10px] px-[15px] justify-between mt-3  overflow-y-auto max-h-[103px] ">
+                                class="flex flex-wrap my-[10px] mx-1 px-[15px] justify-between mt-3  overflow-y-auto max-h-[103px] ">
                                 <div class=" w-[48%] border-l-[1.5px] pl-2 py-2 my-2 border-black "
                                     v-for="rendezVous in rendezVous" :key="rendezVous.id">
                                     <p class="text-[17px] text-gray-800 font-[600] text-left "> {{ `rendez-vous N°

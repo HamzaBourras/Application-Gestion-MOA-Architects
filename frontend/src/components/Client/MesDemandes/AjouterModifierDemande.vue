@@ -35,10 +35,9 @@
                             v-for="(error, i) in errors?.description" :key="i">{{ error }} </span></p>
                 </div>
                 <div class="mt-5 flex justify-end">
-                    <input type="submit" :value="action == 'modifier' ? 'Modifier' : 'Ajouter' "
-                        class=" cursor-pointer text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
+                    <input type="submit" :value="action == 'modifier' ? 'Modifier' : 'Ajouter'" class=" cursor-pointer text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
                         focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
-                    <button type=" button" @click="emitsButtonAnnuler ()"
+                    <button type=" button" @click="emitsButtonAnnuler()"
                         class="text-gray-800 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Annuler</button>
                 </div>
             </form>
@@ -56,10 +55,10 @@ import MessAgeComponent from "@/components/MessAge.vue"
 export default {
     props: {
         demandeSelectione: {
-            type:Object
+            type: Object
         },
         action: {
-            type:String
+            type: String
         }
     },
     emits: ["changerVisibilite", "mettreAjourDemandes", "effacerDonnees"],
@@ -87,18 +86,18 @@ export default {
             const user_id = JSON.parse(localStorage.getItem("userAuth")).id;
             const demandeId = this.demandeSelectione[0]?.id;
             const method = this.action == "modifier" ? "put" : "post";
-            const api = this.action == "modifier"  ? MODIFIER_DEMANDE : INSERER_DEMANDE;
+            const api = this.action == "modifier" ? MODIFIER_DEMANDE : INSERER_DEMANDE;
             const idsRequete = this.action == "modifier" ? `${user_id}/${demandeId}` : user_id;
-            
+
             await this.envoyer(this.demande, method, api, idsRequete, false)
             // console.log(this.errorAction);
             if (this.demandeSelectione == {}) this.demande = {};
-            
+
             if (this.message != null) {
                 setTimeout(() => {
                     this.emitsButtonAnnuler()
                     this.$emit('mettreAjourDemandes'); // pour recharger tous les demandes lorsque une nouveau est ajouté
-                }, 3002);
+                }, 1502);
             }
         }
     },
