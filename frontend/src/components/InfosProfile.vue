@@ -11,25 +11,30 @@
             <div class="w-[85%] mx-auto " v-if="message != null || this.errorAction != null">
                 <MessAgeComponent :message="message" :errorAction="errorAction" />
             </div>
-
-            <div class="mb-[30px]">
-                <div class="relative h-[150px] w-[150px] mx-auto rounded-[50%] ">
-                    <img v-if="user.image != null" id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
-                        data-dropdown-placement="bottom-start" class="w-full h-full cursor-pointer"
-                        :src="`http://localhost:8000/storage/${user.image}`" alt="" @click="toggleDropdown">
-                    <p v-else
-                        class="bg-slate-200 flex justify-center items-center rounded-[50%] w-full h-full p-2 cursor-pointer "
-                        @click="toggleDropdown">
-                        <i class="fa-solid fa-user text-[60px]"></i>
-                    </p>
-                    <p class="absolute bottom-0 right-4 bg-white flex justify-center items-center rounded-[50%] w-[30px] h-[30px] cursor-pointer "
-                        @click="telechargerImage">
-                        <i class="fa-solid fa-camera text-lg "></i>
-                        <input type="file" class="hidden" ref="profileImage" @change="ajouterImage">
-                    </p>
-                </div>
-            </div>
             <form @submit.prevent="modifierProfile">
+                <div class="mb-[40px]">
+                    <!-- modifier l'image -->
+                    <div>
+                        <div class="relative h-[150px] w-[150px] mx-auto rounded-[50%] ">
+                            <img v-if="user.image != null" class="w-full h-full cursor-pointer rounded-[50%] object-cover "
+                                :src="`http://localhost:8000/storage/${user.image}`" alt="">
+                            <p v-else
+                                class="bg-slate-200 flex justify-center items-center rounded-[50%] w-full h-full p-2 cursor-pointer ">
+                                <i class="fa-solid fa-user text-[60px]"></i>
+                            </p>
+                            <p class="absolute bottom-0 right-4 bg-white flex justify-center items-center rounded-[50%] w-[30px] h-[30px] cursor-pointer "
+                                @click="telechargerImage">
+                                <i class="fa-solid fa-camera text-lg "></i>
+                                <input type="file" class="hidden" ref="profileImage" @change="ajouterImage">
+                            </p>
+                        </div>
+                        <div v-if="image">
+                            <p>{{ image?.name }}</p>
+                            <p class="text-sm text-red-500 mt-1" v-if="errors?.image"><span
+                                    v-for="(error, i) in errors?.image" :key="i">{{ error }} </span></p>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex items-center justify-between mt-[20px]">
                     <div class="w-1/2 mx-[10px] relative z-0 mb-5 group  text-left">
                         <input type="text" id="nom"
@@ -134,17 +139,18 @@ export default {
                 console.error('LocalStorage n\'est pas disponible.');
             }
         },
-        ajouterImage(event) {
-            this.image = event.target.files[0]
-        },
         telechargerImage() {
             this.$refs.profileImage.click()
         },
         recevoirUser() {
             this.user = JSON.parse(localStorage.getItem("userAuth"))
         },
+        ajouterImage(event) {
+            this.image = event.target.files[0]
+        },
         async modifierProfile() {
             if (this.image) {
+                console.log("image");
                 const formData = new FormData();
 
                 formData.append('nom', this.user.nom);
@@ -156,7 +162,9 @@ export default {
 
                 formData.append('image', this.image); // Ajoutez l'image si elle est sélectionnée
 
-                await this.envoyer(formData, "put", MODIFIER_PROFILE_API, this.user.id, true);
+                await this.envoyer(formData, "post", MODIFIER_PROFILE_API, this.user.id, true);
+
+                // this.image = null
             }
 
             else {
@@ -165,12 +173,17 @@ export default {
                 this.user.motpasseverif = this.motpasseverif
 
 
-                await this.envoyer(this.user, "put", MODIFIER_PROFILE_API, this.user.id, false);
+                await this.envoyer(this.user, "post", MODIFIER_PROFILE_API, this.user.id, false);
             }
 
             
-            localStorage.setItem("userAuth", JSON.stringify(this.returnData))
-            this.recevoirUser()
+            if(this.returnData){
+                localStorage.setItem("userAuth", JSON.stringify(this.returnData))
+                    this.recevoirUser()
+                
+            }
+
+            // console.log(this.returnData);
 
             // Affichage des entrées de FormData
             // for (const [key, value] of formData.entries()) {
@@ -181,6 +194,7 @@ export default {
     },
     mounted() {
         this.recevoirUser()
+
     },
 }
 </script>

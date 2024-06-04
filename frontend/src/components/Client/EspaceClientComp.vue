@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[100vh] ">
+    <div class="flex h-[100vh] relative ">
         <div class="w-1/6 h-full">
             <NavBar :lienActifNav="lienActif" @changeLienEmit="changeLienActif" :liens="liens" />
         </div>
@@ -95,7 +95,10 @@ export default {
 
 <style scoped>
 .container3 {
-    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(247, 246, 246, 0.3)), url('@/assets/dash1.jpg');
+    background: linear-gradient(to bottom right,
+            rgba(202, 220, 246, 0.4) 10%,
+            rgba(0, 0, 0, 0.2) 100%),
+        url('@/assets/dash1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

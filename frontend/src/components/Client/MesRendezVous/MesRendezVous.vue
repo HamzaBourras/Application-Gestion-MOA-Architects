@@ -15,8 +15,8 @@
         <SupprimerRendezVous v-if="afficheCompSupprimer" @changerVisibilite="afficheCompSupprimer = false"
             @mettreAjourRendezVous="recevoirRendezVous" :rendezVousSupprimerId="rendezVousSupprimerId" />
 
-        <div v-if="length != null && length == 0" class=" py-4 pl-8 text-left">
-            <p class="text-lg">Vous n'avez pas des rendez-vous à afficher</p>
+        <div v-if="length != null && length == 0" class=" py-2 pl-[40px] text-left">
+            <p class="text-lg font-[500] ">Vous n'avez pas des rendez-vous à afficher</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-around ">

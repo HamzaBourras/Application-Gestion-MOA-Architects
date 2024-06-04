@@ -19,7 +19,13 @@ const envoyerForm = {
       }, 3000);
     },
 
-    async envoyer(maData = null, method, api, idsRequete = null, hasFile = false) {
+    async envoyer(
+      maData = null,
+      method,
+      api,
+      idsRequete = null,
+      hasFile = false
+    ) {
       //vérifier si le idsRequete n'est pas null
       const apiUrl = idsRequete != null ? `${api}${idsRequete}` : api;
 
@@ -40,10 +46,12 @@ const envoyerForm = {
           config.headers["Authorization"] = `Bearer ${token}`; // ajouter le token au header
         }
 
-        if (hasFile == true) {
+        if (hasFile) {
           config.headers["Content-Type"] = "multipart/form-data";
+        } else {
+          config.headers["Content-Type"] = "application/json";
         }
-        
+
         if (maData == null) {
           if (method == "get" || method == "delete") {
             response = await axios[method](apiUrl, config);
@@ -52,11 +60,10 @@ const envoyerForm = {
           }
         } else if (maData != null) {
           response = await axios[method](apiUrl, maData, config);
-          
         }
 
         // console.log(response);
-        // console.log(maData);
+        // console.log(config);
 
         if (!token) this.token = response.data?.token;
         this.message = response.data.message;

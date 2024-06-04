@@ -86,11 +86,12 @@ class AuthentificationController extends Controller
 
 
     /****** Modification des informations de compte ********/
-    public function modifierProfile(AuthentificationRequest $request, int $user_id) {
-        try{
+    public function modifierProfile(AuthentificationRequest $request, int $user_id)
+    {
+        try {
             $cheminImage = null;
             $imageRecu = $request->file("image");
-                if($imageRecu != null) $cheminImage = $imageRecu->store('images_profile', 'public');
+            if ($imageRecu != null) $cheminImage = $imageRecu->store('images_profile', 'public');
 
             $user = User::find($user_id);
             $user->nom = strtolower($request->nom);
@@ -114,20 +115,58 @@ class AuthentificationController extends Controller
                 "image" => $user->image,
                 "role" => $user->role->nom
             ];
-            
+
 
             return response()->json([
                 "data" => $userAuth,
-                "message" => "Le profile a été modifié avec succès" 
+                "message" => "Le profile a été modifié avec succès"
             ]);
-            
-            
         } catch (Exception $e) {
             return response()->json([
                 "errorAction" => "Échec de la modification du profile + $e"
             ]);
         }
     }
+
+
+    /****************** modifier l'image **********************/
+    // public function modifierImage(Request $request, int $user_id) {
+    //     try{
+    //         $cheminImage = null;
+    //         $imageRecu = $request->file("image");
+
+            
+        
+    //         // if ($imageRecu != null) $cheminImage = $imageRecu->store('images_profile', 'public');
+
+    //         // $user = User::find($user_id);
+    //         // $user->image = $cheminImage;
+
+    //         // $user->save();
+
+    //         // $userAuth = [
+    //         //     "id" => $user->id,
+    //         //     "nom" => $user->nom,
+    //         //     "prenom" => $user->prenom,
+    //         //     "email" => $user->email,
+    //         //     "telephone" => $user->telephone,
+    //         //     "image" => $cheminImage,
+    //         //     "role" => $user->role->nom
+    //         // ];
+
+
+    //         return response()->json([
+    //             "data" => $imageRecu,
+    //             "message" => "Le profile a été modifié avec succès"
+    //         ]);
+    //     } catch (Exception $e) {
+    //         return response()->json([
+    //             "errorAction" => "Échec de la modification du profile + $e"
+    //         ]);
+    //     }
+
+        
+    // }
 
     
 

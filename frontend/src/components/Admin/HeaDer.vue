@@ -7,7 +7,7 @@
         <div class="w-1/6 flex items-center justify-end pr-5 relative ">
             <div>
                 <button @click="changeLien('Profile')" >
-                    <i class=" fa-solid fa-gear text-2xl hover:text-blue-500 hover:rotate-[170deg] duration-200 "></i>
+                    <i :class="`${titre == 'Profile' ? 'text-blue-500' :'' }`" class=" fa-solid fa-gear text-2xl hover:text-blue-500 hover:rotate-[170deg] duration-200 "></i>
                 </button>
             </div>
             <!-- Dropdown menu -->

@@ -26,13 +26,13 @@ Route::prefix("auth/")->controller(AuthentificationController::class)->name("aut
     Route::post("inscrire", "inscrire");
     Route::post("connecter", "connecter");
     Route::post("deconnecter/{user_id}", "deconnecter")->middleware("auth:sanctum");
-    Route::put("modifierProfile/{user_id}", "modifierProfile")->middleware("auth:sanctum");
+    Route::post("modifierProfile/{user_id}", "modifierProfile")->middleware("auth:sanctum");
 });
 
 
 
 /***************** Admin *******************/
-Route::prefix("admin")->controller(AdminController::class)->group(function () {
+Route::prefix("admin")->controller(AdminController::class)->middleware("auth:sanctum")->group(function () {
     Route::prefix("demandes")->group(function () {
         Route::get("index", "indexDemandes");
         Route::put("edit/{demande_id}", "changeDemandeStatut");
@@ -71,7 +71,7 @@ Route::prefix("admin")->controller(AdminController::class)->group(function () {
 
 
 /***************** Client ******************/
-Route::prefix("client")->controller(ClientController::class)->group(function () {
+Route::prefix("client")->controller(ClientController::class)->middleware("auth:sanctum")->group(function () {
     Route::prefix("mesDemandes")->group(function () {
         Route::get("index/{user_id}", "indexMesDemandes");
         Route::post("store/{user_id}", "storeDemande");

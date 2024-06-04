@@ -48,9 +48,10 @@ class AuthentificationRequest extends FormRequest
                 "telephone" => "required",
                 "password" => "required|min:8|max:10",
                 "motpasseverif" => "required|same:password",
-                "images" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048"
+                "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:4096"
             ];
         }
+
     }
 
 
@@ -67,7 +68,10 @@ class AuthentificationRequest extends FormRequest
             "password.min" => "Le mot de passe doit contenir au moins :min caractères.",
             "password.max" => "Le mot de passe ne doit pas dépasser :max caractères.",
             "motpasseverif.required" => "La vérification du mot de passe est obligatoire.",
-            "motpasseverif.same" => "Les mots de passe ne correspondent pas."
+            "motpasseverif.same" => "Les mots de passe ne correspondent pas.",
+            "image.image" => "Le fichier doit être une image.",
+            "image.mimes" => "L'image doit être au format : jpeg, png, jpg, gif.",
+            "image.max" => "La taille de l'image ne doit pas dépasser 4 Mo",
         ];
     }
 }

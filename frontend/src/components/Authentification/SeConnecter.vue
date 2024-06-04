@@ -1,6 +1,6 @@
 <template>
     <!-- form -->
-    <div class=" pulse h-full overflow-hidden connect w-[50%] mr-[30px] ml-[20px] py-[10px] ">
+    <div class=" pulse h-full overflow-hidden connect w-[50%] mr-[30px] ml-[20px] p-[10px] ">
         <div class="h-full w-full flex flex-col items-start pt-[5px] ">
             <div class="w-full">
                 <h1 class="text-2xl text-[#002D74] font-bold text-left ">Se connecter</h1>

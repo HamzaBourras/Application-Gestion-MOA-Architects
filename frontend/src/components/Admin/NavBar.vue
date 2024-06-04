@@ -3,7 +3,7 @@
         <div class=" h-[85%]">
             <div class="flex justify-start pl-2 py-[5px] shadow-sm mb-[20px] ">
                 <div class=" flex items-center justify-start py-[5px] ">
-                    <img v-if="user.image != null" class="rounded-[50%] w-[55px] h-[55px] "
+                    <img v-if="user.image != null" class="rounded-[50%] w-[55px] h-[55px] object-cover "
                         :src="`http://localhost:8000/storage/${user.image}`" alt="">
                     <p v-else
                         class="bg-slate-200 flex justify-center items-center h-[55px] w-[55px] p-2 rounded-[50%] cursor-pointer ">

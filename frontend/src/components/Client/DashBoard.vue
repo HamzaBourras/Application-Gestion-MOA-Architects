@@ -27,7 +27,7 @@
                 <div class="w-full pl-1 ">
                     <div class="w-[98%] rounded-lg bg-white text-black ml-2 py-[17px] flex flex-col justify-between ">
                         <!-- Contrats et rendez-vous -->
-                        <div class="flex justify-between">
+                        <div class="flex justify-between h-[200px] ">
                             <div class="w-1/2">
                                 <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Contrats à signer
                                     aujourd'hui</h1>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <!-- Projets -->
-                        <div class="mt-[0px]">
+                        <div class="h-[250px]">
                             <h1 class="text-black text-left pb-1 pl-2 text-lg font-[700] ">Etat de vos projets</h1>
                             <div>
                                 <div class="relative shadow-md rounded-lg mx-2 max-h-[200px] overflow-y-auto">
@@ -97,42 +97,6 @@
                                                 <td class="px-6 py-4">{{ projet.prix }} DH</td>
                                                 <td class="px-6 py-4">
                                                     {{ projet.termine == 1 ? "terminé" : "Enexécution" }}</td>
-                                                <td class="py-4">
-                                                    <button @click="changeLien('Mes projets')"
-                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                        Plus de detail
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr v-for="projet in projets" :key="projet.id"
-                                                class="bg-white dark:bg-gray-800">
-                                                <th scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">
-                                                    {{ projet.demandes.nom_projet }}
-                                                </th>
-                                                <td class="px-6 py-4">{{ projet.date_termination?.split(' ')[0] }}</td>
-                                                <td class="px-6 py-4">{{ projet.prix }} DH</td>
-                                                <td class="px-6 py-4">
-                                                    {{ projet.termine == 1 ? "terminé" : "En exécution" }}</td>
-                                                <td class="py-4">
-                                                    <button @click="changeLien('Mes projets')"
-                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                        Plus de detail
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr v-for="projet in projets" :key="projet.id"
-                                                class="bg-white dark:bg-gray-800">
-                                                <th scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">
-                                                    {{ projet.demandes.nom_projet }}
-                                                </th>
-                                                <td class="px-6 py-4">{{ projet.date_termination?.split(' ')[0] }}</td>
-                                                <td class="px-6 py-4">{{ projet.prix }} DH</td>
-                                                <td class="px-6 py-4">
-                                                    {{ projet.termine == 1 ? "terminé" : "En exécution"}}</td>
                                                 <td class="py-4">
                                                     <button @click="changeLien('Mes projets')"
                                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">

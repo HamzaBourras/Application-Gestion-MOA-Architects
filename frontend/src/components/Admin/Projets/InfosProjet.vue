@@ -2,7 +2,8 @@
     <div class="relative h-max pb-[40px] ">
         <div class="py-[10px] flex items-center justify-between pr-[20px] ">
             <div class=" flex justify-start items-end pl-[15px] mb-[5px] ">
-                <h1 class="text-[30px] font-[900] " :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`">
+                <h1 class="text-[30px] font-[900] pl-[30px] "
+                    :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`">
                     {{ projet.nom_projet.toUpperCase() }} </h1>
                 <span v-if="projet.termine == 0" class="inline text-blue-500 font-[600] ml-1 italic ">En cours
                     d'exécution ...</span>
@@ -19,7 +20,7 @@
 
         <div>
             <!-- infos du projet -->
-            <div class=" text-left bg-slate-50 text-black h-max w-[99%] mx-auto py-[20px] px-[10px] ">
+            <div class=" text-left bg-white text-black h-max w-[99%] mx-auto py-[30px] px-[10px] ">
                 <div class="flex items-center justify-between">
                     <p>
                         <span class="font-semibold">Type : </span>
@@ -73,7 +74,7 @@
             </div>
 
             <!-- images du projet -->
-            <div class="h-max w-[99%] mx-auto py-[20px] px-[10px] relative">
+            <div class="h-max w-[100%] mx-auto py-[20px] px-[10px] relative">
                 <!-- Component pour marqué le projet terminé -->
                 <ConfirmationComp v-if="afficheComConfirmation == true" :projetId="projet.id"
                     @changerVisibilite="afficheComConfirmation = false" />
@@ -108,15 +109,15 @@
 
                 </div>
                 <div class="mt-2">
-                    <div v-if="length != null && length == 0" class="pl-8 text-left">
+                    <div v-if="length != null && length == 0" class="pl-8 text-left ">
                         <p :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`" class=" text-lg font-[500] ">
-                            Vous n'avez pas des images à afficher</p>
+                            Vous n'avez pas encore des images à afficher</p>
                     </div>
-                    <div v-else>
+                    <div v-if="length != null && length != 0">
                         <div v-if=" userRole=='client'" class=" my-2">
-                            <p class="text-md font-[500] text-left">Voici l'état arrivé de votre projet</p>
+                            <p class="text-md font-[600] text-left pl-[15px] ">Voici l'état arrivé de votre projet</p>
                         </div>
-                        <div class="w-full flex justify-between">
+                        <div class="w-full flex justify-between px-[10px] py-[30px]  ">
                             <img class="w-[32%] h-[250px] object-cover " v-for="(image, i) in imagesProjet " :key="i"
                                 :src="`http://localhost:8000/storage/${image.chemin}`" alt="">
                         </div>
