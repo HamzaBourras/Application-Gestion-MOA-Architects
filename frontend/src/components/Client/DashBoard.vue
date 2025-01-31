@@ -169,7 +169,10 @@ export default {
         if (this.returnData) {
             this.demandes = this.returnData.nbrDemandes
             const tousContrats = this.returnData.Contrats
-            this.contrats = tousContrats?.filter(it => it.date.split(' ')[0] == formattedDate);
+            this.contrats = tousContrats?.filter(it => {
+                it.date.split(' ')[0] == formattedDate;
+                it.segne == 0
+            });
             const tousRendezVous = this.returnData.Rendezvous
             this.rendezVous = tousRendezVous?.filter(it => it.date.split(' ')[0] == formattedDate);
             this.projets = this.returnData.Projets

@@ -197,6 +197,7 @@ export default {
     },
     async mounted() {
         await this.recevoirDemandes()
+        console.log(this.demandesDesClients)
     }
 }
 </script>

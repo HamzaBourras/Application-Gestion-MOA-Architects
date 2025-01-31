@@ -91,7 +91,7 @@
                                 <img v-if="client.image != null" class="rounded-[50%] w-[55px] h-[55px] "
                                     :src="`http://localhost:8000/storage/${client.image}`" alt="">
                                 <p v-else
-                                    class="bg-slate-200 flex justify-center items-center h-[55px] w-[55px] p-2 rounded-[50%] cursor-pointer ">
+                                    class="bg-slate-200 flex justify-center items-center h-[55px] w-[55px] p-2 rounded-[50%] ">
                                     <i class="fa-solid fa-user text-xl text-black "></i>
                                 </p>
                             </div>
@@ -161,7 +161,10 @@ export default {
             this.demandes = this.returnData.nbrDemandes
             this.clients = this.returnData.Clients?.slice(0, 4);
             const tousContrats = this.returnData.Contrats
-            this.contrats = tousContrats.filter(it => it.date.split(' ')[0] == formattedDate);
+            this.contrats = tousContrats.filter(it => {
+                it.date.split(' ')[0] == formattedDate; 
+                it.segne == 0
+            });
             this.rendezVous = this.returnData.Rendezvous?.filter(it => it.date.split(' ')[0] == formattedDate);
             this.projets = this.returnData.nbrProjets
 

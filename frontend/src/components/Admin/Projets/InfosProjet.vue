@@ -109,11 +109,11 @@
 
                 </div>
                 <div class="mt-2">
-                    <div v-if="length != null && length == 0" class="pl-8 text-left ">
+                    <div v-if="length == 0" class="pl-8 text-left ">
                         <p :class="`${userRole == 'admin' ? 'text-white' : 'text-black'}`" class=" text-lg font-[500] ">
                             Vous n'avez pas encore des images à afficher</p>
                     </div>
-                    <div v-if="length != null && length != 0">
+                    <div v-if="length != 0">
                         <div v-if=" userRole=='client' && projet.termine == 0 " class=" my-2">
                             <p class="text-md font-[600] text-left pl-[15px] ">Voici l'état arrivé de votre projet</p>
                         </div>
@@ -157,7 +157,7 @@ export default {
             telecharge: 0,
             imagesProjet: [],
             projet: this.projetRecu,
-            length: null,
+            length: 0,
             afficheComAjouterImages: false, // pour controler l'affichage du component d'ajout des images au projet
             afficheComConfirmation: false, 
             afficheComAjouterCommentaire: false, // pour controler l'affichage du component d'ajout de commentaire
@@ -165,11 +165,6 @@ export default {
         }
     },
     methods: {
-        // async recevoirProjet() {
-        //     await this.envoyer(null, "get", TOUS_PROJETS, null, false) 
-        //     const tousProjets = this.returnData  
-        //     this.projet = tousProjets.filter(it => it.id == this.projet.id)
-        // },
         async recevoirImages() {
             await this.envoyer(null, "get", TOUS_IMAGES_PROJET, this.projet.id, false)
             this.imagesProjet = this.returnData
