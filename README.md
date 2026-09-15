@@ -1,33 +1,33 @@
 # 🏛️ Application Gestion MOA Architects
 
-Une plateforme web complète dédiée à la Maîtrise d'Ouvrage (MOA) et aux cabinets d'architectes. Cette application centralise la gestion des projets immobiliers, le suivi des terrains, la contractualisation et la relation client, le tout au travers d'une architecture moderne et découplée[cite: 8, 9].
+Une plateforme web complète dédiée à la Maîtrise d'Ouvrage (MOA) et aux cabinets d'architectes. Cette application centralise la gestion des projets immobiliers, le suivi des terrains, la contractualisation et la relation client, le tout au travers d'une architecture moderne et découplée.
 
 ## 🏗️ Architecture & Technologies
 
 Le projet repose sur une séparation claire entre l'API et l'interface utilisateur :
 
 ### ⚙️ Backend (`/backend`)
-* **Framework :** Laravel (PHP)[cite: 8, 9].
-* **Base de données :** MySQL gérée via l'ORM Eloquent et le système de migrations[cite: 8, 9].
-* **Sécurité & Auth :** Authentification robuste implémentée via JWT (`jwt.php`) pour sécuriser les endpoints de l'API[cite: 8, 9].
-* **Modèles de données :** Structure relationnelle complexe gérant les Utilisateurs, Rôles, Projets, Terrains, Contrats, Demandes, Rendez-vous et Commentaires[cite: 8, 9].
+* **Framework :** Laravel (PHP).
+* **Base de données :** MySQL gérée via l'ORM Eloquent et le système de migrations.
+* **Sécurité & Auth :** Authentification robuste implémentée via JWT (`jwt.php`) pour sécuriser les endpoints de l'API.
+* **Modèles de données :** Structure relationnelle complexe gérant les Utilisateurs, Rôles, Projets, Terrains, Contrats, Demandes, Rendez-vous et Commentaires.
 
 ### 💻 Frontend (`/frontend`)
-* **Framework :** ReactJS propulsé par Vite pour un environnement de développement ultra-rapide[cite: 8, 9].
-* **Styling :** Tailwind CSS (`tailwind.config.js`) pour un design moderne, responsive et facilement maintenable[cite: 8, 9].
-* **Composants :** Interface modulaire (graphiques, tables filtrables, modales, calendriers) avec gestion centralisée de l'état (Redux/State slices)[cite: 8, 9].
+* **Framework :** ReactJS propulsé par Vite pour un environnement de développement ultra-rapide.
+* **Styling :** Tailwind CSS (`tailwind.config.js`) pour un design moderne, responsive et facilement maintenable.
+* **Composants :** Interface modulaire (graphiques, tables filtrables, modales, calendriers) avec gestion centralisée de l'état (Redux/State slices).
 
 ---
 
 ## ✨ Fonctionnalités Principales
 
-* **Gestion de Projets :** Création, suivi d'avancement (statut `termine`) et galerie d'images (`images_projets`) pour chaque chantier[cite: 8, 9].
-* **Portefeuille de Terrains :** Référencement des parcelles avec documentation photographique (`images_terrains`) et caractéristiques techniques[cite: 8, 9].
-* **Suivi Contractuel :** Génération et gestion des contrats avec suivi de lecture (`vu`) et de signature (`segne`)[cite: 8, 9].
+* **Gestion de Projets :** Création, suivi d'avancement (statut `termine`) et galerie d'images (`images_projets`) pour chaque chantier.
+* **Portefeuille de Terrains :** Référencement des parcelles avec documentation photographique (`images_terrains`) et caractéristiques techniques.
+* **Suivi Contractuel :** Génération et gestion des contrats avec suivi de lecture (`vu`) et de signature (`segne`).
 * **Relation Client (CRM) :** 
-  * Système de prise et de suivi de rendez-vous (`rendez_vouses`)[cite: 8, 9].
-  * Centralisation des demandes clients avec possibilité de les associer directement à des projets (`ajoute_aux_projets`)[cite: 8, 9].
-  * Espace de commentaires pour faciliter la communication[cite: 8, 9].
+  * Système de prise et de suivi de rendez-vous (`rendez_vouses`).
+  * Centralisation des demandes clients avec possibilité de les associer directement à des projets (`ajoute_aux_projets`).
+  * Espace de commentaires pour faciliter la communication.
 
 ---
 
